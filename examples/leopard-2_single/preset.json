@@ -1,0 +1,116 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1501,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "MTU MB 873 Ka-501 · V12 · 47,6 л",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.52,
+            "cutoff": 1200,
+            "damping": 0.72,
+            "drive": 0.06,
+            "gain": 0.23,
+            "mute": false,
+            "resonance": 90,
+            "shape": 0.68,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.78,
+            "cutoff": 5050,
+            "damping": 0.61,
+            "drive": 0.12,
+            "gain": 0.57,
+            "mute": false,
+            "resonance": 670,
+            "shape": 0.51,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.96,
+            "cutoff": 3450,
+            "damping": 0.43,
+            "drive": 0.18,
+            "gain": 1.06,
+            "mute": false,
+            "resonance": 132,
+            "shape": 0.27,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.67,
+            "cutoff": 4700,
+            "damping": 0.54,
+            "drive": 0.03,
+            "gain": 0.58,
+            "mute": false,
+            "resonance": 356,
+            "shape": 0.46,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.78,
+            "cutoff": 6100,
+            "damping": 0.31,
+            "drive": 0.03,
+            "gain": 0.59,
+            "mute": false,
+            "resonance": 1470,
+            "shape": 0.69,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.63,
+            "cutoff": 7600,
+            "damping": 0.62,
+            "drive": 0.03,
+            "gain": 0.27,
+            "mute": false,
+            "resonance": 2100,
+            "shape": 0.7,
+            "solo": false
+        }
+    },
+    "model": {
+        "bankAngle": 60,
+        "boost": "turbocharger",
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 12,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 735,
+        "inertia": 25,
+        "irregularity": 0.1,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 47.6,
+        "loss": 0.36,
+        "maxRpm": 2650,
+        "powerKw": 1103,
+        "seed": 873501,
+        "strokes": 4,
+        "torqueNm": 4700,
+        "turbineBlades": 29
+    },
+    "name": "Leopard 2",
+    "version": 1
+}

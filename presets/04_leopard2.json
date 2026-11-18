@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "name": "Leopard 2",
+  "description": "MTU MB 873 Ka-501 · V12 · 47,6 л",
+  "model": {
+    "kind": "diesel",
+    "layout": "v",
+    "cylinders": 12,
+    "strokes": 4,
+    "liters": 47.6,
+    "idleRpm": 735,
+    "maxRpm": 2650,
+    "bankAngle": 60,
+    "firingOrder": [],
+    "irregularity": 0.1,
+    "inertia": 25,
+    "powerKw": 1103,
+    "torqueNm": 4700,
+    "loss": 0.36,
+    "exhaustTracts": 2,
+    "boost": "turbocharger",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 873501
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.57,
+      "resonance": 670,
+      "cutoff": 5050,
+      "shape": 0.51,
+      "amount": 0.78,
+      "damping": 0.61,
+      "drive": 0.12,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 1.06,
+      "resonance": 132,
+      "cutoff": 3450,
+      "shape": 0.27,
+      "amount": 0.96,
+      "damping": 0.43,
+      "drive": 0.18,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.58,
+      "resonance": 356,
+      "cutoff": 4700,
+      "shape": 0.46,
+      "amount": 0.67,
+      "damping": 0.54,
+      "drive": 0.03,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.59,
+      "resonance": 1470,
+      "cutoff": 6100,
+      "shape": 0.69,
+      "amount": 0.78,
+      "damping": 0.31,
+      "drive": 0.03,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.27,
+      "resonance": 2100,
+      "cutoff": 7600,
+      "shape": 0.7,
+      "amount": 0.63,
+      "damping": 0.62,
+      "drive": 0.03,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.23,
+      "resonance": 90,
+      "cutoff": 1200,
+      "shape": 0.68,
+      "amount": 0.52,
+      "damping": 0.72,
+      "drive": 0.06,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 1501,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  }
+}

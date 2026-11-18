@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "name": "M1 Abrams",
+  "description": "Honeywell AGT1500 · свободная силовая турбина",
+  "model": {
+    "kind": "turbine",
+    "layout": "v",
+    "cylinders": 12,
+    "strokes": 4,
+    "liters": 38.88,
+    "idleRpm": 920,
+    "maxRpm": 3000,
+    "bankAngle": 60,
+    "firingOrder": [],
+    "irregularity": 0.18,
+    "inertia": 25,
+    "powerKw": 1119,
+    "torqueNm": 4300,
+    "loss": 0.36,
+    "exhaustTracts": 2,
+    "boost": "none",
+    "coreMaxRpm": 30000,
+    "coreIdle": 0.52,
+    "coreLag": 1.21,
+    "compressorBlades": 14,
+    "turbineBlades": 27,
+    "seed": 1500
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.82,
+      "resonance": 579,
+      "cutoff": 9400,
+      "shape": 0.49,
+      "amount": 0.8,
+      "damping": 0.46,
+      "drive": 0.04,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.84,
+      "resonance": 273,
+      "cutoff": 6700,
+      "shape": 0.46,
+      "amount": 0.86,
+      "damping": 0.28,
+      "drive": 0.13,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.85,
+      "resonance": 598,
+      "cutoff": 9600,
+      "shape": 0.75,
+      "amount": 0.83,
+      "damping": 0.37,
+      "drive": 0.04,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.59,
+      "resonance": 1090,
+      "cutoff": 8200,
+      "shape": 0.72,
+      "amount": 0.66,
+      "damping": 0.45,
+      "drive": 0.03,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.79,
+      "resonance": 3100,
+      "cutoff": 12800,
+      "shape": 0.4,
+      "amount": 0.83,
+      "damping": 0.26,
+      "drive": 0.02,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.28,
+      "resonance": 138,
+      "cutoff": 1600,
+      "shape": 0.63,
+      "amount": 0.42,
+      "damping": 0.53,
+      "drive": 0.03,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 1752,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  }
+}

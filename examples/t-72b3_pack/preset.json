@@ -1,0 +1,116 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1270,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "В-84-1 · V12 · 38,88 л",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.69,
+            "cutoff": 1100,
+            "damping": 0.63,
+            "drive": 0.07,
+            "gain": 0.56,
+            "mute": false,
+            "resonance": 75,
+            "shape": 0.65,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.7,
+            "cutoff": 5200,
+            "damping": 0.43,
+            "drive": 0.17,
+            "gain": 0.67,
+            "mute": false,
+            "resonance": 710,
+            "shape": 0.38,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.72,
+            "cutoff": 2200,
+            "damping": 0.52,
+            "drive": 0.19,
+            "gain": 1,
+            "mute": false,
+            "resonance": 115,
+            "shape": 0.62,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.56,
+            "cutoff": 4400,
+            "damping": 0.52,
+            "drive": 0.04,
+            "gain": 0.46,
+            "mute": false,
+            "resonance": 280,
+            "shape": 0.53,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.65,
+            "cutoff": 6500,
+            "damping": 0.52,
+            "drive": 0.05,
+            "gain": 0.42,
+            "mute": false,
+            "resonance": 910,
+            "shape": 0.49,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.52,
+            "cutoff": 8000,
+            "damping": 0.46,
+            "drive": 0.02,
+            "gain": 0.32,
+            "mute": false,
+            "resonance": 2600,
+            "shape": 0.48,
+            "solo": false
+        }
+    },
+    "model": {
+        "bankAngle": 60,
+        "boost": "supercharger",
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 12,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 650,
+        "inertia": 19,
+        "irregularity": 0.18,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 38.88,
+        "loss": 0.36,
+        "maxRpm": 2200,
+        "powerKw": 618,
+        "seed": 1973,
+        "strokes": 4,
+        "torqueNm": 3500,
+        "turbineBlades": 29
+    },
+    "name": "T-72B3",
+    "version": 1
+}

@@ -1,0 +1,33 @@
+{
+    "bitsPerSample": 24,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.2210625,
+            "engine": "V8 Misfire",
+            "file": "steady.wav",
+            "frames": 154611,
+            "load": 0.58,
+            "loadEnd": 0.58,
+            "loadStart": 0.58,
+            "loop": {
+                "endFrameExclusive": 154611,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.2,
+            "role": "steady",
+            "rpm": 1900,
+            "rpmEnd": 1899.9941789394027,
+            "rpmPeak": 1899.9941789394027,
+            "rpmStart": 1899.9941789394027,
+            "throttle": 0.32
+        }
+    ],
+    "engine": "V8 Misfire",
+    "mode": "single",
+    "normalizationGain": 1.4197748483012824,
+    "normalized": true,
+    "sampleRate": 48000,
+    "seed": 5708,
+    "version": 1
+}

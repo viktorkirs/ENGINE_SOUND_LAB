@@ -1,0 +1,33 @@
+{
+    "bitsPerSample": 24,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.2653125,
+            "engine": "Leopard 2",
+            "file": "steady.wav",
+            "frames": 156735,
+            "load": 0.12,
+            "loadEnd": 0.12,
+            "loadStart": 0.12,
+            "loop": {
+                "endFrameExclusive": 156735,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.2,
+            "role": "steady",
+            "rpm": 735,
+            "rpmEnd": 735,
+            "rpmPeak": 735,
+            "rpmStart": 735,
+            "throttle": 0
+        }
+    ],
+    "engine": "Leopard 2",
+    "mode": "single",
+    "normalizationGain": 2.251547018015886,
+    "normalized": true,
+    "sampleRate": 48000,
+    "seed": 873501,
+    "version": 1
+}

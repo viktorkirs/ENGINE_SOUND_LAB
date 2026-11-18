@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "name": "BMP-2",
+  "description": "УТД-20С1 · V6 · 15,9 л",
+  "model": {
+    "kind": "diesel",
+    "layout": "v",
+    "cylinders": 6,
+    "strokes": 4,
+    "liters": 15.9,
+    "idleRpm": 720,
+    "maxRpm": 2800,
+    "bankAngle": 120,
+    "firingOrder": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "irregularity": 0.22,
+    "inertia": 7.9,
+    "powerKw": 221,
+    "torqueNm": 1030,
+    "loss": 0.36,
+    "exhaustTracts": 1,
+    "boost": "none",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 2026
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.82,
+      "resonance": 880,
+      "cutoff": 6400,
+      "shape": 0.27,
+      "amount": 0.75,
+      "damping": 0.35,
+      "drive": 0.17,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.78,
+      "resonance": 101,
+      "cutoff": 3700,
+      "shape": 0.39,
+      "amount": 0.58,
+      "damping": 0.39,
+      "drive": 0.27,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.62,
+      "resonance": 375,
+      "cutoff": 4700,
+      "shape": 0.65,
+      "amount": 0.7,
+      "damping": 0.35,
+      "drive": 0.08,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.62,
+      "resonance": 1070,
+      "cutoff": 7100,
+      "shape": 0.7,
+      "amount": 0.75,
+      "damping": 0.47,
+      "drive": 0.07,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.32,
+      "resonance": 2600,
+      "cutoff": 8000,
+      "shape": 0.48,
+      "amount": 0.52,
+      "damping": 0.46,
+      "drive": 0.02,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.32,
+      "resonance": 95,
+      "cutoff": 1600,
+      "shape": 0.36,
+      "amount": 0.52,
+      "damping": 0.51,
+      "drive": 0.11,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 1552,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  }
+}

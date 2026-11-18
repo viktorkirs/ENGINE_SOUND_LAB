@@ -1,0 +1,122 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1552,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "УТД-20С1 · V6 · 15,9 л",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.52,
+            "cutoff": 1600,
+            "damping": 0.51,
+            "drive": 0.11,
+            "gain": 0.32,
+            "mute": false,
+            "resonance": 95,
+            "shape": 0.36,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.75,
+            "cutoff": 6400,
+            "damping": 0.35,
+            "drive": 0.17,
+            "gain": 0.82,
+            "mute": false,
+            "resonance": 880,
+            "shape": 0.27,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.58,
+            "cutoff": 3700,
+            "damping": 0.39,
+            "drive": 0.27,
+            "gain": 0.78,
+            "mute": false,
+            "resonance": 101,
+            "shape": 0.39,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.7,
+            "cutoff": 4700,
+            "damping": 0.35,
+            "drive": 0.08,
+            "gain": 0.62,
+            "mute": false,
+            "resonance": 375,
+            "shape": 0.65,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.75,
+            "cutoff": 7100,
+            "damping": 0.47,
+            "drive": 0.07,
+            "gain": 0.62,
+            "mute": false,
+            "resonance": 1070,
+            "shape": 0.7,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.52,
+            "cutoff": 8000,
+            "damping": 0.46,
+            "drive": 0.02,
+            "gain": 0.32,
+            "mute": false,
+            "resonance": 2600,
+            "shape": 0.48,
+            "solo": false
+        }
+    },
+    "model": {
+        "bankAngle": 120,
+        "boost": "none",
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 6,
+        "exhaustTracts": 1,
+        "firingOrder": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ],
+        "idleRpm": 720,
+        "inertia": 7.9,
+        "irregularity": 0.22,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 15.9,
+        "loss": 0.36,
+        "maxRpm": 2800,
+        "powerKw": 221,
+        "seed": 2026,
+        "strokes": 4,
+        "torqueNm": 1030,
+        "turbineBlades": 29
+    },
+    "name": "BMP-2",
+    "version": 1
+}

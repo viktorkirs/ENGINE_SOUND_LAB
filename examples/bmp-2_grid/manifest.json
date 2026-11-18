@@ -1,0 +1,93 @@
+{
+    "bitsPerSample": 16,
+    "channels": 1,
+    "clips": [
+        {
+            "durationSeconds": 2.618185941043084,
+            "engine": "BMP-2",
+            "file": "01_01_rpm_1100_load_20.wav",
+            "frames": 115462,
+            "load": 0.2,
+            "loadEnd": 0.2,
+            "loadStart": 0.2,
+            "loop": {
+                "endFrameExclusive": 115462,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "01_01_rpm_1100_load_20",
+            "rpm": 1100,
+            "rpmEnd": 1099.9982678283764,
+            "rpmPeak": 1099.9982678283764,
+            "rpmStart": 1099.9982678283764,
+            "throttle": 0.15946224813632434
+        },
+        {
+            "durationSeconds": 2.618185941043084,
+            "engine": "BMP-2",
+            "file": "01_02_rpm_1100_load_80.wav",
+            "frames": 115462,
+            "load": 0.8,
+            "loadEnd": 0.8,
+            "loadStart": 0.8,
+            "loop": {
+                "endFrameExclusive": 115462,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "01_02_rpm_1100_load_80",
+            "rpm": 1100,
+            "rpmEnd": 1099.9982678283764,
+            "rpmPeak": 1099.9982678283764,
+            "rpmStart": 1099.9982678283764,
+            "throttle": 0.15946224813632434
+        },
+        {
+            "durationSeconds": 2.58,
+            "engine": "BMP-2",
+            "file": "02_01_rpm_2000_load_20.wav",
+            "frames": 113778,
+            "load": 0.2,
+            "loadEnd": 0.2,
+            "loadStart": 0.2,
+            "loop": {
+                "endFrameExclusive": 113778,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "02_01_rpm_2000_load_20",
+            "rpm": 2000,
+            "rpmEnd": 2000,
+            "rpmPeak": 2000,
+            "rpmStart": 2000,
+            "throttle": 0.5919409231557989
+        },
+        {
+            "durationSeconds": 2.58,
+            "engine": "BMP-2",
+            "file": "02_02_rpm_2000_load_80.wav",
+            "frames": 113778,
+            "load": 0.8,
+            "loadEnd": 0.8,
+            "loadStart": 0.8,
+            "loop": {
+                "endFrameExclusive": 113778,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "02_02_rpm_2000_load_80",
+            "rpm": 2000,
+            "rpmEnd": 2000,
+            "rpmPeak": 2000,
+            "rpmStart": 2000,
+            "throttle": 0.5919409231557989
+        }
+    ],
+    "engine": "BMP-2",
+    "mode": "grid",
+    "normalizationGain": 1.4860246076137542,
+    "normalized": true,
+    "sampleRate": 44100,
+    "seed": 2026,
+    "version": 1
+}

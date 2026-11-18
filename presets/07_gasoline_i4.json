@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "name": "Бензиновый I4",
+  "description": "Условный четырёхтактный двигатель · 2,0 л",
+  "model": {
+    "kind": "gasoline",
+    "layout": "inline",
+    "cylinders": 4,
+    "strokes": 4,
+    "liters": 2.0,
+    "idleRpm": 800,
+    "maxRpm": 6800,
+    "bankAngle": 90,
+    "firingOrder": [],
+    "irregularity": 0.08,
+    "inertia": 0.72,
+    "powerKw": 116,
+    "torqueNm": 205,
+    "loss": 0.29,
+    "exhaustTracts": 1,
+    "boost": "none",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 2004
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.46,
+      "resonance": 790,
+      "cutoff": 6200,
+      "shape": 0.55,
+      "amount": 0.48,
+      "damping": 0.45,
+      "drive": 0.09,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.91,
+      "resonance": 171,
+      "cutoff": 4800,
+      "shape": 0.29,
+      "amount": 0.56,
+      "damping": 0.35,
+      "drive": 0.18,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.77,
+      "resonance": 530,
+      "cutoff": 6300,
+      "shape": 0.78,
+      "amount": 0.67,
+      "damping": 0.38,
+      "drive": 0.05,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.45,
+      "resonance": 1280,
+      "cutoff": 6600,
+      "shape": 0.58,
+      "amount": 0.52,
+      "damping": 0.64,
+      "drive": 0.05,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.32,
+      "resonance": 2600,
+      "cutoff": 8000,
+      "shape": 0.48,
+      "amount": 0.52,
+      "damping": 0.46,
+      "drive": 0.02,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.23,
+      "resonance": 125,
+      "cutoff": 1600,
+      "shape": 0.16,
+      "amount": 0.55,
+      "damping": 0.64,
+      "drive": 0.08,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 3200,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "name": "Бензиновый V8",
+  "description": "Условный cross-plane V8 · 5,7 л",
+  "model": {
+    "kind": "gasoline",
+    "layout": "v",
+    "cylinders": 8,
+    "strokes": 4,
+    "liters": 5.7,
+    "idleRpm": 680,
+    "maxRpm": 6300,
+    "bankAngle": 90,
+    "firingOrder": [],
+    "irregularity": 0.2,
+    "inertia": 1.45,
+    "powerKw": 310,
+    "torqueNm": 540,
+    "loss": 0.33,
+    "exhaustTracts": 2,
+    "boost": "none",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 5708
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.51,
+      "resonance": 534,
+      "cutoff": 4800,
+      "shape": 0.61,
+      "amount": 0.42,
+      "damping": 0.6,
+      "drive": 0.1,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 1.16,
+      "resonance": 102,
+      "cutoff": 4700,
+      "shape": 0.52,
+      "amount": 0.64,
+      "damping": 0.2,
+      "drive": 0.29,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.61,
+      "resonance": 345,
+      "cutoff": 6400,
+      "shape": 0.63,
+      "amount": 0.69,
+      "damping": 0.44,
+      "drive": 0.07,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.42,
+      "resonance": 1470,
+      "cutoff": 6900,
+      "shape": 0.55,
+      "amount": 0.57,
+      "damping": 0.55,
+      "drive": 0.08,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.32,
+      "resonance": 2600,
+      "cutoff": 8000,
+      "shape": 0.48,
+      "amount": 0.52,
+      "damping": 0.46,
+      "drive": 0.02,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.28,
+      "resonance": 87,
+      "cutoff": 1500,
+      "shape": 0.28,
+      "amount": 0.61,
+      "damping": 0.51,
+      "drive": 0.09,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 2928,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  }
+}
