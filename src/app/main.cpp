@@ -52,6 +52,7 @@ int exportDemos(const QString& destination) {
         }
     }
     if (!load(QStringLiteral("04_leopard2")) || !write(pack)) return 2;
+    if (!load(QStringLiteral("07_gasoline_i4")) || !write(pack)) return 2;
     pack.normalize = true;
     if (!load(QStringLiteral("05_m1_abrams")) || !write(pack)) return 2;
 

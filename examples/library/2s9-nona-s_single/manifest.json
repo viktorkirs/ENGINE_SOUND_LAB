@@ -3,15 +3,15 @@
     "channels": 2,
     "clips": [
         {
-            "durationSeconds": 3.5971458333333333,
+            "durationSeconds": 3.6097916666666667,
             "engine": "2S9 Nona-S",
             "file": "steady.wav",
-            "frames": 172663,
+            "frames": 173270,
             "load": 0.45,
             "loadEnd": 0.45,
             "loadStart": 0.45,
             "loop": {
-                "endFrameExclusive": 172663,
+                "endFrameExclusive": 173270,
                 "startFrame": 0
             },
             "requestedSeconds": 3.6,

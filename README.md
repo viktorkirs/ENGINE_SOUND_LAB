@@ -2,7 +2,9 @@
 
 **English** · [Русский](README.ru.md)
 
-Engine Sound Lab is an offline Windows synthesizer for creating engine sound effects for Iron Sector and other games. It models piston firing, intake and exhaust pressure, mechanical vibration, and independently rotating turbine shafts. Version 1.2.2 includes 64 built-in presets, 43 recording banks and 322 WAV examples. Click the current engine name or press **Ctrl+K** to open the searchable preset library. [Battlecity vehicle index](docs/battlecity-engine-library.md)
+[Download the portable Windows build](https://github.com/viktorkirs/ENGINE_SOUND_LAB/releases/latest)
+
+Engine Sound Lab is an offline Windows synthesizer for creating engine sound effects for Iron Sector and other games. It models piston firing, intake and exhaust pressure, mechanical vibration, and independently rotating turbine shafts. The source tree includes 64 built-in presets, 44 recording banks and 331 WAV examples. Click the current engine name or press **Ctrl+K** to open the searchable preset library. [Battlecity vehicle index](docs/battlecity-engine-library.md)
 
 The T-90M now combines the low end of the T-72B3 preset with an exterior T-90M recording across five RPM anchors. The turbo whistle rises with load. Selected vehicle and truck loops also have less high-frequency hiss and steadier levels at cruise. [Recording notes](docs/recording-calibration.md)
 
@@ -16,7 +18,9 @@ pwsh -File .\Build-Windows.ps1
 
 The script builds the Release configuration, runs CTest, and collects the runtime libraries in `dist/Engine Sound Lab`. It also creates `dist/Engine-Sound-Lab-Windows-x64.zip`. Extract the entire archive and launch `EngineSoundLab.exe`. The portable app runs offline on Windows 10 and 11 x64 without the Qt SDK.
 
-Pass `-QtRoot`, `-MinGWRoot`, and `-NinjaDirectory` for a custom SDK installation. Use `-SkipPackage` for a build with tests. Set `-DESL_BUILD_APP=OFF` in CMake to build the standalone DSP core without Qt.
+Pass `-QtRoot`, `-MinGWRoot`, and `-NinjaDirectory` for a custom SDK installation. Use `-SkipPackage` for a build with tests. Set `-DESL_BUILD_APP=OFF -DESL_BUILD_CLI=OFF` in CMake to build the standalone DSP core without Qt.
+
+For Godot and automation, run `EngineSoundLabCLI.exe` from the portable folder. Its `catalog`, `show-preset` and `export` commands select game vehicles or preset files and return machine-readable JSON. [CLI commands and Godot import](docs/agent-cli.md) · [Agent instructions](AGENTS.md)
 
 ## Using the bench
 
@@ -74,7 +78,9 @@ Each export directory contains the WAV files, `preset.json` and `manifest.json`.
 | [Hummer H2](examples/hummer-h2_pack) | Naturally aspirated gasoline V8, five recorded RPM layers |
 | [UAZ-469](examples/uaz-469_pack) | Carbureted inline-four, five recorded layers from idle to a loaded climb |
 | [Renault 2.3 dCi](examples/renault-2-3-dci_pack) | Recorded idle plus separate on-throttle and lift-off layers |
-| [BMP-1/2](examples/bmp-1-2_pack) and [BMP-3](examples/bmp-3_pack) | Separate V6 and V10 diesel banks, with track squeal removed from the V6 |
+| [BMP-1/2](examples/bmp-1-2_pack) | V6 diesel with recorded idle, loaded passes and mechanical texture from an exposed engine on a stand |
+| [BMP-3](examples/bmp-3_pack) | V10 diesel with three recorded RPM layers |
+| [Gasoline I4](examples/i4_pack) | Turbocharged 2.0-liter sound with under-hood Golf idle and Audi exhaust under load |
 | [Stryker](examples/stryker_pack) | Inline-six diesel with the driving clips cleaned of speech and transmission whine |
 | [C1 Ariete](examples/c1-ariete_pack) | V12 diesel with idle and throttle layers from the supplied video |
 | [M113](examples/m113_pack) | Two-stroke Detroit Diesel V6, sampled with the tracks stationary |

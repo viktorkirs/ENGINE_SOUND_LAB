@@ -226,7 +226,7 @@ QString loadPreset(const QString& path, Preset& preset) {
     return {};
 }
 
-QString savePreset(const QString& path, const Preset& preset) {
+QJsonObject presetJson(const Preset& preset) {
     const auto& model = preset.settings.model;
     QJsonArray order;
     if (model.firingOrder[0] != 0) {
@@ -260,14 +260,23 @@ QString savePreset(const QString& path, const Preset& preset) {
     const QJsonObject cut{{"enabled", limiter.enabled}, {"cutRpm", limiter.cutRpm}, {"resumeRpm", limiter.resumeRpm}};
     const QJsonObject faults{{"cylinder", f.cylinder}, {"sparkMiss", f.sparkMiss}, {"fuelBias", f.fuelBias},
         {"injectorWear", f.injectorWear}, {"overload", f.overload}, {"mechanicalWear", f.mechanicalWear}};
-    const QJsonObject root{{"version", 1}, {"name", preset.name}, {"description", preset.description}, {"model", m},
-                           {"layers", layers}, {"behavior", behavior}, {"faults", faults}, {"listener", listenerJson(preset.settings.listener)},
-                           {"revLimiter", cut}};
+    return {{"version", 1}, {"name", preset.name}, {"description", preset.description}, {"model", m},
+            {"layers", layers}, {"behavior", behavior}, {"faults", faults}, {"listener", listenerJson(preset.settings.listener)},
+            {"revLimiter", cut}};
+}
+
+QString savePreset(const QString& path, const Preset& preset) {
     QSaveFile file(path);
     if (!file.open(QIODevice::WriteOnly)) return file.errorString();
-    const auto json = QJsonDocument(root).toJson();
+    const auto json = QJsonDocument(presetJson(preset)).toJson();
     if (file.write(json) != json.size() || !file.commit()) return file.errorString();
     return {};
+}
+
+QJsonArray fleetIndex() {
+    QFile file(QStringLiteral(":/library/fleet.json"));
+    if (!file.open(QIODevice::ReadOnly)) return {};
+    return QJsonDocument::fromJson(file.readAll()).array();
 }
 
 } // namespace esl

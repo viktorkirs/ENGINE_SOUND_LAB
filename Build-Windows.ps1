@@ -16,7 +16,7 @@ try {
     $env:Path = "$qtBin;$compilerBin;$NinjaDirectory;$eslPreviousPath"
 
     $build = Join-Path $PSScriptRoot 'build'
-    cmake -S $PSScriptRoot -B $build -G Ninja -DCMAKE_BUILD_TYPE=Release "-DCMAKE_PREFIX_PATH=$QtRoot" "-DCMAKE_CXX_COMPILER=$compiler" -DESL_BUILD_APP=ON -DBUILD_TESTING=ON
+    cmake -S $PSScriptRoot -B $build -G Ninja -DCMAKE_BUILD_TYPE=Release "-DCMAKE_PREFIX_PATH=$QtRoot" "-DCMAKE_CXX_COMPILER=$compiler" -DESL_BUILD_APP=ON -DESL_BUILD_CLI=ON -DBUILD_TESTING=ON
     if ($LASTEXITCODE -ne 0) { throw 'CMake configuration failed.' }
     cmake --build $build --parallel
     if ($LASTEXITCODE -ne 0) { throw 'Build failed.' }
@@ -29,9 +29,10 @@ try {
     New-Item -ItemType Directory -Force -Path $portable | Out-Null
     $binary = Join-Path $portable 'EngineSoundLab.exe'
     Copy-Item -LiteralPath (Join-Path $build 'EngineSoundLab.exe') -Destination $binary -Force
+    Copy-Item -LiteralPath (Join-Path $build 'EngineSoundLabCLI.exe') -Destination $portable -Force
     & (Join-Path $qtBin 'windeployqt.exe') --release --no-opengl-sw --no-system-d3d-compiler --no-system-dxc-compiler --no-translations --skip-plugin-types 'iconengines,imageformats,styles,networkinformation,tls,generic,platformthemes' $binary
     if ($LASTEXITCODE -ne 0) { throw 'Qt deployment failed.' }
-    foreach ($name in 'README.md','README.ru.md','THIRD-PARTY.md','licenses','presets','docs') {
+    foreach ($name in 'README.md','README.ru.md','AGENTS.md','THIRD-PARTY.md','licenses','presets','docs') {
         Copy-Item -LiteralPath (Join-Path $PSScriptRoot $name) -Destination $portable -Recurse -Force
     }
     $prepTools = New-Item -ItemType Directory -Force -Path (Join-Path $portable 'tools')

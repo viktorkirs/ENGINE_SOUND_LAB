@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "Бензиновый I4",
-  "description": "Условный четырёхтактный двигатель · 2,0 л",
+  "description": "Современный бензиновый I4 · 2,0 л · по записям TSI/TFSI",
   "model": {
     "kind": "gasoline",
     "layout": "inline",
@@ -20,13 +20,14 @@
     "torqueNm": 205,
     "loss": 0.29,
     "exhaustTracts": 1,
-    "boost": "none",
+    "boost": "turbocharger",
     "coreMaxRpm": 28000,
     "coreIdle": 0.54,
     "coreLag": 1.25,
     "compressorBlades": 18,
     "turbineBlades": 29,
-    "seed": 2004
+    "seed": 2004,
+    "recording": "tsiI4"
   },
   "revLimiter": {
     "enabled": true,
@@ -35,7 +36,7 @@
   },
   "layers": {
     "combustion": {
-      "gain": 0.46,
+      "gain": 0.14,
       "resonance": 790,
       "cutoff": 6200,
       "shape": 0.55,
@@ -46,18 +47,18 @@
       "solo": false
     },
     "exhaust": {
-      "gain": 0.91,
-      "resonance": 171,
+      "gain": 0.30,
+      "resonance": 180,
       "cutoff": 4800,
       "shape": 0.29,
       "amount": 0.56,
       "damping": 0.35,
-      "drive": 0.18,
+      "drive": 0.10,
       "mute": false,
       "solo": false
     },
     "intake": {
-      "gain": 0.77,
+      "gain": 0.18,
       "resonance": 530,
       "cutoff": 6300,
       "shape": 0.78,
@@ -68,10 +69,10 @@
       "solo": false
     },
     "mechanical": {
-      "gain": 0.45,
-      "resonance": 1280,
+      "gain": 0.19,
+      "resonance": 505,
       "cutoff": 6600,
-      "shape": 0.58,
+      "shape": 0.29,
       "amount": 0.52,
       "damping": 0.64,
       "drive": 0.05,
@@ -79,7 +80,7 @@
       "solo": false
     },
     "turbo": {
-      "gain": 0.32,
+      "gain": 0.15,
       "resonance": 2600,
       "cutoff": 8000,
       "shape": 0.48,
@@ -90,13 +91,24 @@
       "solo": false
     },
     "body": {
-      "gain": 0.23,
+      "gain": 0.09,
       "resonance": 125,
       "cutoff": 1600,
       "shape": 0.16,
       "amount": 0.55,
       "damping": 0.64,
       "drive": 0.08,
+      "mute": false,
+      "solo": false
+    },
+    "recording": {
+      "gain": 1.08,
+      "resonance": 172,
+      "cutoff": 10800,
+      "shape": 0.77,
+      "amount": 0.027,
+      "damping": 0.61,
+      "drive": 0.022,
       "mute": false,
       "solo": false
     }
@@ -110,6 +122,11 @@
     "brake": false,
     "master": 0.72,
     "program": "autoTest"
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 4,
+    "insulation": 0.47
   },
   "faults": {
     "cylinder": 1,

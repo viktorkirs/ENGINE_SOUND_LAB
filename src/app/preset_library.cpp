@@ -3,10 +3,8 @@
 #include <QCollator>
 #include <QDialog>
 #include <QDialogButtonBox>
-#include <QFile>
 #include <QHash>
 #include <QJsonArray>
-#include <QJsonDocument>
 #include <QJsonObject>
 #include <QLabel>
 #include <QLineEdit>
@@ -86,15 +84,11 @@ int chooseLibraryPreset(QWidget* parent, const std::vector<Preset>& presets, int
     layout->addWidget(buttons);
 
     QHash<QString, QStringList> names, ids;
-    QFile catalog(QStringLiteral(":/library/fleet.json"));
-    if (catalog.open(QIODevice::ReadOnly)) {
-        const auto rows = QJsonDocument::fromJson(catalog.readAll()).array();
-        for (const auto& entry : rows) {
-            const auto row = entry.toObject();
-            const auto preset = row.value("preset").toString();
-            names[preset] << row.value("name").toString();
-            ids[preset] << row.value("id").toString() << row.value("slot").toString();
-        }
+    for (const auto& entry : fleetIndex()) {
+        const auto row = entry.toObject();
+        const auto preset = row.value("preset").toString();
+        names[preset] << row.value("name").toString();
+        ids[preset] << row.value("id").toString() << row.value("slot").toString();
     }
     QStringList keys;
     for (const auto& p : presets)

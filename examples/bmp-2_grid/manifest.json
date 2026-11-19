@@ -3,55 +3,55 @@
     "channels": 1,
     "clips": [
         {
-            "durationSeconds": 2.618185941043084,
+            "durationSeconds": 2.5922902494331064,
             "engine": "BMP-2",
             "file": "01_01_rpm_1100_load_20.wav",
-            "frames": 115462,
+            "frames": 114320,
             "load": 0.2,
             "loadEnd": 0.2,
             "loadStart": 0.2,
             "loop": {
-                "endFrameExclusive": 115462,
+                "endFrameExclusive": 114320,
                 "startFrame": 0
             },
             "requestedSeconds": 2.6,
             "role": "01_01_rpm_1100_load_20",
             "rpm": 1100,
-            "rpmEnd": 1099.9982678283764,
-            "rpmPeak": 1099.9982678283764,
-            "rpmStart": 1099.9982678283764,
-            "throttle": 0.15946224813632434
+            "rpmEnd": 1100,
+            "rpmPeak": 1100,
+            "rpmStart": 1100,
+            "throttle": 0.11690937561003206
         },
         {
-            "durationSeconds": 2.618185941043084,
+            "durationSeconds": 2.5922902494331064,
             "engine": "BMP-2",
             "file": "01_02_rpm_1100_load_80.wav",
-            "frames": 115462,
+            "frames": 114320,
             "load": 0.8,
             "loadEnd": 0.8,
             "loadStart": 0.8,
             "loop": {
-                "endFrameExclusive": 115462,
+                "endFrameExclusive": 114320,
                 "startFrame": 0
             },
             "requestedSeconds": 2.6,
             "role": "01_02_rpm_1100_load_80",
             "rpm": 1100,
-            "rpmEnd": 1099.9982678283764,
-            "rpmPeak": 1099.9982678283764,
-            "rpmStart": 1099.9982678283764,
-            "throttle": 0.15946224813632434
+            "rpmEnd": 1100,
+            "rpmPeak": 1100,
+            "rpmStart": 1100,
+            "throttle": 0.11690937561003206
         },
         {
-            "durationSeconds": 2.58,
+            "durationSeconds": 2.5979591836734692,
             "engine": "BMP-2",
             "file": "02_01_rpm_2000_load_20.wav",
-            "frames": 113778,
+            "frames": 114570,
             "load": 0.2,
             "loadEnd": 0.2,
             "loadStart": 0.2,
             "loop": {
-                "endFrameExclusive": 113778,
+                "endFrameExclusive": 114570,
                 "startFrame": 0
             },
             "requestedSeconds": 2.6,
@@ -60,18 +60,18 @@
             "rpmEnd": 2000,
             "rpmPeak": 2000,
             "rpmStart": 2000,
-            "throttle": 0.5919409231557989
+            "throttle": 0.569661942485709
         },
         {
-            "durationSeconds": 2.58,
+            "durationSeconds": 2.5979591836734692,
             "engine": "BMP-2",
             "file": "02_02_rpm_2000_load_80.wav",
-            "frames": 113778,
+            "frames": 114570,
             "load": 0.8,
             "loadEnd": 0.8,
             "loadStart": 0.8,
             "loop": {
-                "endFrameExclusive": 113778,
+                "endFrameExclusive": 114570,
                 "startFrame": 0
             },
             "requestedSeconds": 2.6,
@@ -80,12 +80,17 @@
             "rpmEnd": 2000,
             "rpmPeak": 2000,
             "rpmStart": 2000,
-            "throttle": 0.5919409231557989
+            "throttle": 0.569661942485709
         }
     ],
     "engine": "BMP-2",
+    "listener": {
+        "distanceMeters": 3.5,
+        "insulation": 0.74,
+        "position": "thirdPerson"
+    },
     "mode": "grid",
-    "normalizationGain": 1.4860246076137542,
+    "normalizationGain": 1.1988027212679002,
     "normalized": true,
     "sampleRate": 44100,
     "seed": 2026,

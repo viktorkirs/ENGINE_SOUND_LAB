@@ -1,0 +1,151 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 3200,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "Современный бензиновый I4 · 2,0 л · по записям TSI/TFSI",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.55,
+            "cutoff": 1600,
+            "damping": 0.64,
+            "drive": 0.08,
+            "gain": 0.09,
+            "mute": false,
+            "resonance": 125,
+            "shape": 0.16,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.48,
+            "cutoff": 6200,
+            "damping": 0.45,
+            "drive": 0.09,
+            "gain": 0.14,
+            "mute": false,
+            "resonance": 790,
+            "shape": 0.55,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.56,
+            "cutoff": 4800,
+            "damping": 0.35,
+            "drive": 0.1,
+            "gain": 0.3,
+            "mute": false,
+            "resonance": 180,
+            "shape": 0.29,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.67,
+            "cutoff": 6300,
+            "damping": 0.38,
+            "drive": 0.05,
+            "gain": 0.18,
+            "mute": false,
+            "resonance": 530,
+            "shape": 0.78,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.52,
+            "cutoff": 6600,
+            "damping": 0.64,
+            "drive": 0.05,
+            "gain": 0.19,
+            "mute": false,
+            "resonance": 505,
+            "shape": 0.29,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.027,
+            "cutoff": 10800,
+            "damping": 0.61,
+            "drive": 0.022,
+            "gain": 1.08,
+            "mute": false,
+            "resonance": 172,
+            "shape": 0.77,
+            "solo": false
+        },
+        "transmission": {
+            "amount": 0.38,
+            "cutoff": 3900,
+            "damping": 0.48,
+            "drive": 0.04,
+            "gain": 0,
+            "mute": false,
+            "resonance": 610,
+            "shape": 0.62,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.52,
+            "cutoff": 8000,
+            "damping": 0.46,
+            "drive": 0.02,
+            "gain": 0.15,
+            "mute": false,
+            "resonance": 2600,
+            "shape": 0.48,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 4,
+        "insulation": 0.47,
+        "position": "thirdPerson"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "turbocharger",
+        "compressionRatio": 10.5,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 4,
+        "exhaustTracts": 1,
+        "firingOrder": [
+        ],
+        "idleRpm": 800,
+        "inertia": 0.72,
+        "irregularity": 0.08,
+        "kind": "gasoline",
+        "layout": "inline",
+        "liters": 2,
+        "loss": 0.29,
+        "maxRpm": 6800,
+        "powerKw": 116,
+        "recording": "tsiI4",
+        "seed": 2004,
+        "strokeMm": 86,
+        "strokes": 4,
+        "torqueNm": 205,
+        "turbineBlades": 29
+    },
+    "name": "Бензиновый I4",
+    "revLimiter": {
+        "cutRpm": 6500,
+        "enabled": true,
+        "resumeRpm": 6350
+    },
+    "version": 1
+}

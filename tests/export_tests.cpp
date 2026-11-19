@@ -226,7 +226,7 @@ void checkFiles(const QString& base) {
         }
     }
     require(vehicles.size() == 60 && covered == 58, "Incomplete game catalog");
-    require(recordingKeys().size() == 44 && recordingKeys().size() == recordingLabels().size(), "Missing field banks");
+    require(recordingKeys().size() == 45 && recordingKeys().size() == recordingLabels().size(), "Missing field banks");
     for (int i = 1; i < recordingKeys().size(); ++i)
         require(builtinRecording(static_cast<RecordingId>(i)) != nullptr, "Unplayable field bank");
     Preset p;
@@ -278,17 +278,28 @@ void checkFiles(const QString& base) {
             bradley.settings.model.recording->id == RecordingId::Bradley && bradley.settings.model.recording->loops.size() == 4 &&
             bradley.settings.model.cylinders == 8, "Missing embedded Bradley V8");
     checkBradleyAtFixedRpm(bradley.settings);
-    Preset bmp12, bmp3, dci, uaz, stryker, ariete, m113;
+    Preset bmp12, bmp2, bmp3, dci, uaz, stryker, ariete, m113;
     const auto hasBank = [&](const QString& file, Preset& preset, RecordingId id, int cylinders, std::size_t count) {
         if (!loadPreset(presets.filePath(file), preset).isEmpty()) return false;
         const auto& model = preset.settings.model;
         return model.cylinders == cylinders && model.recording && model.recording->id == id &&
                model.recording->loops.size() == count && preset.settings.listener.position == ListeningPosition::ThirdPerson;
     };
-    require(hasBank("03b_bmp12.json", bmp12, RecordingId::Bmp12, 6, 3) &&
+    require(hasBank("03b_bmp12.json", bmp12, RecordingId::Bmp12, 6, 7) &&
+            hasBank("03_bmp2.json", bmp2, RecordingId::Bmp12, 6, 7) &&
             hasBank("03c_bmp3.json", bmp3, RecordingId::Bmp3, 10, 3), "Missing recorded BMP engine");
+    const auto& bmpV6 = bmp12.settings.model;
+    require(bmpV6.recording->loops.front().rpm == bmpV6.idleRpm &&
+            bmpV6.recording == bmp2.settings.model.recording && bmpV6.idleRpm == bmp2.settings.model.idleRpm,
+            "BMP-1/2 and BMP-2 must share the recorded idle anchor");
     checkForTonalBursts(*bmp12.settings.model.recording, {2650., 2950., 3450., 5450., 6050., 6650.},
                         "Track squeal leaked into the BMP-1/2 engine loop");
+    Preset tsi;
+    require(hasBank("07_gasoline_i4.json", tsi, RecordingId::TsiI4, 4, 6) &&
+            tsi.settings.model.kind == EngineKind::Gasoline && tsi.settings.model.boost == Boost::Turbocharger &&
+            tsi.settings.model.recording->loops.front().rpm == tsi.settings.model.idleRpm &&
+            tsi.settings.model.recording->loops.back().rpm > 5500,
+            "The gasoline I4 recording bank must cover idle and a loaded high-RPM range");
     require(hasBank("10_dci23.json", dci, RecordingId::Dci23, 4, 4) &&
             dci.settings.model.boost == Boost::Turbocharger, "Missing recorded 2.3 dCi");
     for (const auto& loop : dci.settings.model.recording->loops) {

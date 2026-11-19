@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "BMP-1/2",
-  "description": "УТД-20 · дизель V6 · 15,9 л · запись BMP1-2.wav",
+  "description": "УТД-20 · дизель V6 · 15,9 л · стоянка, стенд и проезды",
   "model": {
     "kind": "diesel",
     "layout": "v",
@@ -10,7 +10,7 @@
     "liters": 15.9,
     "strokeMm": 150,
     "compressionRatio": 15.8,
-    "idleRpm": 720,
+    "idleRpm": 830,
     "maxRpm": 2800,
     "bankAngle": 120,
     "firingOrder": [
@@ -39,7 +39,7 @@
   },
   "layers": {
     "combustion": {
-      "gain": 0.13,
+      "gain": 0.09,
       "resonance": 510,
       "cutoff": 4200,
       "shape": 0.37,
@@ -50,7 +50,7 @@
       "solo": false
     },
     "exhaust": {
-      "gain": 0.18,
+      "gain": 0.11,
       "resonance": 104,
       "cutoff": 2750,
       "shape": 0.42,
@@ -61,7 +61,7 @@
       "solo": false
     },
     "intake": {
-      "gain": 0.085,
+      "gain": 0.07,
       "resonance": 286,
       "cutoff": 3370,
       "shape": 0.46,
@@ -72,10 +72,10 @@
       "solo": false
     },
     "mechanical": {
-      "gain": 0.085,
-      "resonance": 700,
+      "gain": 0.105,
+      "resonance": 885,
       "cutoff": 4200,
-      "shape": 0,
+      "shape": 0.12,
       "amount": 0.61,
       "damping": 0.54,
       "drive": 0.025,
@@ -94,7 +94,7 @@
       "solo": false
     },
     "body": {
-      "gain": 0.12,
+      "gain": 0.10,
       "resonance": 78,
       "cutoff": 1020,
       "shape": 0.63,
@@ -105,11 +105,11 @@
       "solo": false
     },
     "recording": {
-      "gain": 1.13,
-      "resonance": 118,
-      "cutoff": 10700,
-      "shape": 0.82,
-      "amount": 0.055,
+      "gain": 1.16,
+      "resonance": 91,
+      "cutoff": 10000,
+      "shape": 0.78,
+      "amount": 0.03,
       "damping": 0.69,
       "drive": 0.016,
       "mute": false,
@@ -136,7 +136,7 @@
   },
   "listener": {
     "position": "thirdPerson",
-    "distanceMeters": 8,
+    "distanceMeters": 3.5,
     "insulation": 0.74
   }
 }

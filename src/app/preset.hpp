@@ -4,6 +4,7 @@
 
 #include <QString>
 
+class QJsonArray;
 class QJsonObject;
 
 namespace esl {
@@ -17,6 +18,8 @@ struct Preset {
 // Invalid files return an error and leave the supplied preset intact.
 QString loadPreset(const QString& path, Preset& preset);
 QString savePreset(const QString& path, const Preset& preset);
+QJsonObject presetJson(const Preset& preset);
+QJsonArray fleetIndex();
 QJsonObject listenerJson(const Listener& listener);
 QString listeningPositionName(ListeningPosition position);
 QString firingOrderText(const Model& model);

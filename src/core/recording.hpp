@@ -8,7 +8,7 @@
 namespace esl {
 
 enum class RecordingId { None, T72, T90M, Leopard1, Leopard2, Marder, Puma, Bradley, HummerH2,
-                         Bmp12, Bmp3, Dci23, Uaz, Stryker, Ariete, M113 };
+                         Bmp12, Bmp3, Dci23, Uaz, Stryker, Ariete, M113, TsiI4 };
 
 struct RecordedLoop {
     double rpm;

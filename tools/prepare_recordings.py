@@ -72,12 +72,30 @@ HUMMER_H2 = [
     (2850, (19.25, 19.40, 19.56)),
     (3900, (20.32, 20.58, 20.82, 21.08)),
 ]
-# Quiet parts of the V6 microphone take. The prominent track squeals around
-# 8–16 s, the edit near 39 s and the transient near 54 s are outside these grains.
+# BMP-1/2. Playback RPM, observed firing order (Hz), source index, excerpt
+# centres (s), loop RMS and exposed-engine texture level. Use the stopped
+# vehicle for idle and the moving vehicle for pressure at higher engine speeds.
 BMP12 = [
-    (1580, (1.40, 2.43, 3.08, 4.65, 5.12, 19.55)),
-    (2120, (24.30, 24.60, 26.58, 44.52, 44.95, 55.39)),
-    (2780, (28.70, 29.15, 29.60, 32.65, 33.45, 35.65, 48.80)),
+    (830, 41.5, 0, (5.15, 5.72, 6.36, 7.02, 7.64, 8.23), .087, .34),
+    (930, 46.4, 0, (16.15, 17.05, 18.55, 20.60, 22.78, 24.24, 25.62), .094, .31),
+    (1200, 61, 2, (13.93, 14.14, 70.35, 70.58, 132.86, 133.16), .108, .38),
+    (1580, 76.4, 2, (14.73, 15.05, 15.35, 15.76, 16.14, 16.52, 16.94, 33.04), .130, .43),
+    (1760, 88, 2, (23.90, 24.38, 24.87, 25.40, 25.96, 26.43, 34.08, 35.16), .142, .49),
+    (2120, 106, 2, (91.68, 92.00, 92.37, 92.71, 93.03, 105.96, 106.26, 112.10, 113.31), .160, .55),
+    (2460, 123, 2, (58.16, 58.43, 58.70, 94.67, 95.02, 117.95, 118.14), .174, .62),
+]
+BMP12_BENCH = (8.24, 9.42, 10.75, 11.91, 13.17, 14.48, 15.52, 16.46, 17.52)
+# The Golf under the open bonnet was filmed during a cold idle. Use short
+# steady excerpts for pressure and air colour. The Audi supplies the loaded
+# exhaust during the launch, after the limiter blips and as the car pulls away.
+TSI_IDLE = (10.95, 12.45, 14.20, 15.75, 17.08, 18.90, 20.80, 22.48, 24.08)
+TSI_I4 = [
+    (800, 43, 0, TSI_IDLE, .067, .46),
+    (1300, 43, 0, TSI_IDLE, .080, .50),
+    (2500, 83, 1, (8.26, 8.31, 8.36), .112, .64),
+    (3900, 130, 1, (10.07, 10.27, 10.43, 10.67, 10.85, 11.10), .143, .70),
+    (5100, 172, 1, (2.62, 2.78, 2.93, 3.10, 3.25), .165, .77),
+    (5950, 195, 1, (3.36, 3.49, 3.65, 3.77, 3.91), .182, .81),
 ]
 BMP3 = [
     (1200, (2.52, 26.45, 35.53, 41.14, 46.45)),
@@ -240,7 +258,7 @@ def align_rotation(source, center, half, target_hz, source_hz=None, harmonics=((
 
 
 def video_loop(sources, cues, rpm, seed, level, order_hz=None, source_hz=None, *, smooth_air=False,
-               harmonics=((1, 1.0), (2, 0.65), (3, 0.3))):
+               harmonics=((1, 1.0), (2, 0.65), (3, 0.3)), pressure_cutoff=900):
     rng = np.random.default_rng(seed + rpm)
     takes, pulses = [], []
     for source, marks in zip(sources, cues, strict=True):
@@ -256,7 +274,7 @@ def video_loop(sources, cues, rpm, seed, level, order_hz=None, source_hz=None, *
 
     # Preserve the recorded pressure pulses at the bottom. Match the phase of
     # consecutive short grains so a complete acceleration never repeats.
-    lowpass = signal.butter(4, 900, fs=RATE, output="sos")
+    lowpass = signal.butter(4, pressure_cutoff, fs=RATE, output="sos")
     bodies = [signal.sosfiltfilt(lowpass, take) for take in pulses]
     overlap = round(0.060 * RATE)
     step = round(0.162 * RATE)
@@ -429,6 +447,38 @@ def isolate_engine(take, firing, order_step, crossover, freq, colour, air_gain, 
     return texture * (level / np.sqrt(np.mean(texture**2)))
 
 
+def prepare_bmp12(sources, destination):
+    # The exposed engine has more metal and valve noise than the same engine
+    # heard through the hull. Use its broadband colour at the measured exterior
+    # level, with fresh phase to leave voices and track squeals out of the loops.
+    freq, colour = broadband_colour(sources[1], BMP12_BENCH)
+    harmonics = ((1, 1.0), (1.5, .52), (2, .90), (2.5, .45), (3, .78), (4, .30))
+    for rpm, measured, source, cues, level, air_gain in BMP12:
+        firing = rpm / 20
+        take = video_loop([sources[source]], [cues], rpm, 2012, 1.0, firing, measured,
+                          smooth_air=True, harmonics=harmonics)
+        # Six firing pulses per two revolutions permit side orders at 1/6 of the
+        # firing rate. Retain them along with the strong second and third orders.
+        data = isolate_engine(take, firing, 1 / 6, (540, 1100), freq, colour, air_gain, 20401 + rpm, level)
+        write_clean_pcm(destination / f"{rpm}.pcm", data)
+
+
+def prepare_tsi_i4(sources, destination):
+    harmonics = ((1, 1.0), (2, 1.05), (3, .73), (4, .56), (5, .22))
+    for rpm, measured, source, cues, level, detail in TSI_I4:
+        firing = rpm / 30
+        audio = sources[source]
+        cutoff = 760 if source == 0 else 1520
+        take = video_loop([audio], [cues], rpm, 2030, 1.0, firing, measured,
+                          smooth_air=True, harmonics=harmonics, pressure_cutoff=cutoff)
+        freq, colour = broadband_colour(audio, cues)
+        # Keep the crank-synchronous harmonics. Rebuild the upper-band texture
+        # with fresh phase so individual cold knocks or exhaust bangs do not loop.
+        clean = isolate_engine(take, firing, .25, (.60 * cutoff, 1.12 * cutoff),
+                               freq, colour, detail, 20310 + rpm, level)
+        write_clean_pcm(destination / f"{rpm}.pcm", clean)
+
+
 def prepare_stryker(sources, destination):
     # The moving clips are useful below the gearbox tones. The stationary
     # microphone supplies the entire upper-band texture at every speed.
@@ -559,8 +609,9 @@ def main():
     parser.add_argument("--puma", nargs=4, type=Path, metavar=("DISPLAY", "CLOSE", "TURN", "PASSES"))
     parser.add_argument("--bradley", nargs=3, type=Path, metavar=("HILL", "FRONT", "SIDE"))
     parser.add_argument("--hummer-h2", type=Path, metavar="BLACK_SUV")
-    parser.add_argument("--bmp12", type=Path, metavar="WAV")
+    parser.add_argument("--bmp12", nargs=3, type=Path, metavar=("INSTALLED", "ENGINE_STAND", "DRIVE"))
     parser.add_argument("--bmp3", type=Path, metavar="WAV")
+    parser.add_argument("--tsi-i4", nargs=2, type=Path, metavar=("BONNET", "EXHAUST"))
     parser.add_argument("--dci23", type=Path, metavar="WAV")
     parser.add_argument("--uaz", nargs=3, type=Path, metavar=("WALKAROUND", "BONNET", "DRIVE"))
     parser.add_argument("--stryker", nargs=4, type=Path, metavar=("IDLE", "MANOEUVRE", "PASS", "APPROACH"))
@@ -584,6 +635,12 @@ def main():
     if args.dci23:
         (root / "dci23").mkdir(parents=True, exist_ok=True)
         prepare_dci(decode(args.dci23, args.ffmpeg), root / "dci23")
+    if args.bmp12:
+        (root / "bmp12").mkdir(parents=True, exist_ok=True)
+        prepare_bmp12([decode(path, args.ffmpeg) for path in args.bmp12], root / "bmp12")
+    if args.tsi_i4:
+        (root / "tsi_i4").mkdir(parents=True, exist_ok=True)
+        prepare_tsi_i4([decode(path, args.ffmpeg) for path in args.tsi_i4], root / "tsi_i4")
     if args.stryker:
         (root / "stryker").mkdir(parents=True, exist_ok=True)
         prepare_stryker([decode(path, args.ffmpeg) for path in args.stryker], root / "stryker")
@@ -596,16 +653,12 @@ def main():
         for rpm, source_hz, cues, level in M113:
             data = video_loop([source], [cues], rpm, 653, level, rpm / 10, source_hz, smooth_air=True)
             write_clean_pcm(root / "m113" / f"{rpm}.pcm", data)
-    for name, path, anchors, pulses, levels, seed in (
-        ("bmp12", args.bmp12, BMP12, 3, (.103, .145, .177), 2012),
-        ("bmp3", args.bmp3, BMP3, 5, (.105, .148, .188), 2903),
-    ):
-        if path:
-            (root / name).mkdir(parents=True, exist_ok=True)
-            source = decode(path, args.ffmpeg)
-            for (rpm, cues), level in zip(anchors, levels, strict=True):
-                data = video_loop([source], [cues], rpm, seed, level, rpm * pulses / 60, smooth_air=True)
-                write_clean_pcm(root / name / f"{rpm}.pcm", data)
+    if args.bmp3:
+        (root / "bmp3").mkdir(parents=True, exist_ok=True)
+        source = decode(args.bmp3, args.ffmpeg)
+        for (rpm, cues), level in zip(BMP3, (.105, .148, .188), strict=True):
+            data = video_loop([source], [cues], rpm, 2903, level, rpm / 12, smooth_air=True)
+            write_clean_pcm(root / "bmp3" / f"{rpm}.pcm", data)
     for name, videos, anchors, seed in [("leopard1", args.leopard1, LEOPARD1, 838),
                                         ("leopard2", args.leopard2, LEOPARD2, 873),
                                         ("marder", [args.marder] if args.marder else [], MARDER, 833),

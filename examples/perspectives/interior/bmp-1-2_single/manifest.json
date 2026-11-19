@@ -3,15 +3,15 @@
     "channels": 2,
     "clips": [
         {
-            "durationSeconds": 3.59,
+            "durationSeconds": 3.604625,
             "engine": "BMP-1/2",
             "file": "steady.wav",
-            "frames": 172320,
+            "frames": 173022,
             "load": 0.45,
             "loadEnd": 0.45,
             "loadStart": 0.45,
             "loop": {
-                "endFrameExclusive": 172320,
+                "endFrameExclusive": 173022,
                 "startFrame": 0
             },
             "requestedSeconds": 3.6,
