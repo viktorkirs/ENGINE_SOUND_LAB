@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.5998125,
+            "engine": "Mercedes Vito",
+            "file": "steady.wav",
+            "frames": 172791,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172791,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 2445,
+            "rpmEnd": 2445,
+            "rpmPeak": 2445,
+            "rpmStart": 2445,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Mercedes Vito",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1869900150,
+    "version": 1
+}

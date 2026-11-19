@@ -30,14 +30,22 @@ QFormLayout* editPage(QStackedWidget* pages) {
 ExportDialog::ExportDialog(const Preset& preset, double rpm, double load, double throttle, QWidget* parent)
     : QDialog(parent) {
     setWindowTitle(QStringLiteral("Экспорт WAV — %1").arg(preset.name));
-    setMinimumWidth(460);
+    setMinimumWidth(500);
     auto* root = new QVBoxLayout(this);
     root->setContentsMargins(20, 17, 20, 17);
     root->setSpacing(10);
     root->addWidget(uiLabel(QStringLiteral("Экспорт WAV"), "section"));
     auto* common = new QFormLayout;
     common->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
-    mode_ = choices({QStringLiteral("Один звук"), QStringLiteral("RPM Sound Pack"), QStringLiteral("Сетка RPM × нагрузка")});
+    const auto& listener = preset.settings.listener;
+    auto view = listeningPositionName(listener.position);
+    if (listener.position == ListeningPosition::Interior)
+        view += QStringLiteral(" · изоляция %1%").arg(qRound(listener.insulation * 100));
+    else if (listener.position != ListeningPosition::Direct)
+        view += QStringLiteral(" · %1 м").arg(listener.distance);
+    formRow(common, QStringLiteral("Слушатель"), uiLabel(view, "numeric"));
+    mode_ = choices({QStringLiteral("Один звук"), QStringLiteral("RPM Sound Pack"), QStringLiteral("Сетка RPM × нагрузка"),
+        QStringLiteral("Поездка с переключениями")});
     formRow(common, QStringLiteral("Режим"), mode_);
     auto* format = new QWidget;
     auto* formatRow = new QHBoxLayout(format);
@@ -57,8 +65,8 @@ ExportDialog::ExportDialog(const Preset& preset, double rpm, double load, double
     formRow(common, QStringLiteral("Длительность"), duration_);
     auto* durationLabel = qobject_cast<QLabel*>(common->labelForField(duration_));
     normalize_ = new QCheckBox(QStringLiteral("Пиковая нормализация до −1 дБFS"));
-    normalize_->setChecked(true);
-    normalize_->setToolTip(QStringLiteral("Один коэффициент для всей папки. Разница громкости между точками сохраняется."));
+    normalize_->setChecked(listener.position == ListeningPosition::Direct);
+    normalize_->setToolTip(QStringLiteral("Общий пик для всей папки. Выключите для сравнения громкости разных дистанций."));
     common->addRow(QString(), normalize_);
     root->addLayout(common);
 
@@ -96,31 +104,26 @@ ExportDialog::ExportDialog(const Preset& preset, double rpm, double load, double
     maxLoad_->setValue(80);
     loadCount_ = numberField(1, 10, 0, 1);
     loadCount_->setValue(2);
-    auto bounds = [&](QDoubleSpinBox* from, QDoubleSpinBox* to) {
-        auto* w = new QWidget;
-        auto* row = new QHBoxLayout(w);
-        row->setContentsMargins(0, 0, 0, 0);
-        row->addWidget(from, 1);
-        row->addWidget(new QLabel(QStringLiteral("–")));
-        row->addWidget(to, 1);
-        return w;
-    };
-    minRpm_->setAccessibleName(QStringLiteral("Начальные обороты сетки"));
-    maxRpm_->setAccessibleName(QStringLiteral("Конечные обороты сетки"));
-    minLoad_->setAccessibleName(QStringLiteral("Минимальная нагрузка сетки"));
-    maxLoad_->setAccessibleName(QStringLiteral("Максимальная нагрузка сетки"));
-    formRow(grid, QStringLiteral("Диапазон оборотов"), bounds(minRpm_, maxRpm_));
+    formRow(grid, QStringLiteral("Обороты от"), minRpm_);
+    formRow(grid, QStringLiteral("Обороты до"), maxRpm_);
     formRow(grid, QStringLiteral("Точек RPM"), rpmCount_);
-    formRow(grid, QStringLiteral("Диапазон нагрузки"), bounds(minLoad_, maxLoad_));
+    formRow(grid, QStringLiteral("Нагрузка от"), minLoad_);
+    formRow(grid, QStringLiteral("Нагрузка до"), maxLoad_);
     formRow(grid, QStringLiteral("Точек нагрузки"), loadCount_);
     auto* count = uiLabel(QString(), "numeric");
     grid->addRow(QString(), count);
     auto updateCount = [this, count] { count->setText(QStringLiteral("%1 циклов WAV").arg(qRound(rpmCount_->value() * loadCount_->value()))); };
-    connect(rpmCount_, &QDoubleSpinBox::valueChanged, this, updateCount);
-    connect(loadCount_, &QDoubleSpinBox::valueChanged, this, updateCount);
+    connect(rpmCount_, &NumberField::valueChanged, this, updateCount);
+    connect(loadCount_, &NumberField::valueChanged, this, updateCount);
     updateCount();
+    auto* ride = editPage(pages);
+    auto* itinerary = uiLabel(QStringLiteral("15 секунд. Трогание, переключения с первой по третью, сброс газа и остановка. Экспорт учитывает уровни, M и S в микшере."), "hint");
+    itinerary->setWordWrap(true);
+    ride->addRow(itinerary);
     connect(mode_, &QComboBox::currentIndexChanged, pages, &QStackedWidget::setCurrentIndex);
     connect(mode_, &QComboBox::currentIndexChanged, this, [this, durationLabel](int mode) {
+        duration_->setVisible(mode != static_cast<int>(ExportMode::Drive));
+        if (durationLabel) durationLabel->setVisible(mode != static_cast<int>(ExportMode::Drive));
         if (durationLabel) durationLabel->setText(mode == 0 ? QStringLiteral("Длительность") : QStringLiteral("Длительность цикла"));
         validation_->clear();
     });

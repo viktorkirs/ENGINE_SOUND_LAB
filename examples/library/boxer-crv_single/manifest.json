@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.5959791666666665,
+            "engine": "Boxer CRV",
+            "file": "steady.wav",
+            "frames": 172607,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172607,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1660,
+            "rpmEnd": 1660,
+            "rpmPeak": 1660,
+            "rpmStart": 1660,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Boxer CRV",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1919252591,
+    "version": 1
+}

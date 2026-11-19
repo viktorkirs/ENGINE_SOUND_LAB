@@ -1,0 +1,156 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1800,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "УАЗ-469 · УМЗ-451М · карбюраторная рядная четвёрка · 2,45 л",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.55,
+            "cutoff": 1300,
+            "damping": 0.58,
+            "drive": 0.064,
+            "gain": 0.096,
+            "mute": false,
+            "resonance": 93,
+            "shape": 0.56,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.58,
+            "cutoff": 3900,
+            "damping": 0.5,
+            "drive": 0.088,
+            "gain": 0.105,
+            "mute": false,
+            "resonance": 490,
+            "shape": 0.47,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.74,
+            "cutoff": 3420,
+            "damping": 0.5,
+            "drive": 0.16,
+            "gain": 0.185,
+            "mute": false,
+            "resonance": 153,
+            "shape": 0.4,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.64,
+            "cutoff": 4250,
+            "damping": 0.55,
+            "drive": 0.055,
+            "gain": 0.125,
+            "mute": false,
+            "resonance": 290,
+            "shape": 0.56,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.59,
+            "cutoff": 4350,
+            "damping": 0.57,
+            "drive": 0.031,
+            "gain": 0.082,
+            "mute": false,
+            "resonance": 685,
+            "shape": 0,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.032,
+            "cutoff": 13100,
+            "damping": 0.68,
+            "drive": 0.029,
+            "gain": 1.12,
+            "mute": false,
+            "resonance": 148,
+            "shape": 0.82,
+            "solo": false
+        },
+        "transmission": {
+            "amount": 0.38,
+            "cutoff": 3900,
+            "damping": 0.48,
+            "drive": 0.04,
+            "gain": 0,
+            "mute": false,
+            "resonance": 610,
+            "shape": 0.62,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.4,
+            "cutoff": 5400,
+            "damping": 0.6,
+            "drive": 0.02,
+            "gain": 0,
+            "mute": false,
+            "resonance": 1800,
+            "shape": 0.4,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 2,
+        "insulation": 0.34,
+        "position": "near"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "none",
+        "compressionRatio": 6.7,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 4,
+        "exhaustTracts": 1,
+        "firingOrder": [
+            1,
+            2,
+            4,
+            3
+        ],
+        "idleRpm": 620,
+        "inertia": 1.04,
+        "irregularity": 0.18,
+        "kind": "gasoline",
+        "layout": "inline",
+        "liters": 2.445,
+        "loss": 0.3,
+        "maxRpm": 4000,
+        "overrunDrag": 0.54,
+        "powerKw": 55.2,
+        "recording": "uaz",
+        "seed": 469451,
+        "strokeMm": 92,
+        "strokes": 4,
+        "torqueNm": 167,
+        "turbineBlades": 29
+    },
+    "name": "UAZ-469",
+    "revLimiter": {
+        "cutRpm": 3831,
+        "enabled": false,
+        "resumeRpm": 3696
+    },
+    "version": 1
+}

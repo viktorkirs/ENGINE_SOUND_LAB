@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.6043541666666665,
+            "engine": "Oshkosh M1070A1 HET",
+            "file": "steady.wav",
+            "frames": 173009,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 173009,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1600,
+            "rpmEnd": 1600,
+            "rpmPeak": 1600,
+            "rpmStart": 1600,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Oshkosh M1070A1 HET",
+    "listener": {
+        "distanceMeters": 1,
+        "insulation": 0.54,
+        "position": "interior"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1952802911,
+    "version": 1
+}

@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.603833333333333,
+            "engine": "M270",
+            "file": "steady.wav",
+            "frames": 172984,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172984,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1653.6,
+            "rpmEnd": 1653.6,
+            "rpmPeak": 1653.6,
+            "rpmStart": 1653.6,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "M270",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 808923757,
+    "version": 1
+}

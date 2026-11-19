@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "name": "C1 Ariete",
+  "description": "IVECO V12 MTCA · турбодизель V12 · холостой ход и перегазовки",
+  "model": {
+    "kind": "diesel",
+    "layout": "v",
+    "cylinders": 12,
+    "strokes": 4,
+    "liters": 25.8,
+    "strokeMm": 130,
+    "compressionRatio": 16.0,
+    "idleRpm": 860,
+    "maxRpm": 2300,
+    "bankAngle": 90,
+    "firingOrder": [],
+    "irregularity": 0.105,
+    "inertia": 16.4,
+    "powerKw": 956,
+    "torqueNm": 4615,
+    "loss": 0.33,
+    "exhaustTracts": 2,
+    "boost": "turbocharger",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 121275,
+    "recording": "ariete",
+    "overrunDrag": 0.45
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.13,
+      "resonance": 490,
+      "cutoff": 4320,
+      "shape": 0.41,
+      "amount": 0.63,
+      "damping": 0.5,
+      "drive": 0.09,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.17,
+      "resonance": 123,
+      "cutoff": 3250,
+      "shape": 0.47,
+      "amount": 0.72,
+      "damping": 0.55,
+      "drive": 0.133,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.083,
+      "resonance": 315,
+      "cutoff": 3780,
+      "shape": 0.44,
+      "amount": 0.52,
+      "damping": 0.58,
+      "drive": 0.04,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.089,
+      "resonance": 754,
+      "cutoff": 4810,
+      "shape": 0,
+      "amount": 0.62,
+      "damping": 0.52,
+      "drive": 0.035,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.043,
+      "resonance": 1580,
+      "cutoff": 6100,
+      "shape": 0.68,
+      "amount": 0.42,
+      "damping": 0.66,
+      "drive": 0.021,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.116,
+      "resonance": 86,
+      "cutoff": 1240,
+      "shape": 0.65,
+      "amount": 0.65,
+      "damping": 0.65,
+      "drive": 0.075,
+      "mute": false,
+      "solo": false
+    },
+    "recording": {
+      "gain": 1.12,
+      "resonance": 125,
+      "cutoff": 12800,
+      "shape": 0.85,
+      "amount": 0.036,
+      "damping": 0.71,
+      "drive": 0.014,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 1160,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 8,
+    "insulation": 0.75
+  }
+}

@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.5952916666666668,
+            "engine": "Ural-375D",
+            "file": "steady.wav",
+            "frames": 172574,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172574,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1848,
+            "rpmEnd": 1848,
+            "rpmPeak": 1848,
+            "rpmStart": 1848,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Ural-375D",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.54,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 892810092,
+    "version": 1
+}

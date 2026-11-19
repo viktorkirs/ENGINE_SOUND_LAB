@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/simulation.hpp"
+#include "core/dsp.hpp"
 
 #include <array>
 #include <cstdint>
@@ -15,6 +15,8 @@ enum class StreamStatus { Standby, Streaming, NoDevice };
 
 struct AudioSnapshot {
     EngineState engine;
+    ShaftPhases phases;
+    IgnitionTrace ignitions;
     std::array<float, scopeFrames> mono{};
     double peak = 0.0;
     StreamStatus stream = StreamStatus::Standby;

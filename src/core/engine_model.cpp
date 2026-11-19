@@ -13,8 +13,41 @@ Layers defaultLayers() {
         {0.46, 280.0, 4400.0, 0.53, 0.56, 0.52, 0.04},
         {0.37, 840.0, 5600.0, 0.45, 0.55, 0.54, 0.03},
         {0.32, 2600.0, 8000.0, 0.48, 0.52, 0.46, 0.02},
-        {0.56, 75.0, 1100.0, 0.65, 0.69, 0.63, 0.07}
+        {0.56, 75.0, 1100.0, 0.65, 0.69, 0.63, 0.07},
+        {1.00, 125.0, 13000.0, 0.65, 0.00, 0.65, 0.00},
+        {0.00, 610.0, 3900.0, 0.62, 0.38, 0.48, 0.04}
     }};
+}
+
+double defaultDistance(ListeningPosition position) {
+    switch (position) {
+    case ListeningPosition::Near: return 2.0;
+    case ListeningPosition::ThirdPerson: return 8.0;
+    case ListeningPosition::Distant: return 45.0;
+    default: return 1.0;
+    }
+}
+
+RevLimiter defaultRevLimiter(const Model& model) {
+    const double span = model.maxRpm - model.idleRpm;
+    return {false, std::round(model.idleRpm + 0.95 * span), std::round(model.idleRpm + 0.91 * span)};
+}
+
+double pistonStrokeMm(const Model& model) {
+    if (model.strokeMm > 0.0) return model.strokeMm;
+    return std::cbrt(4.0e6 * model.liters / (pi * model.cylinders));
+}
+
+double cylinderBoreMm(const Model& model) {
+    return std::sqrt(4.0e6 * model.liters / (pi * model.cylinders * pistonStrokeMm(model)));
+}
+
+double displacementLiters(int cylinders, double boreMm, double strokeMm) {
+    return cylinders * pi * boreMm * boreMm * strokeMm / 4.0e6;
+}
+
+double compressionRatio(const Model& model) {
+    return model.compression > 0.0 ? model.compression : (model.kind == EngineKind::Diesel ? 16.0 : 10.0);
 }
 
 void Faults::approach(const Faults& target, double fraction) {
@@ -140,7 +173,8 @@ bool needsNewVoice(const Model& a, const Model& b) {
     return a.kind != b.kind || a.layout != b.layout || a.cylinders != b.cylinders
         || a.strokes != b.strokes || a.bankAngle != b.bankAngle || a.firingOrder != b.firingOrder
         || a.exhaustTracts != b.exhaustTracts || a.boost != b.boost || a.seed != b.seed || a.irregularity != b.irregularity
-        || a.compressorBlades != b.compressorBlades || a.turbineBlades != b.turbineBlades;
+        || a.compressorBlades != b.compressorBlades || a.turbineBlades != b.turbineBlades
+        || a.recording != b.recording;
 }
 
 } // namespace esl

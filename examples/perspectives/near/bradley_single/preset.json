@@ -1,0 +1,141 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1500,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "Cummins VTA903-T600 · турбодизель V8 · 14,8 л",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.65,
+            "cutoff": 1150,
+            "damping": 0.65,
+            "drive": 0.08,
+            "gain": 0.115,
+            "mute": false,
+            "resonance": 89,
+            "shape": 0.69,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.62,
+            "cutoff": 4000,
+            "damping": 0.49,
+            "drive": 0.1,
+            "gain": 0.145,
+            "mute": false,
+            "resonance": 400,
+            "shape": 0.46,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.75,
+            "cutoff": 3300,
+            "damping": 0.52,
+            "drive": 0.15,
+            "gain": 0.18,
+            "mute": false,
+            "resonance": 114,
+            "shape": 0.48,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.53,
+            "cutoff": 3700,
+            "damping": 0.59,
+            "drive": 0.04,
+            "gain": 0.087,
+            "mute": false,
+            "resonance": 260,
+            "shape": 0.4,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.7,
+            "cutoff": 5200,
+            "damping": 0.48,
+            "drive": 0.04,
+            "gain": 0.15,
+            "mute": false,
+            "resonance": 665,
+            "shape": 0,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.05,
+            "cutoff": 13600,
+            "damping": 0.7,
+            "drive": 0.018,
+            "gain": 1.12,
+            "mute": false,
+            "resonance": 120,
+            "shape": 0.9,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.5,
+            "cutoff": 6700,
+            "damping": 0.64,
+            "drive": 0.03,
+            "gain": 0.068,
+            "mute": false,
+            "resonance": 1300,
+            "shape": 0.66,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 2,
+        "insulation": 0.72,
+        "position": "near"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "turbocharger",
+        "compressionRatio": 15.5,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 8,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 780,
+        "inertia": 12.5,
+        "irregularity": 0.15,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 14.8,
+        "loss": 0.37,
+        "maxRpm": 2600,
+        "overrunDrag": 0.35,
+        "powerKw": 448,
+        "recording": "bradley",
+        "seed": 903600,
+        "strokeMm": 121,
+        "strokes": 4,
+        "torqueNm": 1820,
+        "turbineBlades": 29
+    },
+    "name": "Bradley",
+    "revLimiter": {
+        "cutRpm": 2509,
+        "enabled": false,
+        "resumeRpm": 2436
+    },
+    "version": 1
+}

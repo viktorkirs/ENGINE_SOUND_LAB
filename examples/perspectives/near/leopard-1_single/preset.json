@@ -1,0 +1,141 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1400,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "MB 838 CaM-500 · V10 · механический наддув · запись под газом и на сбросе",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.78,
+            "cutoff": 980,
+            "damping": 0.72,
+            "drive": 0.08,
+            "gain": 0.13,
+            "mute": false,
+            "resonance": 78,
+            "shape": 0.74,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.67,
+            "cutoff": 3700,
+            "damping": 0.51,
+            "drive": 0.11,
+            "gain": 0.15,
+            "mute": false,
+            "resonance": 415,
+            "shape": 0.46,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.79,
+            "cutoff": 2350,
+            "damping": 0.56,
+            "drive": 0.17,
+            "gain": 0.15,
+            "mute": false,
+            "resonance": 94,
+            "shape": 0.48,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.53,
+            "cutoff": 3500,
+            "damping": 0.58,
+            "drive": 0.04,
+            "gain": 0.09,
+            "mute": false,
+            "resonance": 216,
+            "shape": 0.41,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.64,
+            "cutoff": 4300,
+            "damping": 0.51,
+            "drive": 0.035,
+            "gain": 0.145,
+            "mute": false,
+            "resonance": 820,
+            "shape": 0.57,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.065,
+            "cutoff": 12700,
+            "damping": 0.65,
+            "drive": 0.025,
+            "gain": 1.1,
+            "mute": false,
+            "resonance": 89,
+            "shape": 0.97,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.57,
+            "cutoff": 7400,
+            "damping": 0.57,
+            "drive": 0.03,
+            "gain": 0.085,
+            "mute": false,
+            "resonance": 1420,
+            "shape": 0.4,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 2,
+        "insulation": 0.72,
+        "position": "near"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "supercharger",
+        "compressionRatio": 19.5,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 10,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 850,
+        "inertia": 24,
+        "irregularity": 0.135,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 37.4,
+        "loss": 0.32,
+        "maxRpm": 2200,
+        "overrunDrag": 0.44,
+        "powerKw": 610,
+        "recording": "leopard1",
+        "seed": 838500,
+        "strokeMm": 175,
+        "strokes": 4,
+        "torqueNm": 2860,
+        "turbineBlades": 29
+    },
+    "name": "Leopard 1",
+    "revLimiter": {
+        "cutRpm": 2133,
+        "enabled": false,
+        "resumeRpm": 2079
+    },
+    "version": 1
+}

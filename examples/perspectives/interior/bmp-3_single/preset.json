@@ -1,0 +1,162 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1560,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "УТД-29 · дизель V10 · 26,5 л · запись bmp3.wav",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.67,
+            "cutoff": 1240,
+            "damping": 0.64,
+            "drive": 0.075,
+            "gain": 0.12,
+            "mute": false,
+            "resonance": 86,
+            "shape": 0.68,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.61,
+            "cutoff": 4350,
+            "damping": 0.53,
+            "drive": 0.095,
+            "gain": 0.135,
+            "mute": false,
+            "resonance": 455,
+            "shape": 0.45,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.7,
+            "cutoff": 3180,
+            "damping": 0.55,
+            "drive": 0.135,
+            "gain": 0.17,
+            "mute": false,
+            "resonance": 121,
+            "shape": 0.52,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.48,
+            "cutoff": 3550,
+            "damping": 0.59,
+            "drive": 0.045,
+            "gain": 0.091,
+            "mute": false,
+            "resonance": 310,
+            "shape": 0.46,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.65,
+            "cutoff": 4690,
+            "damping": 0.5,
+            "drive": 0.035,
+            "gain": 0.09,
+            "mute": false,
+            "resonance": 730,
+            "shape": 0,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.045,
+            "cutoff": 12200,
+            "damping": 0.72,
+            "drive": 0.018,
+            "gain": 1.11,
+            "mute": false,
+            "resonance": 130,
+            "shape": 0.86,
+            "solo": false
+        },
+        "transmission": {
+            "amount": 0.38,
+            "cutoff": 3900,
+            "damping": 0.48,
+            "drive": 0.04,
+            "gain": 0,
+            "mute": false,
+            "resonance": 610,
+            "shape": 0.62,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.4,
+            "cutoff": 5400,
+            "damping": 0.6,
+            "drive": 0.02,
+            "gain": 0,
+            "mute": false,
+            "resonance": 1800,
+            "shape": 0.4,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 1,
+        "insulation": 0.72,
+        "position": "interior"
+    },
+    "model": {
+        "bankAngle": 144,
+        "boost": "none",
+        "compressionRatio": 15.8,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 10,
+        "exhaustTracts": 2,
+        "firingOrder": [
+            2,
+            7,
+            4,
+            9,
+            8,
+            5,
+            10,
+            1,
+            6,
+            3
+        ],
+        "idleRpm": 750,
+        "inertia": 9.4,
+        "irregularity": 0.11,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 26.5,
+        "loss": 0.33,
+        "maxRpm": 2600,
+        "overrunDrag": 0.36,
+        "powerKw": 368,
+        "recording": "bmp3",
+        "seed": 290310,
+        "strokeMm": 150,
+        "strokes": 4,
+        "torqueNm": 1460,
+        "turbineBlades": 29
+    },
+    "name": "BMP-3",
+    "revLimiter": {
+        "cutRpm": 2508,
+        "enabled": false,
+        "resumeRpm": 2434
+    },
+    "version": 1
+}

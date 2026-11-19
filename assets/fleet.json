@@ -1,0 +1,482 @@
+[
+  {
+    "id": "west_m41a1",
+    "slot": "light",
+    "name": "LT-44 Hound",
+    "gameBank": "engine_btr70",
+    "filesPresent": true,
+    "preset": "M41A1 Walker Bulldog"
+  },
+  {
+    "id": "west_wiesel_tow",
+    "slot": "ferret",
+    "name": "AT-12 Stoat",
+    "gameBank": "engine_audi_r5",
+    "filesPresent": true,
+    "preset": "Wiesel 1"
+  },
+  {
+    "id": "west_m551",
+    "slot": "kestrel",
+    "name": "LT-55 Cavalier",
+    "gameBank": "engine_6v53_tx",
+    "filesPresent": true,
+    "preset": "M551 Sheridan"
+  },
+  {
+    "id": "east_pt76",
+    "slot": "nerpa",
+    "name": "LT-67 Volna",
+    "gameBank": "engine_v6b",
+    "filesPresent": true,
+    "preset": "PT-76B"
+  },
+  {
+    "id": "east_sprut_sd",
+    "slot": "sprut",
+    "name": "LT-25 Skat",
+    "gameBank": "engine_2v06",
+    "filesPresent": true,
+    "preset": "2S25 Sprut-SD"
+  },
+  {
+    "id": "east_t55",
+    "slot": "ural",
+    "name": "T-57 Kremen",
+    "gameBank": "engine_v55",
+    "filesPresent": true,
+    "preset": "T-55A"
+  },
+  {
+    "id": "east_t72a",
+    "slot": "taiga",
+    "name": "T-74M Granit-M",
+    "gameBank": "engine_v12_field",
+    "filesPresent": true,
+    "preset": "T-72A"
+  },
+  {
+    "id": "west_leopard1a5",
+    "slot": "panthera",
+    "name": "L-17 Pardus I",
+    "gameBank": "engine_mb838",
+    "filesPresent": true,
+    "preset": "Leopard 1"
+  },
+  {
+    "id": "west_leclerc",
+    "slot": "valken",
+    "name": "C-92 Courser",
+    "gameBank": "engine_hyperbar",
+    "filesPresent": true,
+    "preset": "Leclerc Serie 2"
+  },
+  {
+    "id": "west_m60a3",
+    "slot": "bison",
+    "name": "M-63 Marshall",
+    "gameBank": "engine_avds1790",
+    "filesPresent": true,
+    "preset": "M60A3"
+  },
+  {
+    "id": "east_t80bvm",
+    "slot": "heavy",
+    "name": "T-83 Burya",
+    "gameBank": "engine_gtd1000",
+    "filesPresent": true,
+    "preset": "T-80BVM"
+  },
+  {
+    "id": "east_t90m",
+    "slot": "tundra",
+    "name": "T-94M Grom-M",
+    "gameBank": "engine_v12_field",
+    "filesPresent": true,
+    "preset": "T-90M"
+  },
+  {
+    "id": "east_t14",
+    "slot": "t14",
+    "name": "T-17 Korund",
+    "gameBank": "engine_a85",
+    "filesPresent": true,
+    "preset": "T-14"
+  },
+  {
+    "id": "west_m1a2",
+    "slot": "colossus",
+    "name": "M-81 Barron",
+    "gameBank": "engine_agt1500",
+    "filesPresent": true,
+    "preset": "M1 Abrams"
+  },
+  {
+    "id": "west_leopard2a7v",
+    "slot": "warden",
+    "name": "L-27 Pardus II",
+    "gameBank": "engine_leopard",
+    "filesPresent": true,
+    "preset": "Leopard 2"
+  },
+  {
+    "id": "east_bmpt72",
+    "slot": "cerberus",
+    "name": "BPT-22 Strazh",
+    "gameBank": "engine_v92s2",
+    "filesPresent": true,
+    "preset": "BMPT-72"
+  },
+  {
+    "id": "east_brdm2_9p133",
+    "slot": "irbis",
+    "name": "PTR-2 Zhalo",
+    "gameBank": "engine_btr70",
+    "filesPresent": true,
+    "preset": "BRDM-2"
+  },
+  {
+    "id": "east_tigr",
+    "slot": "tigr",
+    "name": "BK-17 Bars",
+    "gameBank": "engine_yamz534",
+    "filesPresent": true,
+    "preset": "GAZ Tigr"
+  },
+  {
+    "id": "east_tigr_kornet",
+    "slot": "kornet",
+    "name": "PTR-4 Ship",
+    "gameBank": "engine_yamz534",
+    "filesPresent": true,
+    "preset": "GAZ Tigr"
+  },
+  {
+    "id": "west_m1025_javelin",
+    "slot": "saker",
+    "name": "H-41 Badger AT",
+    "gameBank": "engine_dd62",
+    "filesPresent": true,
+    "preset": null
+  },
+  {
+    "id": "west_hmmwv_mk19",
+    "slot": "mule",
+    "name": "H-40 Badger GL",
+    "gameBank": "engine_dd62",
+    "filesPresent": true,
+    "preset": null
+  },
+  {
+    "id": "west_m1117",
+    "slot": "m1117",
+    "name": "AS-17 Provost",
+    "gameBank": "engine_cummins_6b",
+    "filesPresent": true,
+    "preset": "M1117 Guardian"
+  },
+  {
+    "id": "west_matv",
+    "slot": "matv",
+    "name": "MR-50 Pangolin",
+    "gameBank": "engine_cat_c7",
+    "filesPresent": true,
+    "preset": "Oshkosh M-ATV"
+  },
+  {
+    "id": "west_m270",
+    "slot": "hornet",
+    "name": "RL-12 Tempest",
+    "gameBank": "engine_vta903_hs400",
+    "filesPresent": true,
+    "preset": "M270"
+  },
+  {
+    "id": "west_lars2",
+    "slot": "lars2",
+    "name": "RL-36 Feierabend",
+    "gameBank": "engine_f8l413",
+    "filesPresent": true,
+    "preset": "MAN 7t LARS 2"
+  },
+  {
+    "id": "west_hilux",
+    "slot": "hilux",
+    "name": "RL-28 Tailgater",
+    "gameBank": "engine_zmz2424",
+    "filesPresent": true,
+    "preset": "RL-28 Tailgater"
+  },
+  {
+    "id": "east_nona_s",
+    "slot": "busol",
+    "name": "SM-90 Lira",
+    "gameBank": "engine_utd20",
+    "filesPresent": true,
+    "preset": "2S9 Nona-S"
+  },
+  {
+    "id": "east_akatsia",
+    "slot": "akatsia",
+    "name": "SA-31 Veresk",
+    "gameBank": "engine_v2_34",
+    "filesPresent": true,
+    "preset": "2S3M Akatsiya"
+  },
+  {
+    "id": "east_bm21",
+    "slot": "liven",
+    "name": "RS-24 Liven",
+    "gameBank": "engine_zil",
+    "filesPresent": true,
+    "preset": "Ural-375D"
+  },
+  {
+    "id": "east_mtlb",
+    "slot": "mtlb",
+    "name": "TM-64 Motolyga",
+    "gameBank": "engine_yamz238",
+    "filesPresent": true,
+    "preset": "MT-LB"
+  },
+  {
+    "id": "east_uaz452",
+    "slot": "shmel",
+    "name": "UM-45 Bulochka",
+    "gameBank": "engine_umz451",
+    "filesPresent": true,
+    "preset": "UAZ-452"
+  },
+  {
+    "id": "west_vito",
+    "slot": "kite",
+    "name": "V-21 Vento",
+    "gameBank": "engine_van_diesel",
+    "filesPresent": true,
+    "preset": "Mercedes Vito"
+  },
+  {
+    "id": "west_m109a6",
+    "slot": "molot",
+    "name": "SP-156 Warden",
+    "gameBank": "engine_8v71t",
+    "filesPresent": true,
+    "preset": "M109A6 Paladin"
+  },
+  {
+    "id": "west_pzh2000",
+    "slot": "pzh2000",
+    "name": "SP-200 Thunderer",
+    "gameBank": "engine_mt881",
+    "filesPresent": true,
+    "preset": "PzH 2000"
+  },
+  {
+    "id": "east_brdm2",
+    "slot": "jackal",
+    "name": "RD-20 Dozor-M",
+    "gameBank": "engine_btr70",
+    "filesPresent": true,
+    "preset": "BRDM-2"
+  },
+  {
+    "id": "west_boxer_crv",
+    "slot": "dragoon",
+    "name": "BX-88 Bulwark",
+    "gameBank": "engine_8v199",
+    "filesPresent": true,
+    "preset": "Boxer CRV"
+  },
+  {
+    "id": "east_btr82a",
+    "slot": "priboy",
+    "name": "TR-86 Berkut",
+    "gameBank": "engine_kamaz740",
+    "filesPresent": true,
+    "preset": "BTR-82A"
+  },
+  {
+    "id": "east_btr90",
+    "slot": "btr3u",
+    "name": "TR-92 Rassvet",
+    "gameBank": "engine_2v06",
+    "filesPresent": true,
+    "preset": "BTR-90"
+  },
+  {
+    "id": "east_bumerang",
+    "slot": "bumerang",
+    "name": "BP-47 Perekat",
+    "gameBank": "engine_yamz846",
+    "filesPresent": true,
+    "preset": "K-17 Bumerang"
+  },
+  {
+    "id": "west_lav25",
+    "slot": "lav25",
+    "name": "LV-27 Mako",
+    "gameBank": "engine_6v53_mt",
+    "filesPresent": true,
+    "preset": "M551 Sheridan"
+  },
+  {
+    "id": "west_centauro",
+    "slot": "centauro",
+    "name": "CR-105 Taurus",
+    "gameBank": "engine_bf6m1015",
+    "filesPresent": true,
+    "preset": "Centauro I"
+  },
+  {
+    "id": "west_m1128",
+    "slot": "m1128",
+    "name": "MG-11 Halberd",
+    "gameBank": "engine_cat_c7",
+    "filesPresent": true,
+    "preset": "Stryker"
+  },
+  {
+    "id": "west_amx10rc",
+    "slot": "lynx",
+    "name": "AR-12 Corsair",
+    "gameBank": "engine_6f11",
+    "filesPresent": true,
+    "preset": "AMX-10 RC"
+  },
+  {
+    "id": "east_bmp1",
+    "slot": "bmp1",
+    "name": "BP-11 Kedr",
+    "gameBank": "engine_bmp",
+    "filesPresent": true,
+    "preset": "BMP-1/2"
+  },
+  {
+    "id": "east_bmp2",
+    "slot": "kurgan",
+    "name": "BP-12 Kedr-M",
+    "gameBank": "engine_bmp",
+    "filesPresent": true,
+    "preset": "BMP-1/2"
+  },
+  {
+    "id": "east_bmp3",
+    "slot": "skat",
+    "name": "BP-33 Ladoga",
+    "gameBank": "engine_bmp3",
+    "filesPresent": true,
+    "preset": "BMP-3"
+  },
+  {
+    "id": "east_kurganets25",
+    "slot": "kurganets25",
+    "name": "BP-45 Rubezh",
+    "gameBank": "engine_utd29",
+    "filesPresent": true,
+    "preset": "Kurganets-25"
+  },
+  {
+    "id": "west_marder1a3",
+    "slot": "stoat",
+    "name": "IFV-31 Marten",
+    "gameBank": "engine_mb833",
+    "filesPresent": true,
+    "preset": "Marder 1"
+  },
+  {
+    "id": "west_m3a3",
+    "slot": "pronghorn",
+    "name": "IFV-33 Ranger",
+    "gameBank": "engine_vta903_hmpt",
+    "filesPresent": true,
+    "preset": "Bradley"
+  },
+  {
+    "id": "west_puma",
+    "slot": "puma",
+    "name": "IFV-41 Cougar",
+    "gameBank": "engine_mt892",
+    "filesPresent": true,
+    "preset": "Puma"
+  },
+  {
+    "id": "east_brem1",
+    "slot": "burlak",
+    "name": "TRM-72 Burlak",
+    "gameBank": "engine_v84",
+    "filesPresent": true,
+    "preset": "BREM-1"
+  },
+  {
+    "id": "west_boxer_arv",
+    "slot": "hauler",
+    "name": "BX-90 Hauler",
+    "gameBank": "engine_8v199",
+    "filesPresent": true,
+    "preset": "Boxer CRV"
+  },
+  {
+    "id": "east_btrt",
+    "slot": "baikal",
+    "name": "TB-75 Bastion",
+    "gameBank": "engine_v55",
+    "filesPresent": true,
+    "preset": "T-55A"
+  },
+  {
+    "id": "army_truck",
+    "slot": "army_truck",
+    "name": "Army truck",
+    "gameBank": "engine_kamaz",
+    "filesPresent": true,
+    "preset": "Ural-4320-31"
+  },
+  {
+    "id": "cargo_truck",
+    "slot": "cargo_truck",
+    "name": "Ammunition truck",
+    "gameBank": "engine_diesel",
+    "filesPresent": true,
+    "preset": "Cargo truck"
+  },
+  {
+    "id": "civilian_car",
+    "slot": "civilian_car",
+    "name": "Workshop car",
+    "gameBank": "engine_city, engine_compact, engine_twin",
+    "filesPresent": true,
+    "preset": "Workshop car"
+  },
+  {
+    "id": "dump_truck",
+    "slot": "dump_truck",
+    "name": "Dump truck",
+    "gameBank": "engine_kamaz",
+    "filesPresent": true,
+    "preset": "KrAZ-250"
+  },
+  {
+    "id": "oil_convoy_truck",
+    "slot": "oil_convoy_truck",
+    "name": "Oil convoy truck",
+    "gameBank": "engine_bigdiesel2",
+    "filesPresent": true,
+    "preset": "Fuel tractor OM 457"
+  },
+  {
+    "id": "recovery_transporter",
+    "slot": "recovery_transporter",
+    "name": "Recovery Transporter",
+    "gameBank": "engine_bigdiesel",
+    "filesPresent": true,
+    "preset": "Oshkosh M1070A1 HET"
+  },
+  {
+    "id": "rook_launcher",
+    "slot": "rook_launcher",
+    "name": "Rook missile launcher",
+    "gameBank": "engine_bigdiesel",
+    "filesPresent": true,
+    "preset": "Oshkosh M1070A1 HET"
+  }
+]

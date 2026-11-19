@@ -8,6 +8,22 @@
 
 namespace esl {
 
+struct ShaftPhases {
+    double crankTurns = 0.0;
+    double gasGenerator = 0.0;
+    double freeTurbine = 0.0;
+};
+
+enum class Ignition : std::uint8_t { Inactive, Fired, Missed, Cut };
+
+struct IgnitionTrace {
+    using Cycle = std::array<Ignition, maxCylinders>;
+    Cycle latest{};
+    Cycle completed{};
+    int lastCylinder = 0; // One-based, zero before the first event.
+    bool hasCompleted = false;
+};
+
 // Each synthesizer is owned by one render thread. Settings are copied at block boundaries.
 class Synthesizer {
 public:
@@ -21,6 +37,8 @@ public:
     void render(std::span<StereoFrame> frames);
     void setSteady(const Settings& settings, double rpm);
     const EngineState& state() const;
+    ShaftPhases phases() const;
+    const IgnitionTrace& ignitions() const;
 
 private:
     struct Impl;

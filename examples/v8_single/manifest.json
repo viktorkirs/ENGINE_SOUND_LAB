@@ -24,8 +24,13 @@
         }
     ],
     "engine": "Бензиновый V8",
+    "listener": {
+        "distanceMeters": 1,
+        "insulation": 0.72,
+        "position": "direct"
+    },
     "mode": "single",
-    "normalizationGain": 1.5036955546416841,
+    "normalizationGain": 1.5149636595449414,
     "normalized": true,
     "sampleRate": 48000,
     "seed": 5708,

@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.599291666666667,
+            "engine": "Ural-4320-31",
+            "file": "steady.wav",
+            "frames": 172766,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172766,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1346,
+            "rpmEnd": 1346,
+            "rpmPeak": 1346,
+            "rpmStart": 1346,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Ural-4320-31",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.54,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 808596276,
+    "version": 1
+}

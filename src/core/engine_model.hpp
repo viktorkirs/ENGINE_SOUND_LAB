@@ -12,8 +12,19 @@ inline constexpr double pi = 3.14159265358979323846;
 enum class EngineKind { Diesel, Gasoline, Turbine };
 enum class Layout { Inline, V, Boxer, Radial };
 enum class Boost { None, Turbocharger, Supercharger };
-enum class LayerId { Combustion, Exhaust, Intake, Mechanical, Turbo, Body, Count };
-enum class Program { Manual, Idle, SlowRamp, FastRamp, FullLoad, Lift, EngineBrake, StartStop, AutoTest };
+enum class LayerId { Combustion, Exhaust, Intake, Mechanical, Turbo, Body, Recording, Transmission, Count };
+enum class ListeningPosition { Direct, Interior, Near, ThirdPerson, Distant };
+struct RecordingBank;
+
+struct Listener {
+    ListeningPosition position = ListeningPosition::Direct;
+    double distance = 1.0;   // Metres from the engine for exterior views.
+    double insulation = 0.72;
+    bool operator==(const Listener&) const = default;
+};
+
+double defaultDistance(ListeningPosition position);
+enum class Program { Manual, Idle, SlowRamp, FastRamp, FullLoad, Lift, EngineBrake, StartStop, AutoTest, Drive };
 
 inline constexpr std::size_t layerCount = static_cast<std::size_t>(LayerId::Count);
 using FiringOrder = std::array<int, maxCylinders>;
@@ -24,6 +35,8 @@ struct Model {
     int cylinders = 12;
     int strokes = 4;
     double liters = 38.88;
+    double strokeMm = 0.0; // Zero selects equal bore and stroke for legacy models.
+    double compression = 0.0; // Zero selects the engine-kind default.
     double idleRpm = 650.0;
     double maxRpm = 2200.0;
     double bankAngle = 60.0;
@@ -33,6 +46,7 @@ struct Model {
     double powerKw = 618.0;
     double torqueNm = 3500.0;
     double loss = 0.36;
+    double overrunDrag = 0.0; // Fraction of peak torque available for engine braking on lift.
     int exhaustTracts = 2;
     Boost boost = Boost::Supercharger;
     double coreMaxRpm = 28000.0;
@@ -41,6 +55,7 @@ struct Model {
     int compressorBlades = 18;
     int turbineBlades = 29;
     std::uint32_t seed = 1973;
+    const RecordingBank* recording = nullptr; // Immutable built-in bank, shared for the lifetime of the process.
 };
 
 struct Layer {
@@ -82,11 +97,21 @@ struct Faults {
     void approach(const Faults& target, double fraction);
 };
 
+struct RevLimiter {
+    bool enabled = false;
+    double cutRpm = 0;
+    double resumeRpm = 0;
+};
+
+RevLimiter defaultRevLimiter(const Model& model);
+
 struct Settings {
     Model model;
     Layers layers = defaultLayers();
     Controls controls;
     Faults faults;
+    Listener listener;
+    RevLimiter limiter = defaultRevLimiter(model);
 };
 
 struct CylinderPhase {
@@ -98,6 +123,10 @@ struct CylinderPhase {
 };
 
 bool validCylinderCount(Layout layout, int cylinders);
+double pistonStrokeMm(const Model& model);
+double cylinderBoreMm(const Model& model);
+double displacementLiters(int cylinders, double boreMm, double strokeMm);
+double compressionRatio(const Model& model);
 FiringOrder defaultFiringOrder(const Model& model);
 bool validFiringOrder(const Model& model, const FiringOrder& order);
 std::array<CylinderPhase, maxCylinders> cylinderPhases(const Model& model);

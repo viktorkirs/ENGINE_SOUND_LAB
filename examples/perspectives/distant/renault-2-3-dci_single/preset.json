@@ -1,0 +1,156 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1710,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "M9T · рядный турбодизель 2,3 л · запись холостого хода, набора и сброса",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.49,
+            "cutoff": 1160,
+            "damping": 0.64,
+            "drive": 0.041,
+            "gain": 0.055,
+            "mute": false,
+            "resonance": 93,
+            "shape": 0.51,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.49,
+            "cutoff": 5600,
+            "damping": 0.53,
+            "drive": 0.048,
+            "gain": 0.06,
+            "mute": false,
+            "resonance": 825,
+            "shape": 0.34,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.6,
+            "cutoff": 3360,
+            "damping": 0.57,
+            "drive": 0.058,
+            "gain": 0.077,
+            "mute": false,
+            "resonance": 119,
+            "shape": 0.39,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.48,
+            "cutoff": 4300,
+            "damping": 0.61,
+            "drive": 0.036,
+            "gain": 0.049,
+            "mute": false,
+            "resonance": 394,
+            "shape": 0.43,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.58,
+            "cutoff": 6350,
+            "damping": 0.53,
+            "drive": 0.018,
+            "gain": 0.064,
+            "mute": false,
+            "resonance": 880,
+            "shape": 0,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.018,
+            "cutoff": 13950,
+            "damping": 0.74,
+            "drive": 0.012,
+            "gain": 1.14,
+            "mute": false,
+            "resonance": 118,
+            "shape": 0.83,
+            "solo": false
+        },
+        "transmission": {
+            "amount": 0.38,
+            "cutoff": 3900,
+            "damping": 0.48,
+            "drive": 0.04,
+            "gain": 0,
+            "mute": false,
+            "resonance": 610,
+            "shape": 0.62,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.37,
+            "cutoff": 6750,
+            "damping": 0.66,
+            "drive": 0.013,
+            "gain": 0.027,
+            "mute": false,
+            "resonance": 1840,
+            "shape": 0.61,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 45,
+        "insulation": 0.62,
+        "position": "distant"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "turbocharger",
+        "compressionRatio": 16,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 4,
+        "exhaustTracts": 1,
+        "firingOrder": [
+            1,
+            3,
+            4,
+            2
+        ],
+        "idleRpm": 825,
+        "inertia": 0.94,
+        "irregularity": 0.095,
+        "kind": "diesel",
+        "layout": "inline",
+        "liters": 2.299,
+        "loss": 0.27,
+        "maxRpm": 4300,
+        "overrunDrag": 0.79,
+        "powerKw": 92,
+        "recording": "dci23",
+        "seed": 2309125,
+        "strokeMm": 101.3,
+        "strokes": 4,
+        "torqueNm": 310,
+        "turbineBlades": 29
+    },
+    "name": "Renault 2.3 dCi",
+    "revLimiter": {
+        "cutRpm": 4126,
+        "enabled": false,
+        "resumeRpm": 3987
+    },
+    "version": 1
+}

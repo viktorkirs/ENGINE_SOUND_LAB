@@ -1,0 +1,35 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 15,
+            "engine": "Oshkosh M1070A1 Drive",
+            "file": "drive.wav",
+            "frames": 720000,
+            "load": 0.12,
+            "loadEnd": 0.12000015126543777,
+            "loadStart": 0.12,
+            "loop": null,
+            "requestedSeconds": 15,
+            "role": "drive",
+            "rpm": 650,
+            "rpmEnd": 649.1855648883912,
+            "rpmPeak": 1948.8570136536957,
+            "rpmStart": 650,
+            "throttle": 0.04
+        }
+    ],
+    "engine": "Oshkosh M1070A1 Drive",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.54,
+        "position": "thirdPerson"
+    },
+    "mode": "drive",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1952802911,
+    "version": 1
+}

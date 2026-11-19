@@ -8,6 +8,8 @@
     "cylinders": 8,
     "strokes": 4,
     "liters": 5.7,
+    "strokeMm": 89.0,
+    "compressionRatio": 10.2,
     "idleRpm": 680,
     "maxRpm": 6300,
     "bankAngle": 90,
@@ -25,6 +27,11 @@
     "compressorBlades": 18,
     "turbineBlades": 29,
     "seed": 5708
+  },
+  "revLimiter": {
+    "enabled": true,
+    "cutRpm": 6000,
+    "resumeRpm": 5800
   },
   "layers": {
     "combustion": {

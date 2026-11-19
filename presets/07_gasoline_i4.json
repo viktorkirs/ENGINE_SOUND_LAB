@@ -8,6 +8,8 @@
     "cylinders": 4,
     "strokes": 4,
     "liters": 2.0,
+    "strokeMm": 86.0,
+    "compressionRatio": 10.5,
     "idleRpm": 800,
     "maxRpm": 6800,
     "bankAngle": 90,
@@ -25,6 +27,11 @@
     "compressorBlades": 18,
     "turbineBlades": 29,
     "seed": 2004
+  },
+  "revLimiter": {
+    "enabled": true,
+    "cutRpm": 6500,
+    "resumeRpm": 6350
   },
   "layers": {
     "combustion": {

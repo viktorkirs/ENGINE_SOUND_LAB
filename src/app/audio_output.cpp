@@ -155,6 +155,8 @@ struct AudioOutput::Worker {
         auto publish = [&](StreamStatus status) {
             std::scoped_lock lock(meterMutex);
             meter.engine = synth.state();
+            meter.phases = synth.phases();
+            meter.ignitions = synth.ignitions();
             meter.peak = peak;
             meter.stream = status;
             meter.deviceError = error;

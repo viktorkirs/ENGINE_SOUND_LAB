@@ -41,14 +41,15 @@ Controls trajectory(const Controls& base, const ClipRequest& clip, double time) 
         controls.load = time < 0.40 ? clip.load : 0.0;
         break;
     case Motion::Steady: break;
+    case Motion::Drive: return programControls(Program::Drive, u * programDuration(Program::Drive), base);
     }
     return controls;
 }
 
-int turbineLoopEnd(std::span<const StereoFrame> signal, int nominal, int search, int fade) {
+int correlatedLoopEnd(std::span<const StereoFrame> signal, int nominal, int search, int fade) {
     int bestEnd = nominal;
     double bestScore = -2.0;
-    // Score the actual mixed signal, which includes both independently rotating shafts.
+    // Independent shafts, microphone loops and an active limiter each have multiple periods.
     for (int offset = -search; offset <= search; ++offset) {
         double cross = 0.0, energy = 1e-15;
         const int end = nominal + offset;
@@ -78,15 +79,18 @@ RenderedClip renderClip(Settings settings, const ClipRequest& request, int rate,
     const auto duration = std::clamp(request.seconds, 0.5, 18.0);
     auto rpm = std::clamp(request.rpm, model.idleRpm, model.maxRpm);
     int frames = static_cast<int>(std::lround(duration * rate));
-    if (loop && !turbine) {
+    const auto& transmission = settings.layers[static_cast<std::size_t>(LayerId::Transmission)];
+    const bool correlate = turbine || settings.model.recording || (settings.controls.gear > 0 && transmission.gain > 0 && !transmission.mute) ||
+        (settings.limiter.enabled && rpm >= settings.limiter.cutRpm);
+    if (loop && !correlate) {
         const double cycle = 60.0 * (model.strokes / 2.0) / rpm;
         const double cycles = std::max(1.0, std::round(duration / cycle));
         frames = static_cast<int>(std::lround(cycles * cycle * rate));
         rpm = cycles * 60.0 * (model.strokes / 2.0) * rate / frames;
         rpm = std::clamp(rpm, model.idleRpm, model.maxRpm);
     }
-    const int fade = loop ? static_cast<int>(rate * (turbine ? 0.120 : 0.087)) : 0;
-    const int search = loop && turbine ? static_cast<int>(rate * 0.010) : 0;
+    const int fade = loop ? static_cast<int>(rate * (correlate ? 0.120 : 0.087)) : 0;
+    const int search = loop && correlate ? static_cast<int>(rate * 0.010) : 0;
     auto& controls = settings.controls;
     controls.program = Program::Manual;
     controls.programToken = 0;
@@ -123,7 +127,7 @@ RenderedClip renderClip(Settings settings, const ClipRequest& request, int rate,
     result.endRpm = synth.state().rpm;
     result.endLoad = synth.state().load;
     if (loop) {
-        if (search > 0) frames = turbineLoopEnd(result.samples, frames, search, fade);
+        if (search > 0) frames = correlatedLoopEnd(result.samples, frames, search, fade);
         // The sample following the last exported frame becomes the first frame of the loop.
         // Blend the continuation into the original head with zero slope at both crossfade ends.
         for (int i = 0; i < fade; ++i) {

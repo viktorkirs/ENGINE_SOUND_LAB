@@ -1,0 +1,149 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1950,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "Vortec 6000 · атмосферный бензиновый V8 · 6,0 л",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.62,
+            "cutoff": 900,
+            "damping": 0.69,
+            "drive": 0.07,
+            "gain": 0.09,
+            "mute": false,
+            "resonance": 75,
+            "shape": 0.61,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.58,
+            "cutoff": 4200,
+            "damping": 0.51,
+            "drive": 0.09,
+            "gain": 0.17,
+            "mute": false,
+            "resonance": 430,
+            "shape": 0.52,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.83,
+            "cutoff": 3650,
+            "damping": 0.48,
+            "drive": 0.21,
+            "gain": 0.26,
+            "mute": false,
+            "resonance": 100,
+            "shape": 0.65,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.59,
+            "cutoff": 4100,
+            "damping": 0.53,
+            "drive": 0.05,
+            "gain": 0.12,
+            "mute": false,
+            "resonance": 250,
+            "shape": 0.47,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.51,
+            "cutoff": 4700,
+            "damping": 0.61,
+            "drive": 0.03,
+            "gain": 0.083,
+            "mute": false,
+            "resonance": 720,
+            "shape": 0.39,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.055,
+            "cutoff": 13000,
+            "damping": 0.67,
+            "drive": 0.022,
+            "gain": 1.15,
+            "mute": false,
+            "resonance": 93,
+            "shape": 0.92,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.46,
+            "cutoff": 6800,
+            "damping": 0.59,
+            "drive": 0.03,
+            "gain": 0,
+            "mute": false,
+            "resonance": 1400,
+            "shape": 0.56,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 2,
+        "insulation": 0.72,
+        "position": "near"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "none",
+        "compressionRatio": 9.4,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 8,
+        "exhaustTracts": 2,
+        "firingOrder": [
+            1,
+            8,
+            7,
+            2,
+            6,
+            5,
+            4,
+            3
+        ],
+        "idleRpm": 710,
+        "inertia": 2.4,
+        "irregularity": 0.17,
+        "kind": "gasoline",
+        "layout": "v",
+        "liters": 5.97,
+        "loss": 0.34,
+        "maxRpm": 5850,
+        "overrunDrag": 0.27,
+        "powerKw": 242,
+        "recording": "hummerH2",
+        "seed": 600082,
+        "strokeMm": 92,
+        "strokes": 4,
+        "torqueNm": 495,
+        "turbineBlades": 29
+    },
+    "name": "Hummer H2",
+    "revLimiter": {
+        "cutRpm": 5700,
+        "enabled": true,
+        "resumeRpm": 5480
+    },
+    "version": 1
+}

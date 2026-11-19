@@ -1,0 +1,140 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 2928,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "Условный cross-plane V8 · 5,7 л",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.61,
+            "cutoff": 1500,
+            "damping": 0.51,
+            "drive": 0.09,
+            "gain": 0.28,
+            "mute": false,
+            "resonance": 87,
+            "shape": 0.28,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.42,
+            "cutoff": 4800,
+            "damping": 0.6,
+            "drive": 0.1,
+            "gain": 0.51,
+            "mute": false,
+            "resonance": 534,
+            "shape": 0.61,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.64,
+            "cutoff": 4700,
+            "damping": 0.2,
+            "drive": 0.29,
+            "gain": 1.16,
+            "mute": false,
+            "resonance": 102,
+            "shape": 0.52,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.69,
+            "cutoff": 6400,
+            "damping": 0.44,
+            "drive": 0.07,
+            "gain": 0.61,
+            "mute": false,
+            "resonance": 345,
+            "shape": 0.63,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.57,
+            "cutoff": 6900,
+            "damping": 0.55,
+            "drive": 0.08,
+            "gain": 0.42,
+            "mute": false,
+            "resonance": 1470,
+            "shape": 0.55,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0,
+            "cutoff": 13000,
+            "damping": 0.65,
+            "drive": 0,
+            "gain": 1,
+            "mute": false,
+            "resonance": 125,
+            "shape": 0.65,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.52,
+            "cutoff": 8000,
+            "damping": 0.46,
+            "drive": 0.02,
+            "gain": 0.32,
+            "mute": false,
+            "resonance": 2600,
+            "shape": 0.48,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 1,
+        "insulation": 0.72,
+        "position": "direct"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "none",
+        "compressionRatio": 10.2,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 8,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 680,
+        "inertia": 1.45,
+        "irregularity": 0.2,
+        "kind": "gasoline",
+        "layout": "v",
+        "liters": 5.7,
+        "loss": 0.33,
+        "maxRpm": 6300,
+        "powerKw": 310,
+        "recording": "none",
+        "seed": 5708,
+        "strokeMm": 89,
+        "strokes": 4,
+        "torqueNm": 540,
+        "turbineBlades": 29
+    },
+    "name": "V8 Rev Limiter",
+    "revLimiter": {
+        "cutRpm": 6000,
+        "enabled": true,
+        "resumeRpm": 5800
+    },
+    "version": 1
+}

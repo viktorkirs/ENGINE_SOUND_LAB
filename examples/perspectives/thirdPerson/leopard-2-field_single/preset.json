@@ -1,0 +1,141 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1600,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "MB 873 Ka-501 · наружный микрофон рядом с машиной",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.72,
+            "cutoff": 1400,
+            "damping": 0.68,
+            "drive": 0.07,
+            "gain": 0.13,
+            "mute": false,
+            "resonance": 102,
+            "shape": 0.72,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.68,
+            "cutoff": 4600,
+            "damping": 0.52,
+            "drive": 0.1,
+            "gain": 0.125,
+            "mute": false,
+            "resonance": 520,
+            "shape": 0.43,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.8,
+            "cutoff": 3150,
+            "damping": 0.48,
+            "drive": 0.21,
+            "gain": 0.17,
+            "mute": false,
+            "resonance": 122,
+            "shape": 0.44,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.62,
+            "cutoff": 4400,
+            "damping": 0.55,
+            "drive": 0.03,
+            "gain": 0.11,
+            "mute": false,
+            "resonance": 325,
+            "shape": 0.47,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.66,
+            "cutoff": 5600,
+            "damping": 0.47,
+            "drive": 0.03,
+            "gain": 0.135,
+            "mute": false,
+            "resonance": 1090,
+            "shape": 0.6,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.08,
+            "cutoff": 14000,
+            "damping": 0.69,
+            "drive": 0.025,
+            "gain": 1.08,
+            "mute": false,
+            "resonance": 127,
+            "shape": 0.98,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.65,
+            "cutoff": 9000,
+            "damping": 0.56,
+            "drive": 0.03,
+            "gain": 0.083,
+            "mute": false,
+            "resonance": 2140,
+            "shape": 0.7,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.72,
+        "position": "thirdPerson"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "turbocharger",
+        "compressionRatio": 17.5,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 12,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 840,
+        "inertia": 37,
+        "irregularity": 0.085,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 47.64,
+        "loss": 0.36,
+        "maxRpm": 2600,
+        "overrunDrag": 0.56,
+        "powerKw": 1100,
+        "recording": "leopard2",
+        "seed": 873501,
+        "strokeMm": 175,
+        "strokes": 4,
+        "torqueNm": 4700,
+        "turbineBlades": 29
+    },
+    "name": "Leopard 2 Field",
+    "revLimiter": {
+        "cutRpm": 2512,
+        "enabled": false,
+        "resumeRpm": 2442
+    },
+    "version": 1
+}

@@ -38,6 +38,9 @@ std::vector<Job> schedule(const Model& model, const ExportOptions& o) {
     if (o.mode == ExportMode::Single) {
         return {{QStringLiteral("steady"), {Motion::Steady, o.seconds, o.rpm, o.load, o.throttle, o.singleLoop}, {}}};
     }
+    if (o.mode == ExportMode::Drive) {
+        return {{QStringLiteral("drive"), {Motion::Drive, programDuration(Program::Drive), model.idleRpm, 0.12, 0.04, false}, {}}};
+    }
     if (o.mode == ExportMode::Pack) {
         const bool turbine = model.kind == EngineKind::Turbine;
         return {
@@ -205,10 +208,11 @@ ExportResult exportAudio(const Preset& preset, const ExportOptions& o, const QSt
     }
 
     const QString mode = o.mode == ExportMode::Pack ? QStringLiteral("pack") :
-        o.mode == ExportMode::Grid ? QStringLiteral("grid") : QStringLiteral("single");
+        o.mode == ExportMode::Grid ? QStringLiteral("grid") : o.mode == ExportMode::Drive ? QStringLiteral("drive") : QStringLiteral("single");
     const QJsonObject manifest{{"version", 1}, {"engine", preset.name}, {"mode", mode}, {"sampleRate", o.sampleRate},
         {"bitsPerSample", o.bits}, {"channels", o.channels}, {"normalized", o.normalize && peak > 1e-8},
-        {"normalizationGain", gain}, {"seed", static_cast<qint64>(preset.settings.model.seed)}, {"clips", assets}};
+        {"normalizationGain", gain}, {"seed", static_cast<qint64>(preset.settings.model.seed)},
+        {"listener", listenerJson(preset.settings.listener)}, {"clips", assets}};
     QSaveFile file(stage.filePath(QStringLiteral("manifest.json")));
     const auto data = QJsonDocument(manifest).toJson();
     if (!file.open(QIODevice::WriteOnly) || file.write(data) != data.size() || !file.commit()) return error(file.errorString());

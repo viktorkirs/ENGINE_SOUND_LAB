@@ -20,7 +20,6 @@ double approach(double value, double target, double dt, double timeConstant) {
 }
 
 constexpr double rpmPerRadian = 60.0 / (2.0 * pi);
-constexpr std::array gearRatios{0.0, 3.9, 2.5, 1.7, 1.25, 1.0, 0.83};
 
 struct Cue {
     double time;
@@ -48,6 +47,12 @@ std::span<const Cue> cues(Program program) {
                                     {12.3, 1, 1, 3}, {12.5, 0, 0.62, 3},
                                     {13.35, 0, 0.9, 2, true, true}, {16.2, 0, 0.15, 0},
                                     {18, 0, 0, 0, false}, {25, 0, 0, 0, false}};
+    static constexpr Cue drive[]{{0, 0.04, 0.12, 0}, {1.1, 0.18, 0.32, 1},
+                                {3.5, 0.84, 0.68, 1}, {4.2, 0.60, 0.50, 2},
+                                {6.5, 0.91, 0.77, 2}, {7.2, 0.57, 0.53, 3},
+                                {9.2, 0.74, 0.67, 3}, {9.7, 0, 0.26, 3},
+                                {12.1, 0, 0.32, 2, true, true}, {14.2, 0, 0.12, 0},
+                                {15, 0, 0.12, 0}};
     switch (program) {
     case Program::Idle: return idle;
     case Program::SlowRamp: return slow;
@@ -57,6 +62,7 @@ std::span<const Cue> cues(Program program) {
     case Program::EngineBrake: return brake;
     case Program::StartStop: return startStop;
     case Program::AutoTest: return automatic;
+    case Program::Drive: return drive;
     case Program::Manual: return {};
     }
     return {};
@@ -121,6 +127,10 @@ void SimulationController::setSteady(const Settings& settings, double rpm) {
     program_ = Program::Manual;
     programTime_ = 0.0;
     state_.rpm = std::clamp(rpm, model.idleRpm, model.maxRpm);
+    if (settings.limiter.enabled && state_.rpm >= settings.limiter.cutRpm) {
+        state_.rpm = settings.limiter.cutRpm;
+        state_.limiterCut = true;
+    }
     state_.throttle = unit(controls.throttle);
     state_.load = unit(controls.load);
     state_.gear = std::clamp(controls.gear, 0, 6);
@@ -168,7 +178,12 @@ void SimulationController::update(const Settings& settings, double dt) {
     const double span = model.maxRpm - model.idleRpm;
     const double speed = unit((state_.rpm - model.idleRpm) / span);
     const double pedal = controls.brake ? 0.0 : state_.throttle;
+    const auto& limiter = settings.limiter;
+    if (!limiter.enabled || !running_ || state_.rpm <= limiter.resumeRpm) state_.limiterCut = false;
+    else if (state_.rpm >= limiter.cutRpm - 0.05) state_.limiterCut = true;
+    state_.firingGain = approach(state_.firingGain, state_.limiterCut ? 0.0 : 1.0, dt, 0.008);
     const double shift = 1.0 - 0.78 * smooth(shiftTime_ / 0.21);
+    state_.clutch = shift;
     const double ratio = gearRatios[gear];
     const double inertia = model.inertia * (1.0 + 0.16 * ratio * state_.load);
     Controls metered = controls;
@@ -200,28 +215,39 @@ void SimulationController::update(const Settings& settings, double dt) {
     const double absorber = peak * state_.load * (0.145 + 0.35 * speed) * (1.0 + 0.052 * ratio);
     const double overload = peak * fault_.overload * (0.23 + 0.55 * speed) * (0.7 + 0.3 * state_.load);
     const double resistance = friction + absorber + overload + (controls.brake ? peak * speed * 0.42 : 0.0);
-    const double target = model.idleRpm + span * std::pow(pedal, turbine ? 1.24 : 0.92);
+    const double headroom = limiter.enabled ? 0.10 * smooth((pedal - 0.80) / 0.20) : 0.0;
+    const double target = model.idleRpm + span * (std::pow(pedal, turbine ? 1.24 : 0.92) + headroom);
+    // Unloaded exhaust returns to its powered timbre as soon as the driver
+    // matches the current crank speed again, including part-throttle reapplication.
+    const double overrun = running_ && !controls.hold && !turbine ?
+        smooth((state_.rpm - target) / (0.40 * span)) : 0.0;
+    state_.overrun = approach(state_.overrun, overrun, dt, overrun > state_.overrun ? 0.085 : 0.055);
     const double torqueCurve = 0.66 + 0.34 * std::sin(pi * (0.22 + 0.70 * speed));
     const double powerLimit = model.powerKw * 9550.0 / std::max(1.0, state_.rpm);
     const double available = std::min(peak * torqueCurve, powerLimit) * charge;
     const double governor = (target - state_.rpm) / span * peak * (turbine ? 2.0 : 3.1);
-    const double drive = running_ ? std::clamp(friction + absorber * 0.90 + governor, 0.0, available) * shift * state_.burn : 0.0;
+    const double drive = running_ && !state_.limiterCut ?
+        std::clamp(friction + absorber * 0.90 + governor, 0.0, available) * shift * state_.burn : 0.0;
 
-    if (controls.hold && running_ && state_.burn > 0.55 && !controls.brake) {
+    if (controls.hold && running_ && state_.burn > 0.55 && !controls.brake && !state_.limiterCut) {
         const double heldRpm = std::clamp(controls.holdRpm, model.idleRpm, model.maxRpm);
-        state_.rpm = approach(state_.rpm, heldRpm, dt, 0.10 + 0.006 * inertia);
+        // The stand can demand the threshold. Release the drive during each cut.
+        const double goal = limiter.enabled && heldRpm >= limiter.cutRpm ?
+            limiter.cutRpm + (limiter.cutRpm - limiter.resumeRpm) : heldRpm;
+        state_.rpm = std::min(model.maxRpm, approach(state_.rpm, goal, dt, 0.10 + 0.006 * inertia));
         state_.torqueNm = std::min(available, resistance);
     } else {
         const double starterRpm = std::min(model.idleRpm * 0.66, 430.0);
         const double starterTorque = turbine ? 0.0 : state_.starter * peak *
             unit((starterRpm - state_.rpm) / (starterRpm * 0.55));
         const double windage = running_ ? 0.0 : peak * (0.035 + (turbine ? 0.19 : 0.12) * state_.rpm / model.maxRpm);
-        const double net = drive + starterTorque - (running_ || !turbine ? resistance : friction + 0.5 * absorber) - windage;
+        const double engineDrag = model.overrunDrag * peak * std::sqrt(speed) * state_.overrun;
+        const double net = drive + starterTorque - (running_ || !turbine ? resistance : friction + 0.5 * absorber) - windage - engineDrag;
         state_.rpm = std::clamp(state_.rpm + (net / inertia) * rpmPerRadian * dt, 0.0, model.maxRpm);
         state_.torqueNm = drive;
     }
 
-    const double mixture = running_ ? fuelDemand(metered.throttle, state_.load, speed) *
+    const double mixture = running_ && !state_.limiterCut ? fuelDemand(metered.throttle, state_.load, speed) *
         (controls.brake ? 0.32 : 1.0) : 0.0;
     state_.fuel = approach(state_.fuel, mixture, dt, 0.092);
     if (!running_ && state_.coreRpm < model.coreMaxRpm * 0.014 && state_.rpm < 14.0) {

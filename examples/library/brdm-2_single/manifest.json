@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.58025,
+            "engine": "BRDM-2",
+            "file": "steady.wav",
+            "frames": 171852,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 171852,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1944,
+            "rpmEnd": 1943.9983241393757,
+            "rpmPeak": 1943.9983241393757,
+            "rpmStart": 1943.9983241393757,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "BRDM-2",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 846029938,
+    "version": 1
+}

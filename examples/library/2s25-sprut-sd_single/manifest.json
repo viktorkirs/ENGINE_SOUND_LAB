@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.601625,
+            "engine": "2S25 Sprut-SD",
+            "file": "steady.wav",
+            "frames": 172878,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172878,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1664,
+            "rpmEnd": 1664,
+            "rpmPeak": 1664,
+            "rpmStart": 1664,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "2S25 Sprut-SD",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1953854064,
+    "version": 1
+}

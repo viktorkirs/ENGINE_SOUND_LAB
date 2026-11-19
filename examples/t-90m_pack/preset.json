@@ -1,0 +1,151 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1300,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "В-92С2Ф · V12 · 38,88 л. Низ от пресета Т-72Б3, наружный тембр по записям Т-90М.",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.74,
+            "cutoff": 1250,
+            "damping": 0.73,
+            "drive": 0.08,
+            "gain": 0.125,
+            "mute": false,
+            "resonance": 78,
+            "shape": 0.81,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.7,
+            "cutoff": 4200,
+            "damping": 0.38,
+            "drive": 0.12,
+            "gain": 0.11,
+            "mute": false,
+            "resonance": 465,
+            "shape": 0.47,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.78,
+            "cutoff": 2850,
+            "damping": 0.43,
+            "drive": 0.24,
+            "gain": 0.096,
+            "mute": false,
+            "resonance": 107,
+            "shape": 0.59,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.56,
+            "cutoff": 4400,
+            "damping": 0.52,
+            "drive": 0.04,
+            "gain": 0.085,
+            "mute": false,
+            "resonance": 250,
+            "shape": 0.53,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.55,
+            "cutoff": 5600,
+            "damping": 0.54,
+            "drive": 0.03,
+            "gain": 0.13,
+            "mute": false,
+            "resonance": 680,
+            "shape": 0.28,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.072,
+            "cutoff": 14000,
+            "damping": 0.72,
+            "drive": 0.025,
+            "gain": 1.06,
+            "mute": false,
+            "resonance": 104,
+            "shape": 0.75,
+            "solo": false
+        },
+        "transmission": {
+            "amount": 0.38,
+            "cutoff": 3900,
+            "damping": 0.48,
+            "drive": 0.04,
+            "gain": 0,
+            "mute": false,
+            "resonance": 610,
+            "shape": 0.62,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.72,
+            "cutoff": 9300,
+            "damping": 0.61,
+            "drive": 0.04,
+            "gain": 0.106,
+            "mute": false,
+            "resonance": 2090,
+            "shape": 0.65,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.72,
+        "position": "thirdPerson"
+    },
+    "model": {
+        "bankAngle": 60,
+        "boost": "turbocharger",
+        "compressionRatio": 14.5,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 12,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 680,
+        "inertia": 22,
+        "irregularity": 0.145,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 38.88,
+        "loss": 0.36,
+        "maxRpm": 2230,
+        "powerKw": 831,
+        "recording": "t90m",
+        "seed": 92113,
+        "strokeMm": 183.35,
+        "strokes": 4,
+        "torqueNm": 4500,
+        "turbineBlades": 29
+    },
+    "name": "T-90M",
+    "revLimiter": {
+        "cutRpm": 2153,
+        "enabled": false,
+        "resumeRpm": 2091
+    },
+    "version": 1
+}

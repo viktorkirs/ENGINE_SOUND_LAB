@@ -8,8 +8,10 @@
     "cylinders": 12,
     "strokes": 4,
     "liters": 38.88,
+    "strokeMm": 183.35,
+    "compressionRatio": 14.0,
     "idleRpm": 650,
-    "maxRpm": 2200,
+    "maxRpm": 2600,
     "bankAngle": 60,
     "firingOrder": [],
     "irregularity": 0.18,
@@ -24,12 +26,13 @@
     "coreLag": 1.25,
     "compressorBlades": 18,
     "turbineBlades": 29,
-    "seed": 1973
+    "seed": 1973,
+    "recording": "t72"
   },
   "layers": {
     "combustion": {
-      "gain": 0.67,
-      "resonance": 710,
+      "gain": 0.14,
+      "resonance": 510,
       "cutoff": 5200,
       "shape": 0.38,
       "amount": 0.7,
@@ -39,8 +42,8 @@
       "solo": false
     },
     "exhaust": {
-      "gain": 1.0,
-      "resonance": 115,
+      "gain": 0.105,
+      "resonance": 96,
       "cutoff": 2200,
       "shape": 0.62,
       "amount": 0.72,
@@ -50,8 +53,8 @@
       "solo": false
     },
     "intake": {
-      "gain": 0.46,
-      "resonance": 280,
+      "gain": 0.11,
+      "resonance": 240,
       "cutoff": 4400,
       "shape": 0.53,
       "amount": 0.56,
@@ -61,8 +64,8 @@
       "solo": false
     },
     "mechanical": {
-      "gain": 0.42,
-      "resonance": 910,
+      "gain": 0.19,
+      "resonance": 760,
       "cutoff": 6500,
       "shape": 0.49,
       "amount": 0.65,
@@ -72,8 +75,8 @@
       "solo": false
     },
     "turbo": {
-      "gain": 0.32,
-      "resonance": 2600,
+      "gain": 0.065,
+      "resonance": 1840,
       "cutoff": 8000,
       "shape": 0.48,
       "amount": 0.52,
@@ -83,13 +86,24 @@
       "solo": false
     },
     "body": {
-      "gain": 0.56,
-      "resonance": 75,
+      "gain": 0.14,
+      "resonance": 68,
       "cutoff": 1100,
       "shape": 0.65,
       "amount": 0.69,
       "damping": 0.63,
       "drive": 0.07,
+      "mute": false,
+      "solo": false
+    },
+    "recording": {
+      "gain": 1.12,
+      "resonance": 92,
+      "cutoff": 14000,
+      "shape": 0.75,
+      "amount": 0.06,
+      "damping": 0.72,
+      "drive": 0.025,
       "mute": false,
       "solo": false
     }
@@ -111,5 +125,10 @@
     "injectorWear": 0.0,
     "overload": 0.0,
     "mechanicalWear": 0.0
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 8,
+    "insulation": 0.72
   }
 }

@@ -1,7 +1,8 @@
 #pragma once
 
+#include "app/number_field.hpp"
+
 #include <QComboBox>
-#include <QDoubleSpinBox>
 #include <QFormLayout>
 #include <QLabel>
 
@@ -13,15 +14,8 @@ inline QLabel* uiLabel(const QString& text, const char* styleName, QWidget* pare
     return label;
 }
 
-inline QDoubleSpinBox* numberField(double low, double high, int decimals, double step, const QString& suffix = {}) {
-    auto* field = new QDoubleSpinBox;
-    field->setDecimals(decimals);
-    field->setRange(low, high);
-    field->setSingleStep(step);
-    field->setSuffix(suffix);
-    field->setKeyboardTracking(false);
-    field->setMinimumWidth(80);
-    return field;
+inline NumberField* numberField(double low, double high, int decimals, double step, const QString& suffix = {}, bool logarithmic = false) {
+    return new NumberField(low, high, decimals, step, suffix, logarithmic);
 }
 
 inline QComboBox* choices(const QStringList& names) {
@@ -34,6 +28,7 @@ inline void formRow(QFormLayout* form, const QString& name, QWidget* field) {
     auto* label = new QLabel(name);
     label->setBuddy(field);
     field->setAccessibleName(name);
+    if (auto* number = qobject_cast<NumberField*>(field)) number->setFieldName(name);
     form->addRow(label, field);
 }
 

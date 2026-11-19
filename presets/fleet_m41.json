@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "name": "M41A1 Walker Bulldog",
+  "description": "Continental AOS-895 · Синтез бензиновой оппозитной шестёрки с нагнетателем",
+  "model": {
+    "kind": "gasoline",
+    "layout": "boxer",
+    "cylinders": 6,
+    "strokes": 4,
+    "liters": 14.67,
+    "strokeMm": 130.0,
+    "compressionRatio": 6.5,
+    "idleRpm": 700,
+    "maxRpm": 2800,
+    "bankAngle": 180,
+    "firingOrder": [],
+    "irregularity": 0.2,
+    "inertia": 4.97,
+    "powerKw": 373.0,
+    "torqueNm": 1420.0,
+    "loss": 0.33,
+    "exhaustTracts": 2,
+    "boost": "supercharger",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 3224685,
+    "overrunDrag": 0.43,
+    "recording": "none"
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.51,
+      "resonance": 534,
+      "cutoff": 4800,
+      "shape": 0.61,
+      "amount": 0.42,
+      "damping": 0.6,
+      "drive": 0.1,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.76,
+      "resonance": 91,
+      "cutoff": 4700,
+      "shape": 0.52,
+      "amount": 0.64,
+      "damping": 0.2,
+      "drive": 0.29,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.61,
+      "resonance": 345,
+      "cutoff": 6400,
+      "shape": 0.63,
+      "amount": 0.69,
+      "damping": 0.44,
+      "drive": 0.07,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.42,
+      "resonance": 1470,
+      "cutoff": 6900,
+      "shape": 0,
+      "amount": 0.57,
+      "damping": 0.55,
+      "drive": 0.08,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.32,
+      "resonance": 2600,
+      "cutoff": 8000,
+      "shape": 0.48,
+      "amount": 0.52,
+      "damping": 0.46,
+      "drive": 0.02,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.28,
+      "resonance": 70,
+      "cutoff": 1500,
+      "shape": 0.28,
+      "amount": 0.61,
+      "damping": 0.51,
+      "drive": 0.09,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 1640,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 8,
+    "insulation": 0.7
+  }
+}

@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.597916666666667,
+            "engine": "RL-28 Tailgater",
+            "file": "steady.wav",
+            "frames": 172700,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172700,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 2284,
+            "rpmEnd": 2284,
+            "rpmPeak": 2284,
+            "rpmStart": 2284,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "RL-28 Tailgater",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 2020961385,
+    "version": 1
+}

@@ -1,0 +1,35 @@
+{
+    "bitsPerSample": 24,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 4.5,
+            "engine": "V8 Rev Limiter",
+            "file": "steady.wav",
+            "frames": 216000,
+            "load": 0.55,
+            "loadEnd": 0.55,
+            "loadStart": 0.55,
+            "loop": null,
+            "requestedSeconds": 4.5,
+            "role": "steady",
+            "rpm": 6300,
+            "rpmEnd": 5992.666937596145,
+            "rpmPeak": 6000.070366944817,
+            "rpmStart": 5872.683510318135,
+            "throttle": 1
+        }
+    ],
+    "engine": "V8 Rev Limiter",
+    "listener": {
+        "distanceMeters": 1,
+        "insulation": 0.72,
+        "position": "direct"
+    },
+    "mode": "single",
+    "normalizationGain": 1.4019154382149046,
+    "normalized": true,
+    "sampleRate": 48000,
+    "seed": 5708,
+    "version": 1
+}

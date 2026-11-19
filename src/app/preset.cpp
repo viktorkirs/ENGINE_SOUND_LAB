@@ -1,4 +1,5 @@
 #include "app/preset.hpp"
+#include "app/recording_bank.hpp"
 
 #include <QFile>
 #include <QJsonArray>
@@ -18,8 +19,10 @@ namespace {
 constexpr std::array kindNames{"diesel", "gasoline", "turbine"};
 constexpr std::array layoutNames{"inline", "v", "boxer", "radial"};
 constexpr std::array boostNames{"none", "turbocharger", "supercharger"};
-constexpr std::array layerNames{"combustion", "exhaust", "intake", "mechanical", "turbo", "body"};
-constexpr std::array programNames{"manual", "idle", "slowRamp", "fastRamp", "fullLoad", "lift", "engineBrake", "startStop", "autoTest"};
+constexpr std::array layerNames{"combustion", "exhaust", "intake", "mechanical", "turbo", "body", "recording", "transmission"};
+static_assert(layerNames.size() == layerCount);
+constexpr std::array positionNames{"direct", "interior", "near", "thirdPerson", "distant"};
+constexpr std::array programNames{"manual", "idle", "slowRamp", "fastRamp", "fullLoad", "lift", "engineBrake", "startStop", "autoTest", "drive"};
 
 struct Reader {
     QString error;
@@ -73,6 +76,17 @@ struct Reader {
 
 } // namespace
 
+QString listeningPositionName(ListeningPosition position) {
+    static const std::array names{QStringLiteral("У двигателя"), QStringLiteral("Внутри корпуса"),
+        QStringLiteral("Снаружи рядом"), QStringLiteral("От третьего лица"), QStringLiteral("Вдалеке")};
+    return names[static_cast<std::size_t>(position)];
+}
+
+QJsonObject listenerJson(const Listener& listener) {
+    return {{"position", QLatin1String(positionNames[static_cast<std::size_t>(listener.position)])},
+            {"distanceMeters", listener.distance}, {"insulation", listener.insulation}};
+}
+
 QString firingOrderText(const Model& model) {
     const auto order = model.firingOrder[0] == 0 ? defaultFiringOrder(model) : model.firingOrder;
     QStringList text;
@@ -123,6 +137,8 @@ QString loadPreset(const QString& path, Preset& preset) {
     if (model.strokes == 3) read.invalid("strokes");
     if (!validCylinderCount(model.layout, model.cylinders)) read.invalid("cylinders");
     model.liters = read.number(m, "liters", model.liters, 0.05, 120.0);
+    model.strokeMm = read.number(m, "strokeMm", pistonStrokeMm(model), 10.0, 650.0);
+    model.compression = read.number(m, "compressionRatio", compressionRatio(model), 3.0, 30.0);
     model.idleRpm = read.number(m, "idleRpm", model.idleRpm, 100.0, 5000.0);
     model.maxRpm = read.number(m, "maxRpm", model.maxRpm, model.idleRpm + 50, 18000.0);
     if (model.maxRpm < model.idleRpm + 50) read.invalid("maxRpm");
@@ -132,6 +148,7 @@ QString loadPreset(const QString& path, Preset& preset) {
     model.powerKw = read.number(m, "powerKw", model.powerKw, 1.0, 2200.0);
     model.torqueNm = read.number(m, "torqueNm", model.torqueNm, 1.0, 16000.0);
     model.loss = read.number(m, "loss", model.loss, 0.0, 1.0);
+    model.overrunDrag = read.number(m, "overrunDrag", model.overrunDrag, 0.0, 1.0);
     model.exhaustTracts = read.integer(m, "exhaustTracts", model.exhaustTracts, 1, 2);
     model.boost = read.enumeration(m, "boost", model.boost, boostNames);
     model.coreMaxRpm = read.number(m, "coreMaxRpm", model.coreMaxRpm, 5000.0, 65000.0);
@@ -142,6 +159,11 @@ QString loadPreset(const QString& path, Preset& preset) {
     const double seed = read.number(m, "seed", model.seed, 0, 4294967295.0);
     if (seed != std::floor(seed)) read.invalid("seed");
     model.seed = static_cast<std::uint32_t>(seed);
+    const auto recording = m.value(QStringLiteral("recording"));
+    const auto key = recording.isUndefined() ? QStringLiteral("none") : recording.toString();
+    const int source = recordingKeys().indexOf(key);
+    model.recording = builtinRecording(static_cast<RecordingId>(source));
+    if (source < 0 || (source != 0 && !model.recording)) read.invalid("recording");
     const auto order = m.value(QStringLiteral("firingOrder"));
     if (!order.isUndefined()) {
         const auto data = order.toArray();
@@ -178,6 +200,18 @@ QString loadPreset(const QString& path, Preset& preset) {
     controls.brake = read.flag(behavior, "brake", controls.brake);
     controls.master = read.number(behavior, "master", controls.master, 0.0, 1.0);
     controls.program = read.enumeration(behavior, "program", controls.program, programNames);
+    const auto acoustics = read.object(root, "listener");
+    auto& listener = candidate.settings.listener;
+    listener.position = read.enumeration(acoustics, "position", listener.position, positionNames);
+    listener.distance = read.number(acoustics, "distanceMeters", defaultDistance(listener.position), 1.0, 120.0);
+    listener.insulation = read.number(acoustics, "insulation", listener.insulation, 0.0, 1.0);
+    const auto cut = read.object(root, "revLimiter");
+    auto& limiter = candidate.settings.limiter;
+    limiter = defaultRevLimiter(model);
+    limiter.enabled = read.flag(cut, "enabled", false);
+    limiter.cutRpm = read.number(cut, "cutRpm", limiter.cutRpm, model.idleRpm + 1.0, model.maxRpm);
+    limiter.resumeRpm = read.number(cut, "resumeRpm", std::min(limiter.resumeRpm, limiter.cutRpm - 1.0),
+                                    model.idleRpm, limiter.cutRpm - 1.0);
     const auto faultGroup = read.object(root, "faults");
     auto& fault = candidate.settings.faults;
     fault.cylinder = read.integer(faultGroup, "cylinder", fault.cylinder, 1, model.cylinders);
@@ -199,15 +233,18 @@ QString savePreset(const QString& path, const Preset& preset) {
         for (int i = 0; i < model.cylinders; ++i) order.append(model.firingOrder[i]);
     }
     const auto name = [](const auto& list, auto index) { return QLatin1String(list[static_cast<std::size_t>(index)]); };
-    const QJsonObject m{
+    QJsonObject m{
         {"kind", name(kindNames, model.kind)}, {"layout", name(layoutNames, model.layout)}, {"cylinders", model.cylinders},
         {"strokes", model.strokes}, {"liters", model.liters}, {"idleRpm", model.idleRpm}, {"maxRpm", model.maxRpm},
+        {"strokeMm", pistonStrokeMm(model)}, {"compressionRatio", compressionRatio(model)},
         {"bankAngle", model.bankAngle}, {"firingOrder", order}, {"irregularity", model.irregularity},
         {"inertia", model.inertia}, {"powerKw", model.powerKw}, {"torqueNm", model.torqueNm}, {"loss", model.loss},
         {"exhaustTracts", model.exhaustTracts}, {"boost", name(boostNames, model.boost)}, {"coreMaxRpm", model.coreMaxRpm},
+        {"recording", recordingKeys().value(static_cast<int>(model.recording ? model.recording->id : RecordingId::None))},
         {"coreIdle", model.coreIdle}, {"coreLag", model.coreLag}, {"compressorBlades", model.compressorBlades},
         {"turbineBlades", model.turbineBlades}, {"seed", static_cast<qint64>(model.seed)}
     };
+    if (model.overrunDrag > 0.0) m.insert(QStringLiteral("overrunDrag"), model.overrunDrag);
     QJsonObject layers;
     for (std::size_t i = 0; i < layerNames.size(); ++i) {
         const auto& layer = preset.settings.layers[i];
@@ -219,10 +256,13 @@ QString savePreset(const QString& path, const Preset& preset) {
     const QJsonObject behavior{{"throttle", c.throttle}, {"load", c.load}, {"hold", c.hold}, {"holdRpm", c.holdRpm},
         {"gear", c.gear}, {"brake", c.brake}, {"master", c.master}, {"program", name(programNames, c.program)}};
     const auto& f = preset.settings.faults;
+    const auto& limiter = preset.settings.limiter;
+    const QJsonObject cut{{"enabled", limiter.enabled}, {"cutRpm", limiter.cutRpm}, {"resumeRpm", limiter.resumeRpm}};
     const QJsonObject faults{{"cylinder", f.cylinder}, {"sparkMiss", f.sparkMiss}, {"fuelBias", f.fuelBias},
         {"injectorWear", f.injectorWear}, {"overload", f.overload}, {"mechanicalWear", f.mechanicalWear}};
     const QJsonObject root{{"version", 1}, {"name", preset.name}, {"description", preset.description}, {"model", m},
-                           {"layers", layers}, {"behavior", behavior}, {"faults", faults}};
+                           {"layers", layers}, {"behavior", behavior}, {"faults", faults}, {"listener", listenerJson(preset.settings.listener)},
+                           {"revLimiter", cut}};
     QSaveFile file(path);
     if (!file.open(QIODevice::WriteOnly)) return file.errorString();
     const auto json = QJsonDocument(root).toJson();

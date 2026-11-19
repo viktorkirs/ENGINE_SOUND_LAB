@@ -3,29 +3,34 @@
     "channels": 2,
     "clips": [
         {
-            "durationSeconds": 3.2653125,
+            "durationSeconds": 3.201791666666667,
             "engine": "Leopard 2",
             "file": "steady.wav",
-            "frames": 156735,
+            "frames": 153686,
             "load": 0.12,
             "loadEnd": 0.12,
             "loadStart": 0.12,
             "loop": {
-                "endFrameExclusive": 156735,
+                "endFrameExclusive": 153686,
                 "startFrame": 0
             },
             "requestedSeconds": 3.2,
             "role": "steady",
-            "rpm": 735,
-            "rpmEnd": 735,
-            "rpmPeak": 735,
-            "rpmStart": 735,
+            "rpm": 840,
+            "rpmEnd": 840,
+            "rpmPeak": 840,
+            "rpmStart": 840,
             "throttle": 0
         }
     ],
     "engine": "Leopard 2",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.72,
+        "position": "thirdPerson"
+    },
     "mode": "single",
-    "normalizationGain": 2.251547018015886,
+    "normalizationGain": 3.097205635576423,
     "normalized": true,
     "sampleRate": 48000,
     "seed": 873501,

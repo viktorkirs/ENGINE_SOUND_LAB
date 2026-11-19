@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.596875,
+            "engine": "T-14",
+            "file": "steady.wav",
+            "frames": 172650,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172650,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1568,
+            "rpmEnd": 1568,
+            "rpmPeak": 1568,
+            "rpmStart": 1568,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "T-14",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 3420532,
+    "version": 1
+}

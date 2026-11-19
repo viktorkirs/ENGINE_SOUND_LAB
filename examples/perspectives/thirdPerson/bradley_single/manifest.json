@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.6010833333333334,
+            "engine": "Bradley",
+            "file": "steady.wav",
+            "frames": 172852,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172852,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1600,
+            "rpmEnd": 1600,
+            "rpmPeak": 1600,
+            "rpmStart": 1600,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Bradley",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.72,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 903600,
+    "version": 1
+}

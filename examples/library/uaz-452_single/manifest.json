@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.6021666666666667,
+            "engine": "UAZ-452",
+            "file": "steady.wav",
+            "frames": 172904,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172904,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 2258,
+            "rpmEnd": 2258,
+            "rpmPeak": 2258,
+            "rpmStart": 2258,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "UAZ-452",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 842347642,
+    "version": 1
+}

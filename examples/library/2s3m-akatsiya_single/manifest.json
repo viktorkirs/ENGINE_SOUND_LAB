@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.5976666666666666,
+            "engine": "2S3M Akatsiya",
+            "file": "steady.wav",
+            "frames": 172688,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172688,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1298,
+            "rpmEnd": 1298,
+            "rpmPeak": 1298,
+            "rpmStart": 1298,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "2S3M Akatsiya",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1634300788,
+    "version": 1
+}

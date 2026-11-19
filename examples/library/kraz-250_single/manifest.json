@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.5916875,
+            "engine": "KrAZ-250",
+            "file": "steady.wav",
+            "frames": 172401,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172401,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1320,
+            "rpmEnd": 1320,
+            "rpmPeak": 1320,
+            "rpmStart": 1320,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "KrAZ-250",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.54,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 808792698,
+    "version": 1
+}

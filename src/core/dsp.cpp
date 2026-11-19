@@ -1,4 +1,6 @@
 #include "core/dsp.hpp"
+#include "core/listener.hpp"
+#include "core/recording.hpp"
 
 #include <algorithm>
 #include <array>
@@ -172,11 +174,22 @@ struct Voice {
     double turn = 0.0, eventOffset = 0.0;
     std::array<Bank, 2> banks{};
     std::array<CylinderCharge, maxCylinders> charge{};
+    IgnitionTrace ignitions;
+    int firstCylinder = 1, attempts = 0;
     std::array<std::array<Pole, 2>, layerCount> outputFilters{};
     Layers tone = defaultLayers();
     Faults fault;
     AudioMixer mixer;
+    RecordingPlayer recording;
+    Resonator recordedBody;
+    Pole recordedLow;
+    double recordedCoast = 0.0, recordedDrive = 0.0;
+    double pressureScale = 1.0, strokeAspect = 1.0, strokeOffsetMeters = 0.0, recordedDetail = 1.0;
     Noise soundNoise, eventNoise, faultNoise;
+    Noise bearingNoise;
+    Pole bearingLow, bearingHigh;
+    double meshPhase = 0.0, finalDrivePhase = 0.0, axlePhase = 0.0;
+    double outputRatio = 0.0, engagement = 0.0, shiftSlew = 0.0;
     Resonator chassis, shell, blower, air, turbineExhaust;
     Pole wind, fizz, jet, flutter;
     double smoothedRpm = 0.0, smoothedCore = 0.0, slew = 0.0;
@@ -192,12 +205,22 @@ struct Voice {
     void prepare(const Settings& settings, const EngineState& state, double oversampledRate, double phase) {
         *this = Voice{};
         model = settings.model;
+        recording.prepare(model.recording, oversampledRate);
         rate = oversampledRate;
         tone = settings.layers;
         turn = phase * (model.strokes / 2.0);
         smoothedRpm = state.rpm;
+        recordedCoast = state.overrun;
         smoothedCore = state.coreRpm;
         slew = -std::expm1(-1.0 / (0.006 * rate));
+        shiftSlew = -std::expm1(-1.0 / (0.042 * rate));
+        if (state.gear > 0) {
+            outputRatio = 1.0 / gearRatios[state.gear];
+            engagement = state.clutch;
+        }
+        bearingNoise.bits = (model.seed ^ 0x1b56c4e9u) | 1u;
+        bearingLow.alpha = pole(125.0, rate);
+        bearingHigh.alpha = pole(3150.0, rate);
         soundNoise.bits = model.seed ^ 0xf6a2bf57u;
         eventNoise.bits = model.seed ^ 0x4080e91du;
         faultNoise.bits = model.seed ^ 0x83ae7f4du;
@@ -207,6 +230,7 @@ struct Voice {
         cylinderLevel = std::min(1.45, 1.20 / std::pow(model.cylinders / 5.0, 0.30));
         if (model.kind != EngineKind::Turbine) {
             const auto phases = cylinderPhases(model);
+            firstCylinder = phases[0].cylinder;
             const double cycle = model.strokes / 2.0;
             for (int i = 0; i < model.cylinders; ++i) {
                 const auto& cylinder = phases[i];
@@ -240,7 +264,8 @@ struct Voice {
     }
 
     void tune(const Settings& settings, bool immediate) {
-        mixer.configure(settings.layers, settings.controls.master, rate, immediate);
+        mixer.configure(settings.layers, settings.controls.master, rate, immediate,
+                        model.recording && model.kind != EngineKind::Turbine, settings.listener.position);
         constexpr double change = 0.064;
         fault.approach(settings.faults, immediate ? 1.0 : change);
         for (std::size_t i = 0; i < tone.size(); ++i) {
@@ -260,17 +285,28 @@ struct Voice {
         const auto& m = tone[3];
         const auto& t = tone[4];
         const auto& b = tone[5];
+        if (model.recording) {
+            const auto& mic = tone[static_cast<std::size_t>(LayerId::Recording)];
+            recordedBody.tune(mic.resonance, 0.6 + 2.8 * (1.0 - mic.damping), rate);
+        }
         const double boreTarget = std::pow(std::clamp(model.liters / model.cylinders, 0.025, 12.0), 0.27);
         interpolate(bore, boreTarget, immediate ? 1.0 : change);
         volScale = 0.71 + 0.40 * bore;
         const bool diesel = model.kind == EngineKind::Diesel;
+        const double stroke = pistonStrokeMm(model);
+        const double squareStroke = std::cbrt(4.0e6 * model.liters / (pi * model.cylinders));
+        strokeOffsetMeters = (stroke - squareStroke) * 0.001;
+        strokeAspect = std::clamp(stroke / cylinderBoreMm(model), 0.45, 2.4);
+        pressureScale = std::clamp(compressionRatio(model) / (diesel ? 16.0 : 10.0), 0.38, 2.2);
+        recordedDetail = 1.26 * pressureScale / std::sqrt(strokeAspect);
+        recordedLow.alpha = pole(265.0, rate);
         auto decay = [this](double ms) { return std::exp(-1000.0 / (ms * rate)); };
-        burnFast = decay((diesel ? 0.21 : 0.59) * (0.68 + c.shape * 0.90) * bore);
-        burnSlow = decay((diesel ? 2.6 : 3.6) * (0.60 + c.shape * 1.40) * bore);
+        burnFast = decay((diesel ? 0.21 : 0.59) * (0.68 + c.shape * 0.90) * bore / pressureScale);
+        burnSlow = decay((diesel ? 2.6 : 3.6) * (0.60 + c.shape * 1.40) * bore * std::sqrt(strokeAspect));
         knockFast = decay(0.105 + 0.13 * c.shape);
         knockSlow = decay(0.55 + 0.55 * c.shape);
         exhaustFast = decay((0.36 + e.shape * 0.65) * bore);
-        exhaustSlow = decay((2.4 + e.shape * 4.1) * bore);
+        exhaustSlow = decay((2.4 + e.shape * 4.1) * bore * std::sqrt(strokeAspect));
         inhaleFast = decay(0.66 + 1.7 * i.shape);
         inhaleSlow = decay(5.1 + 3.4 * i.shape);
         valveFast = decay(0.10 + m.damping * 0.18);
@@ -301,8 +337,12 @@ struct Voice {
         flutter.alpha = pole(16.0, rate);
     }
 
-    void fire(const Event& event, const EngineState& state, Bank& bank, double weight, bool diesel) {
+    Ignition fire(const Event& event, const EngineState& state, Bank& bank, double weight, bool diesel) {
         auto& cylinder = charge[event.cylinder];
+        if (state.limiterCut) {
+            cylinder = {0.09, 0.0};
+            return Ignition::Cut;
+        }
         const bool affected = event.cylinder + 1 == static_cast<unsigned>(fault.cylinder);
         const double lean = std::max(0.0, -fault.fuelBias);
         const double rich = std::max(0.0, fault.fuelBias);
@@ -317,8 +357,8 @@ struct Voice {
         const double uneven = 1.0 + faultNoise.next() * (0.34 * lean + 0.26 * rich + 0.57 * injector + 0.39 * lug);
         const double pressure = fuel * uneven * (missed ? 0.028 : 1.0);
         const double knock = (missed ? 0.0 : pressure) * (1.0 + 0.77 * lean + 0.74 * injector + 0.78 * lug);
-        bank.combustion.excite(weight * state.burn * (0.36 + 1.46 * state.fuel) * pressure);
-        bank.crack.excite(weight * state.burn * (diesel ? 0.75 + 1.04 * state.fuel : 0.26 + 0.54 * state.fuel) * knock);
+        bank.combustion.excite(weight * state.burn * (0.36 + 1.46 * state.fuel) * pressure * std::sqrt(pressureScale));
+        bank.crack.excite(weight * state.burn * (diesel ? 0.75 + 1.04 * state.fuel : 0.26 + 0.54 * state.fuel) * knock * pressureScale);
 
         cylinder.exhaust = missed ? 0.13 + 0.15 * rich : pressure * (1.0 + 0.17 * rich);
         cylinder.afterfire = rich * (!diesel ? 0.91 : 0.28) * (missed ? 0.85 : 0.12) * (0.65 + 0.35 * random);
@@ -326,6 +366,8 @@ struct Voice {
             const double delay = rate * (0.00056 + 0.0024 * injector * (0.52 + 0.48 * random));
             bank.lateInjection.push(delay, state.burn * injector * (0.40 + 0.48 * state.fuel) * weight);
         }
+        if (state.burn < 0.02) return Ignition::Inactive;
+        return missed ? Ignition::Missed : Ignition::Fired;
     }
 
     void strike(const Event& event, const EngineState& state) {
@@ -334,9 +376,20 @@ struct Voice {
         const double variation = 1.0 + eventNoise.next() * (0.025 + 0.44 * model.irregularity);
         const double weight = event.weight * variation * volScale;
         switch (event.kind) {
-        case EventKind::Fire:
-            fire(event, state, bank, weight, diesel);
+        case EventKind::Fire: {
+            const int cylinder = static_cast<int>(event.cylinder) + 1;
+            if (cylinder == firstCylinder) {
+                if (attempts == model.cylinders) {
+                    ignitions.completed = ignitions.latest;
+                    ignitions.hasCompleted = true;
+                }
+                attempts = 0;
+            }
+            ++attempts;
+            ignitions.lastCylinder = cylinder;
+            ignitions.latest[event.cylinder] = fire(event, state, bank, weight, diesel);
             break;
+        }
         case EventKind::Blowdown: {
             auto& runner = banks[event.pipe].runner;
             const auto& combustion = charge[event.cylinder];
@@ -369,6 +422,34 @@ struct Voice {
 
     StereoFrame centered(std::size_t layer, double mono, double width = 0.0) {
         return shaped(layer, mono + width, mono - width);
+    }
+
+    StereoFrame transmission(const EngineState& state) {
+        constexpr auto id = static_cast<std::size_t>(LayerId::Transmission);
+        if (!mixer.audible(id)) return {};
+        const bool inGear = state.gear > 0 && state.mode != EngineMode::Off;
+        interpolate(engagement, inGear ? state.clutch : 0.0, shiftSlew);
+        if (!inGear && engagement < 1e-7) return {};
+        if (inGear) interpolate(outputRatio, 1.0 / gearRatios[state.gear], shiftSlew);
+        const auto& layer = tone[id];
+        const double axleHz = rotation * outputRatio;
+        const double axle = advance(axlePhase, axleHz, rate);
+        // Two continuous meshes, one on the selected pair and one on the output shaft.
+        const double meshHz = rotation * (0.70 + 0.54 * outputRatio) * layer.resonance / 30.0;
+        const double finalHz = axleHz * 15.0;
+        const double mesh = advance(meshPhase, meshHz, rate);
+        const double finalDrive = advance(finalDrivePhase, finalHz, rate);
+        const double coast = std::max(state.overrun, (1.0 - state.throttle) * speed);
+        const double traction = (0.18 + 0.52 * state.throttle + 0.38 * state.load) * (1.0 - 0.50 * coast);
+        const double reverseFlank = coast * layer.damping;
+        const double whine = harmonic(mesh, meshHz, rate) * (0.23 + 0.77 * traction) +
+            harmonic(mesh * 2.0 + 0.12, meshHz * 2.0, rate) * (0.15 * traction + 0.65 * reverseFlank) +
+            harmonic(finalDrive, finalHz, rate) * (0.26 + 0.38 * reverseFlank);
+        const double bearing = bearingHigh.tick(bearingNoise.next());
+        const double band = bearing - bearingLow.tick(bearing);
+        const double roughness = band * (0.60 + 0.26 * sine(axle) + 0.30 * traction);
+        const double envelope = engineEnvelope * engagement * (0.22 + 0.47 * speed);
+        return centered(id, envelope * (layer.shape * whine + layer.amount * roughness));
     }
 
     void pistons(const EngineState& state, float noise, double breeze, double hiss,
@@ -427,7 +508,9 @@ struct Voice {
 
             const double valve = bank.valves.tick(valveFast, valveSlow);
             const double tap = valve - bank.valveDc.tick(valve);
-            const double bearing = hiss * engineEnvelope * (0.11 + 0.34 * m.shape) * (0.38 + 0.87 * state.fuel + 0.68 * speed);
+            const double pistonSpeedOffset = 2.0 * strokeOffsetMeters * rotation;
+            const double bearing = hiss * engineEnvelope * (0.11 + 0.34 * m.shape) *
+                (0.38 + 0.87 * state.fuel + 0.68 * speed) * std::clamp(1.0 + 0.060 * pistonSpeedOffset, 0.65, 2.0);
             const double clatter = tap * hiss * (0.60 + 1.05 * m.shape + 0.86 * fault.mechanicalWear);
             mechanical[j] = m.amount * (0.49 * bank.metal.tick(0.62 * crack + tap + 0.33 * late + 1.4 * bearing + clatter) +
                 0.25 * tap * (0.55 + 0.40 * noise) + 0.29 * bearing + 0.41 * clatter);
@@ -435,8 +518,10 @@ struct Voice {
 
         const double gearHz = rotation * (state.gear == 0 ? 7.0 : 10.0 + (6 - state.gear) * 2.3);
         const double gearPhase = advance(gear, gearHz, rate);
+        // Fade the mesh bed to silence at the bottom of the gear-noise fader.
+        const double meshGain = std::min(0.19, m.shape) + 0.81 * m.shape;
         const double mesh = (harmonic(gearPhase, gearHz, rate) * (0.75 + 0.25 * sine(2 * turn)) +
-            0.27 * harmonic(gearPhase * 2.0 + 0.07, gearHz * 2.0, rate)) * (0.19 + 0.81 * m.shape);
+            0.27 * harmonic(gearPhase * 2.0 + 0.07, gearHz * 2.0, rate)) * meshGain;
         const double motorHz = 380.0 + 4.8 * rotation;
         const double motorPhase = advance(shaft, motorHz, rate);
         const double starter = state.starter * (0.100 * sine(motorPhase) * (0.66 + 0.34 * sine(2 * turn)) +
@@ -471,6 +556,23 @@ struct Voice {
         out[3] = centered(3, mid(mechanical) + engineGear, 0.15 * side(mechanical));
         out[4] = centered(4, whistle, 0.06 * whistle * sine(turn));
         out[5] = centered(5, structure, 0.041 * side(rawPressure) * b.amount);
+        if (model.recording) {
+            constexpr auto id = static_cast<std::size_t>(LayerId::Recording);
+            const auto& mic = tone[id];
+            const double coast = interpolate(recordedCoast, state.overrun, slew);
+            const double sample = recording.tick(smoothedRpm, coast * mic.shape);
+            const double low = recordedLow.tick(sample);
+            const double texture = low + recordedDetail * (sample - low) + 1.45 * mic.amount * recordedBody.tick(sample);
+            double loadGain = 0.90 + mic.shape * (1.55 * state.fuel - 0.50);
+            if (!model.recording->loops.back().coast.empty()) {
+                const double shaftLoad = unit(state.torqueNm / model.torqueNm);
+                loadGain += 0.72 * mic.shape * interpolate(recordedDrive, shaftLoad, slew);
+            }
+            const double faultMix = 1.0 - 0.55 * std::max({std::abs(fault.fuelBias), fault.injectorWear,
+                                                          fault.mechanicalWear, fault.overload});
+            out[id] = centered(id, 2.4 * texture * engineEnvelope * state.burn * loadGain * faultMix *
+                (0.18 + 0.82 * state.firingGain));
+        }
     }
 
     void turbine(const EngineState& state, double breeze, double hiss, double movingAir,
@@ -505,12 +607,12 @@ struct Voice {
         const double mixture = std::max(0.0, -fault.fuelBias) * 0.69 + std::max(0.0, fault.fuelBias) * 0.43;
         const double flow = (1.0 + mixture * (0.43 * sine(surgePhase) + 4.7 * fluttering)) *
             (1.0 + fault.fuelBias * (fault.fuelBias < 0.0 ? 0.62 : 0.17));
-        const double jetPower = state.burn * (0.35 + 0.93 * state.fuel) * spool * std::max(0.09, flow);
+        const double jetPower = state.burn * state.firingGain * (0.35 + 0.93 * state.fuel) * spool * std::max(0.09, flow);
         const double turbulent = jet.tick(movingAir + 0.42 * breeze + 0.14 * gasRow);
         const double exhaust = 2.35 * jetPower * ((0.77 + 0.76 * e.shape) * turbulent +
             (0.32 + 1.4 * e.amount) * turbineExhaust.tick(turbulent + 0.11 * sine(freePhase)) +
             (1.0 - e.damping) * 0.53 * hiss);
-        const double ignition = state.burn * spool * (0.36 + state.fuel * 0.91) *
+        const double ignition = state.burn * state.firingGain * spool * (0.36 + state.fuel * 0.91) *
             ((0.34 - 0.20 * c.shape) * gasRow + (0.35 + 0.75 * c.amount) *
                 banks[0].block.tick((0.65 + 0.68 * c.shape) * movingAir + 0.16 * gasRow));
         const double induction = spool * (0.40 + 0.60 * spool) * i.amount *
@@ -535,6 +637,10 @@ struct Voice {
     }
 
     StereoFrame sample(const EngineState& state) {
+        if (state.mode == EngineMode::Off && ignitions.lastCylinder) {
+            ignitions = {};
+            attempts = 0;
+        }
         rotation = interpolate(smoothedRpm, state.rpm, slew) / 60.0;
         coreRotation = interpolate(smoothedCore, state.coreRpm, slew) / 60.0;
         speed = unit(rotation * 60.0 / model.maxRpm);
@@ -547,6 +653,7 @@ struct Voice {
         std::array<StereoFrame, layerCount> out{};
         if (model.kind == EngineKind::Turbine) turbine(state, breeze, hiss, movingAir, out);
         else pistons(state, noise, breeze, hiss, out);
+        out[static_cast<std::size_t>(LayerId::Transmission)] = transmission(state);
         const double target = state.mode == EngineMode::Off ? 0.0 : 1.0;
         interpolate(voiceEnvelope, target, slew);
         auto frame = mixer.mix(out);
@@ -601,7 +708,7 @@ private:
 } // namespace
 
 struct Synthesizer::Impl {
-    explicit Impl(int rate) : rate(rate * 2.0), controlPeriod(this->rate / controlRate) {}
+    explicit Impl(int rate) : rate(rate * 2.0), controlPeriod(this->rate / controlRate), listener(rate) {}
 
     double rate;
     double controlPeriod;
@@ -611,6 +718,7 @@ struct Synthesizer::Impl {
     SimulationController simulation;
     std::array<Voice, 2> voice;
     Decimator decimator;
+    ListenerFilter listener;
     int index = 0;
     double morph = 1.0;
     bool steady = false;
@@ -664,6 +772,7 @@ void Synthesizer::reset(const Settings& settings) {
     p.settings = settings;
     p.simulation = {};
     p.decimator.clear();
+    p.listener.reset(settings.listener);
     p.index = 0;
     p.morph = 1.0;
     p.controlCountdown = p.tailFrames = 0.0;
@@ -672,6 +781,7 @@ void Synthesizer::reset(const Settings& settings) {
 }
 
 void Synthesizer::apply(const Settings& settings) {
+    impl_->listener.configure(settings.listener);
     impl_->settings = settings;
     impl_->steady = false;
 }
@@ -681,7 +791,12 @@ void Synthesizer::setSteady(const Settings& settings, double rpm) {
     auto& p = *impl_;
     p.simulation.setSteady(settings, rpm);
     p.voice[p.index].prepare(settings, p.simulation.state(), p.rate, 0.0);
-    p.steady = true;
+    p.steady = !p.simulation.state().limiterCut;
+    if (!p.steady) {
+        p.settings.controls.running = p.settings.controls.hold = true;
+        p.settings.controls.holdRpm = rpm;
+        p.settings.controls.program = Program::Manual;
+    }
 }
 
 void Synthesizer::render(std::span<StereoFrame> frames) {
@@ -689,10 +804,17 @@ void Synthesizer::render(std::span<StereoFrame> frames) {
     for (auto& frame : frames) {
         impl_->decimator.push(impl_->sample());
         impl_->decimator.push(impl_->sample());
-        frame = impl_->decimator.read();
+        frame = impl_->listener.process(impl_->decimator.read());
     }
 }
 
 const EngineState& Synthesizer::state() const { return impl_->simulation.state(); }
+
+ShaftPhases Synthesizer::phases() const {
+    const auto& voice = impl_->voice[impl_->index];
+    return {voice.turn, voice.core, voice.powerWheel};
+}
+
+const IgnitionTrace& Synthesizer::ignitions() const { return impl_->voice[impl_->index].ignitions; }
 
 } // namespace esl

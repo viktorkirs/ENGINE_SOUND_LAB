@@ -1,0 +1,152 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1360,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "Detroit Diesel 8V71T · Банк двухтактного 8V71T из комплекта игры",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.64,
+            "cutoff": 1110,
+            "damping": 0.61,
+            "drive": 0.061,
+            "gain": 0.11,
+            "mute": false,
+            "resonance": 101,
+            "shape": 0.63,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.57,
+            "cutoff": 4170,
+            "damping": 0.54,
+            "drive": 0.074,
+            "gain": 0.11,
+            "mute": false,
+            "resonance": 465,
+            "shape": 0.4,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.68,
+            "cutoff": 2950,
+            "damping": 0.51,
+            "drive": 0.115,
+            "gain": 0.15,
+            "mute": false,
+            "resonance": 149,
+            "shape": 0.49,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.53,
+            "cutoff": 3620,
+            "damping": 0.58,
+            "drive": 0.032,
+            "gain": 0.073,
+            "mute": false,
+            "resonance": 275,
+            "shape": 0.44,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.63,
+            "cutoff": 4350,
+            "damping": 0.55,
+            "drive": 0.025,
+            "gain": 0.071,
+            "mute": false,
+            "resonance": 745,
+            "shape": 0,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.035,
+            "cutoff": 12100,
+            "damping": 0.7,
+            "drive": 0.015,
+            "gain": 1.1,
+            "mute": false,
+            "resonance": 113,
+            "shape": 0.83,
+            "solo": false
+        },
+        "transmission": {
+            "amount": 0.38,
+            "cutoff": 3900,
+            "damping": 0.48,
+            "drive": 0.04,
+            "gain": 0,
+            "mute": false,
+            "resonance": 610,
+            "shape": 0.62,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.42,
+            "cutoff": 5650,
+            "damping": 0.65,
+            "drive": 0.018,
+            "gain": 0.029,
+            "mute": false,
+            "resonance": 1480,
+            "shape": 0.61,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "turbocharger",
+        "compressionRatio": 17,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 8,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 600,
+        "inertia": 3.44,
+        "irregularity": 0.1,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 9.32,
+        "loss": 0.32,
+        "maxRpm": 2300,
+        "overrunDrag": 0.51,
+        "powerKw": 328,
+        "recording": "fleet_8v71t",
+        "seed": 959459693,
+        "strokeMm": 127,
+        "strokes": 2,
+        "torqueNm": 1350,
+        "turbineBlades": 29
+    },
+    "name": "M109A6 Paladin",
+    "revLimiter": {
+        "cutRpm": 2215,
+        "enabled": false,
+        "resumeRpm": 2147
+    },
+    "version": 1
+}

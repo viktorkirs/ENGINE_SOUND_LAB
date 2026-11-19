@@ -24,8 +24,13 @@
         }
     ],
     "engine": "V8 Misfire",
+    "listener": {
+        "distanceMeters": 1,
+        "insulation": 0.72,
+        "position": "direct"
+    },
     "mode": "single",
-    "normalizationGain": 1.4197748483012824,
+    "normalizationGain": 1.4344554881601148,
     "normalized": true,
     "sampleRate": 48000,
     "seed": 5708,

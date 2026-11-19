@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.5971458333333333,
+            "engine": "2S9 Nona-S",
+            "file": "steady.wav",
+            "frames": 172663,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172663,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1542,
+            "rpmEnd": 1542,
+            "rpmPeak": 1542,
+            "rpmStart": 1542,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "2S9 Nona-S",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1634627438,
+    "version": 1
+}

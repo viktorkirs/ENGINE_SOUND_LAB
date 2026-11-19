@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "name": "T-72A",
+  "description": "В-46 · Родственная запись Т-72 по оборотам",
+  "model": {
+    "kind": "diesel",
+    "layout": "v",
+    "cylinders": 12,
+    "strokes": 4,
+    "liters": 38.88,
+    "strokeMm": 180.0,
+    "compressionRatio": 14.0,
+    "idleRpm": 650,
+    "maxRpm": 2000,
+    "bankAngle": 60,
+    "firingOrder": [],
+    "irregularity": 0.1,
+    "inertia": 11.19,
+    "powerKw": 574.0,
+    "torqueNm": 3050.0,
+    "loss": 0.32,
+    "exhaustTracts": 2,
+    "boost": "supercharger",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 1630680948,
+    "recording": "t72",
+    "overrunDrag": 0.43
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.11,
+      "resonance": 465,
+      "cutoff": 4170,
+      "shape": 0.4,
+      "amount": 0.57,
+      "damping": 0.54,
+      "drive": 0.074,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.15,
+      "resonance": 112,
+      "cutoff": 2950,
+      "shape": 0.49,
+      "amount": 0.68,
+      "damping": 0.51,
+      "drive": 0.115,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.073,
+      "resonance": 275,
+      "cutoff": 3620,
+      "shape": 0.44,
+      "amount": 0.53,
+      "damping": 0.58,
+      "drive": 0.032,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.071,
+      "resonance": 745,
+      "cutoff": 4350,
+      "shape": 0,
+      "amount": 0.63,
+      "damping": 0.55,
+      "drive": 0.025,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.029,
+      "resonance": 1480,
+      "cutoff": 5650,
+      "shape": 0.61,
+      "amount": 0.42,
+      "damping": 0.65,
+      "drive": 0.018,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.11,
+      "resonance": 79,
+      "cutoff": 1110,
+      "shape": 0.63,
+      "amount": 0.64,
+      "damping": 0.61,
+      "drive": 0.061,
+      "mute": false,
+      "solo": false
+    },
+    "recording": {
+      "gain": 1.1,
+      "resonance": 113,
+      "cutoff": 12100,
+      "shape": 0.83,
+      "amount": 0.035,
+      "damping": 0.7,
+      "drive": 0.015,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 1260,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 8,
+    "insulation": 0.7
+  }
+}

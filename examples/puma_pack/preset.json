@@ -1,0 +1,141 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1800,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "MTU 10V 890 · турбодизель V10 · 11 л",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.61,
+            "cutoff": 1200,
+            "damping": 0.72,
+            "drive": 0.08,
+            "gain": 0.1,
+            "mute": false,
+            "resonance": 101,
+            "shape": 0.57,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.66,
+            "cutoff": 5200,
+            "damping": 0.56,
+            "drive": 0.075,
+            "gain": 0.14,
+            "mute": false,
+            "resonance": 580,
+            "shape": 0.34,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.68,
+            "cutoff": 3600,
+            "damping": 0.5,
+            "drive": 0.12,
+            "gain": 0.15,
+            "mute": false,
+            "resonance": 145,
+            "shape": 0.37,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.64,
+            "cutoff": 4400,
+            "damping": 0.48,
+            "drive": 0.045,
+            "gain": 0.11,
+            "mute": false,
+            "resonance": 335,
+            "shape": 0.45,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.66,
+            "cutoff": 6100,
+            "damping": 0.52,
+            "drive": 0.035,
+            "gain": 0.16,
+            "mute": false,
+            "resonance": 1020,
+            "shape": 0.56,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.04,
+            "cutoff": 12800,
+            "damping": 0.7,
+            "drive": 0.02,
+            "gain": 1.13,
+            "mute": false,
+            "resonance": 131,
+            "shape": 0.85,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.54,
+            "cutoff": 8100,
+            "damping": 0.59,
+            "drive": 0.025,
+            "gain": 0.095,
+            "mute": false,
+            "resonance": 1710,
+            "shape": 0.58,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.72,
+        "position": "thirdPerson"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "turbocharger",
+        "compressionRatio": 16,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 10,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 950,
+        "inertia": 10.5,
+        "irregularity": 0.075,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 11,
+        "loss": 0.33,
+        "maxRpm": 4250,
+        "overrunDrag": 0.38,
+        "powerKw": 800,
+        "recording": "puma",
+        "seed": 89010,
+        "strokeMm": 107,
+        "strokes": 4,
+        "torqueNm": 2070,
+        "turbineBlades": 29
+    },
+    "name": "Puma",
+    "revLimiter": {
+        "cutRpm": 4085,
+        "enabled": false,
+        "resumeRpm": 3953
+    },
+    "version": 1
+}

@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.6007083333333334,
+            "engine": "Cargo truck",
+            "file": "steady.wav",
+            "frames": 172834,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172834,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1505.6,
+            "rpmEnd": 1505.6,
+            "rpmPeak": 1505.6,
+            "rpmStart": 1505.6,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Cargo truck",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.54,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1869050465,
+    "version": 1
+}

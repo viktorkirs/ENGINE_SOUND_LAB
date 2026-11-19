@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.605875,
+            "engine": "Renault 2.3 dCi",
+            "file": "steady.wav",
+            "frames": 173082,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 173082,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1600,
+            "rpmEnd": 1600,
+            "rpmPeak": 1600,
+            "rpmStart": 1600,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Renault 2.3 dCi",
+    "listener": {
+        "distanceMeters": 2,
+        "insulation": 0.62,
+        "position": "near"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 2309125,
+    "version": 1
+}

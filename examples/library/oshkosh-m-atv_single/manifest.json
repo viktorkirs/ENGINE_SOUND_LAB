@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.595,
+            "engine": "Oshkosh M-ATV",
+            "file": "steady.wav",
+            "frames": 172560,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172560,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1566,
+            "rpmEnd": 1566,
+            "rpmPeak": 1566,
+            "rpmStart": 1566,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Oshkosh M-ATV",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1987338605,
+    "version": 1
+}

@@ -1,0 +1,152 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1860,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "ГАЗ-41 · Синтез бензинового ГАЗ V8",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.61,
+            "cutoff": 1500,
+            "damping": 0.51,
+            "drive": 0.09,
+            "gain": 0.28,
+            "mute": false,
+            "resonance": 83,
+            "shape": 0.28,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.42,
+            "cutoff": 4800,
+            "damping": 0.6,
+            "drive": 0.1,
+            "gain": 0.51,
+            "mute": false,
+            "resonance": 534,
+            "shape": 0.61,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.64,
+            "cutoff": 4700,
+            "damping": 0.2,
+            "drive": 0.29,
+            "gain": 0.9,
+            "mute": false,
+            "resonance": 130,
+            "shape": 0.52,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.69,
+            "cutoff": 6400,
+            "damping": 0.44,
+            "drive": 0.07,
+            "gain": 0.61,
+            "mute": false,
+            "resonance": 345,
+            "shape": 0.63,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.57,
+            "cutoff": 6900,
+            "damping": 0.55,
+            "drive": 0.08,
+            "gain": 0.42,
+            "mute": false,
+            "resonance": 1470,
+            "shape": 0,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0,
+            "cutoff": 13000,
+            "damping": 0.65,
+            "drive": 0,
+            "gain": 1,
+            "mute": false,
+            "resonance": 125,
+            "shape": 0.65,
+            "solo": false
+        },
+        "transmission": {
+            "amount": 0.38,
+            "cutoff": 3900,
+            "damping": 0.48,
+            "drive": 0.04,
+            "gain": 0,
+            "mute": false,
+            "resonance": 610,
+            "shape": 0.62,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.52,
+            "cutoff": 8000,
+            "damping": 0.46,
+            "drive": 0.02,
+            "gain": 0,
+            "mute": false,
+            "resonance": 2600,
+            "shape": 0.48,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "none",
+        "compressionRatio": 6.7,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 8,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 600,
+        "inertia": 2.29,
+        "irregularity": 0.2,
+        "kind": "gasoline",
+        "layout": "v",
+        "liters": 5.53,
+        "loss": 0.33,
+        "maxRpm": 3400,
+        "overrunDrag": 0.51,
+        "powerKw": 103,
+        "recording": "none",
+        "seed": 846029938,
+        "strokeMm": 88,
+        "strokes": 4,
+        "torqueNm": 350,
+        "turbineBlades": 29
+    },
+    "name": "BRDM-2",
+    "revLimiter": {
+        "cutRpm": 3260,
+        "enabled": false,
+        "resumeRpm": 3148
+    },
+    "version": 1
+}

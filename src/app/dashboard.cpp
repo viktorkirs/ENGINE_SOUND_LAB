@@ -103,11 +103,12 @@ Tachometer::Tachometer(QWidget* parent) : QWidget(parent) {
     setAccessibleName(QStringLiteral("Тахометр"));
 }
 
-void Tachometer::setData(const Model& model, const EngineState& engine, bool hold, double holdRpm) {
+void Tachometer::setData(const Model& model, const EngineState& engine, bool hold, double holdRpm, const RevLimiter& limiter) {
     model_ = model;
     engine_ = engine;
     hold_ = hold;
     holdRpm_ = holdRpm;
+    limiter_ = limiter;
     setAccessibleDescription(QStringLiteral("%1 об/мин. %2.").arg(qRound(engine.rpm)).arg(engineModeName(engine.mode)));
     update();
 }
@@ -142,6 +143,11 @@ void Tachometer::paintEvent(QPaintEvent*) {
             label(p, QRectF(at.x() - 25, at.y() - 9, 50, 18), QString::number(qRound(t * limit)), face(10, false, true), muted);
         }
     }
+    if (limiter_.enabled) {
+        const double cut = std::clamp(limiter_.cutRpm / limit, 0.0, 1.0);
+        p.setPen(QPen(amber, 2.5));
+        p.drawLine(radial(hub, radius - 9, cut), radial(hub, radius + 3, cut));
+    }
     if (hold_) {
         const double target = std::clamp(holdRpm_ / limit, 0.0, 1.0);
         p.setPen(QPen(cyan, 2.5, Qt::SolidLine, Qt::RoundCap));
@@ -153,7 +159,8 @@ void Tachometer::paintEvent(QPaintEvent*) {
     label(p, QRectF(hub.x() - 89, hub.y() - 26, 178, 57), QString::number(qRound(engine_.rpm)),
           face(std::clamp(qRound(radius * 0.53), 32, 56), true, true), liveColor);
 
-    const QString status = engineModeName(engine_.mode);
+    QString status = engine_.limiterCut ? QStringLiteral("Отсечка") : engineModeName(engine_.mode);
+    if (engine_.gear > 0 && alive) status += QStringLiteral(" · %1-я").arg(engine_.gear);
     const double chipWidth = QFontMetricsF(face(11, true)).horizontalAdvance(status) + 29;
     const QRectF chip(hub.x() - chipWidth / 2, hub.y() + 34, chipWidth, 22);
     p.setPen(Qt::NoPen);
@@ -301,10 +308,17 @@ QPushButton:disabled, QToolButton:disabled, QComboBox:disabled, QAbstractSpinBox
 QPushButton#primary { background: #59e0c3; color: #0b2728; border-color: #59e0c3; font-weight: 700; padding-left: 15px; padding-right: 15px; }
 QPushButton#primary:hover { background: #83f1dc; border-color: #83f1dc; }
 QPushButton#primary:disabled { background: #2b4648; color: #88a5a6; border-color: #344f4f; }
+QPushButton#presetPicker { text-align: left; padding-left: 11px; }
+QLineEdit#presetSearch { min-height: 27px; padding-left: 10px; }
+QListWidget#presetResults { background: #14212e; border: 1px solid #304358; border-radius: 6px; padding: 3px; outline: 0; }
+QListWidget#presetResults::item { padding: 6px 10px; border-radius: 3px; }
+QListWidget#presetResults::item:hover { background: #233548; }
+QListWidget#presetResults::item:selected { background: #285657; color: #e6fff8; }
 QPushButton#run { color: #72e7cc; background: #1b343b; border-color: #376b68; font-weight: 700; }
 QPushButton#run:hover { background: #264851; }
 QPushButton#run:checked { color: #ffd3ae; background: #3a2b2c; border-color: #715047; }
 QComboBox, QAbstractSpinBox { padding-right: 23px; }
+QDoubleSpinBox#exactValue { padding: 3px 5px; }
 QComboBox::drop-down, QAbstractSpinBox::up-button, QAbstractSpinBox::down-button {
     subcontrol-origin: border; width: 20px; border: none;
 }
@@ -328,8 +342,9 @@ QToolButton#layerName:checked { color: #77e8ce; background: #21404a; }
 QToolButton#mute, QToolButton#solo { min-height: 19px; padding: 1px 3px; font-family: 'Cascadia Mono'; font-weight: 600; }
 QToolButton#mute:checked { color: #ffd0af; background: #473432; border-color: #805846; }
 QToolButton#solo:checked { color: #83f1dc; background: #245553; border-color: #3e8e82; }
+QToolButton#slowMotion:checked { color: #82d4c1; background: #1d333b; border-color: #36594f; }
 QTabWidget::pane { border: 0; border-top: 1px solid #2c3b4e; }
-QTabBar::tab { color: #9db0c2; padding: 7px 11px; border-bottom: 2px solid transparent; }
+QTabBar::tab { color: #9db0c2; padding: 7px 6px; border-bottom: 2px solid transparent; }
 QTabBar::tab:selected { color: #75e6cd; border-bottom-color: #59e0c3; }
 QTabBar::tab:hover { color: #d1e1eb; }
 QScrollArea { border: 0; background: transparent; }

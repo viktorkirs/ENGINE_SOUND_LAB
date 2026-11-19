@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "name": "M113",
+  "description": "Detroit Diesel 6V53 · двухтактный дизель V6 · 5,2 л",
+  "model": {
+    "kind": "diesel",
+    "layout": "v",
+    "cylinders": 6,
+    "strokes": 2,
+    "liters": 5.21,
+    "strokeMm": 114.3,
+    "compressionRatio": 17.0,
+    "idleRpm": 650,
+    "maxRpm": 2800,
+    "bankAngle": 90,
+    "firingOrder": [
+      1,
+      6,
+      5,
+      4,
+      3,
+      2
+    ],
+    "irregularity": 0.115,
+    "inertia": 3.7,
+    "powerKw": 158,
+    "torqueNm": 670,
+    "loss": 0.31,
+    "exhaustTracts": 2,
+    "boost": "supercharger",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 113653,
+    "recording": "m113",
+    "overrunDrag": 0.41
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.115,
+      "resonance": 625,
+      "cutoff": 4670,
+      "shape": 0.37,
+      "amount": 0.61,
+      "damping": 0.54,
+      "drive": 0.066,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.154,
+      "resonance": 158,
+      "cutoff": 3690,
+      "shape": 0.42,
+      "amount": 0.64,
+      "damping": 0.55,
+      "drive": 0.108,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.089,
+      "resonance": 355,
+      "cutoff": 4040,
+      "shape": 0.49,
+      "amount": 0.57,
+      "damping": 0.58,
+      "drive": 0.04,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.068,
+      "resonance": 820,
+      "cutoff": 4720,
+      "shape": 0,
+      "amount": 0.55,
+      "damping": 0.55,
+      "drive": 0.027,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.045,
+      "resonance": 1510,
+      "cutoff": 5200,
+      "shape": 0.55,
+      "amount": 0.39,
+      "damping": 0.62,
+      "drive": 0.018,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.097,
+      "resonance": 98,
+      "cutoff": 1190,
+      "shape": 0.63,
+      "amount": 0.61,
+      "damping": 0.63,
+      "drive": 0.065,
+      "mute": false,
+      "solo": false
+    },
+    "recording": {
+      "gain": 1.15,
+      "resonance": 144,
+      "cutoff": 13400,
+      "shape": 0.84,
+      "amount": 0.03,
+      "damping": 0.72,
+      "drive": 0.018,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 1300,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 8,
+    "insulation": 0.71
+  }
+}

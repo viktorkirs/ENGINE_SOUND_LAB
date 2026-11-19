@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "name": "Renault 2.3 dCi",
+  "description": "M9T · рядный турбодизель 2,3 л · запись холостого хода, набора и сброса",
+  "model": {
+    "kind": "diesel",
+    "layout": "inline",
+    "cylinders": 4,
+    "strokes": 4,
+    "liters": 2.299,
+    "strokeMm": 101.3,
+    "compressionRatio": 16,
+    "idleRpm": 825,
+    "maxRpm": 4300,
+    "bankAngle": 90,
+    "firingOrder": [
+      1,
+      3,
+      4,
+      2
+    ],
+    "irregularity": 0.095,
+    "inertia": 0.94,
+    "powerKw": 92,
+    "torqueNm": 310,
+    "loss": 0.27,
+    "exhaustTracts": 1,
+    "boost": "turbocharger",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 2309125,
+    "recording": "dci23",
+    "overrunDrag": 0.79
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.06,
+      "resonance": 825,
+      "cutoff": 5600,
+      "shape": 0.34,
+      "amount": 0.49,
+      "damping": 0.53,
+      "drive": 0.048,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.077,
+      "resonance": 119,
+      "cutoff": 3360,
+      "shape": 0.39,
+      "amount": 0.6,
+      "damping": 0.57,
+      "drive": 0.058,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.049,
+      "resonance": 394,
+      "cutoff": 4300,
+      "shape": 0.43,
+      "amount": 0.48,
+      "damping": 0.61,
+      "drive": 0.036,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.064,
+      "resonance": 880,
+      "cutoff": 6350,
+      "shape": 0,
+      "amount": 0.58,
+      "damping": 0.53,
+      "drive": 0.018,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0.027,
+      "resonance": 1840,
+      "cutoff": 6750,
+      "shape": 0.61,
+      "amount": 0.37,
+      "damping": 0.66,
+      "drive": 0.013,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.055,
+      "resonance": 93,
+      "cutoff": 1160,
+      "shape": 0.51,
+      "amount": 0.49,
+      "damping": 0.64,
+      "drive": 0.041,
+      "mute": false,
+      "solo": false
+    },
+    "recording": {
+      "gain": 1.14,
+      "resonance": 118,
+      "cutoff": 13950,
+      "shape": 0.83,
+      "amount": 0.018,
+      "damping": 0.74,
+      "drive": 0.012,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 1710,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 8,
+    "insulation": 0.62
+  }
+}

@@ -1,18 +1,20 @@
 {
   "version": 1,
   "name": "T-90M",
-  "description": "В-92С2Ф · V12 · 38,88 л",
+  "description": "В-92С2Ф · V12 · 38,88 л. Низ от пресета Т-72Б3, наружный тембр по записям Т-90М.",
   "model": {
     "kind": "diesel",
     "layout": "v",
     "cylinders": 12,
     "strokes": 4,
     "liters": 38.88,
+    "strokeMm": 183.35,
+    "compressionRatio": 14.5,
     "idleRpm": 680,
     "maxRpm": 2230,
     "bankAngle": 60,
     "firingOrder": [],
-    "irregularity": 0.1,
+    "irregularity": 0.145,
     "inertia": 22.0,
     "powerKw": 831,
     "torqueNm": 4500,
@@ -24,12 +26,13 @@
     "coreLag": 1.25,
     "compressorBlades": 18,
     "turbineBlades": 29,
-    "seed": 92113
+    "seed": 92113,
+    "recording": "t90m"
   },
   "layers": {
     "combustion": {
-      "gain": 0.55,
-      "resonance": 590,
+      "gain": 0.11,
+      "resonance": 465,
       "cutoff": 4200,
       "shape": 0.47,
       "amount": 0.7,
@@ -39,10 +42,10 @@
       "solo": false
     },
     "exhaust": {
-      "gain": 0.96,
-      "resonance": 126,
+      "gain": 0.096,
+      "resonance": 107,
       "cutoff": 2850,
-      "shape": 0.53,
+      "shape": 0.59,
       "amount": 0.78,
       "damping": 0.43,
       "drive": 0.24,
@@ -50,8 +53,8 @@
       "solo": false
     },
     "intake": {
-      "gain": 0.46,
-      "resonance": 280,
+      "gain": 0.085,
+      "resonance": 250,
       "cutoff": 4400,
       "shape": 0.53,
       "amount": 0.56,
@@ -61,10 +64,10 @@
       "solo": false
     },
     "mechanical": {
-      "gain": 0.37,
-      "resonance": 840,
+      "gain": 0.13,
+      "resonance": 680,
       "cutoff": 5600,
-      "shape": 0.45,
+      "shape": 0.28,
       "amount": 0.55,
       "damping": 0.54,
       "drive": 0.03,
@@ -72,24 +75,35 @@
       "solo": false
     },
     "turbo": {
-      "gain": 0.51,
-      "resonance": 2340,
+      "gain": 0.106,
+      "resonance": 2090,
       "cutoff": 9300,
       "shape": 0.65,
-      "amount": 0.7,
+      "amount": 0.72,
       "damping": 0.61,
       "drive": 0.04,
       "mute": false,
       "solo": false
     },
     "body": {
-      "gain": 0.59,
-      "resonance": 83,
+      "gain": 0.125,
+      "resonance": 78,
       "cutoff": 1250,
       "shape": 0.81,
       "amount": 0.74,
       "damping": 0.73,
       "drive": 0.08,
+      "mute": false,
+      "solo": false
+    },
+    "recording": {
+      "gain": 1.06,
+      "resonance": 104,
+      "cutoff": 14000,
+      "shape": 0.75,
+      "amount": 0.072,
+      "damping": 0.72,
+      "drive": 0.025,
       "mute": false,
       "solo": false
     }
@@ -111,5 +125,10 @@
     "injectorWear": 0.0,
     "overload": 0.0,
     "mechanicalWear": 0.0
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 8,
+    "insulation": 0.72
   }
 }

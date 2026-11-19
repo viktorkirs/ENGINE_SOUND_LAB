@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.5965416666666665,
+            "engine": "Centauro I",
+            "file": "steady.wav",
+            "frames": 172634,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172634,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1468,
+            "rpmEnd": 1468,
+            "rpmPeak": 1468,
+            "rpmStart": 1468,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Centauro I",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1869772129,
+    "version": 1
+}

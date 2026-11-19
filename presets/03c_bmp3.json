@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "name": "BMP-3",
+  "description": "УТД-29 · дизель V10 · 26,5 л · запись bmp3.wav",
+  "model": {
+    "kind": "diesel",
+    "layout": "v",
+    "cylinders": 10,
+    "strokes": 4,
+    "liters": 26.5,
+    "strokeMm": 150,
+    "compressionRatio": 15.8,
+    "idleRpm": 750,
+    "maxRpm": 2600,
+    "bankAngle": 144,
+    "firingOrder": [
+      2,
+      7,
+      4,
+      9,
+      8,
+      5,
+      10,
+      1,
+      6,
+      3
+    ],
+    "irregularity": 0.11,
+    "inertia": 9.4,
+    "powerKw": 368,
+    "torqueNm": 1460,
+    "loss": 0.33,
+    "exhaustTracts": 2,
+    "boost": "none",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 290310,
+    "recording": "bmp3",
+    "overrunDrag": 0.36
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.135,
+      "resonance": 455,
+      "cutoff": 4350,
+      "shape": 0.45,
+      "amount": 0.61,
+      "damping": 0.53,
+      "drive": 0.095,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.17,
+      "resonance": 121,
+      "cutoff": 3180,
+      "shape": 0.52,
+      "amount": 0.7,
+      "damping": 0.55,
+      "drive": 0.135,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.091,
+      "resonance": 310,
+      "cutoff": 3550,
+      "shape": 0.46,
+      "amount": 0.48,
+      "damping": 0.59,
+      "drive": 0.045,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.09,
+      "resonance": 730,
+      "cutoff": 4690,
+      "shape": 0,
+      "amount": 0.65,
+      "damping": 0.5,
+      "drive": 0.035,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0,
+      "resonance": 1800,
+      "cutoff": 5400,
+      "shape": 0.4,
+      "amount": 0.4,
+      "damping": 0.6,
+      "drive": 0.02,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.12,
+      "resonance": 86,
+      "cutoff": 1240,
+      "shape": 0.68,
+      "amount": 0.67,
+      "damping": 0.64,
+      "drive": 0.075,
+      "mute": false,
+      "solo": false
+    },
+    "recording": {
+      "gain": 1.11,
+      "resonance": 130,
+      "cutoff": 12200,
+      "shape": 0.86,
+      "amount": 0.045,
+      "damping": 0.72,
+      "drive": 0.018,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 1560,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 8,
+    "insulation": 0.72
+  }
+}

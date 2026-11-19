@@ -1,0 +1,198 @@
+{
+    "bitsPerSample": 16,
+    "channels": 1,
+    "clips": [
+        {
+            "durationSeconds": 2.59,
+            "engine": "T-72B3",
+            "file": "01_01_rpm_1000_load_45.wav",
+            "frames": 114219,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 114219,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "01_01_rpm_1000_load_45",
+            "rpm": 1000,
+            "rpmEnd": 1000,
+            "rpmPeak": 1000,
+            "rpmStart": 1000,
+            "throttle": 0.15644298994967307
+        },
+        {
+            "durationSeconds": 2.5958956916099774,
+            "engine": "T-72B3",
+            "file": "02_01_rpm_1200_load_45.wav",
+            "frames": 114479,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 114479,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "02_01_rpm_1200_load_45",
+            "rpm": 1200,
+            "rpmEnd": 1200,
+            "rpmPeak": 1200,
+            "rpmStart": 1200,
+            "throttle": 0.2548908962567173
+        },
+        {
+            "durationSeconds": 2.6000226757369616,
+            "engine": "T-72B3",
+            "file": "03_01_rpm_1400_load_45.wav",
+            "frames": 114661,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 114661,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "03_01_rpm_1400_load_45",
+            "rpm": 1400,
+            "rpmEnd": 1400,
+            "rpmPeak": 1400,
+            "rpmStart": 1400,
+            "throttle": 0.35631063419610887
+        },
+        {
+            "durationSeconds": 2.60140589569161,
+            "engine": "T-72B3",
+            "file": "04_01_rpm_1600_load_45.wav",
+            "frames": 114722,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 114722,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "04_01_rpm_1600_load_45",
+            "rpm": 1600,
+            "rpmEnd": 1600,
+            "rpmPeak": 1600,
+            "rpmStart": 1600,
+            "throttle": 0.45994310574093894
+        },
+        {
+            "durationSeconds": 2.5939002267573694,
+            "engine": "T-72B3",
+            "file": "05_01_rpm_1800_load_45.wav",
+            "frames": 114391,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 114391,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "05_01_rpm_1800_load_45",
+            "rpm": 1800,
+            "rpmEnd": 1800,
+            "rpmPeak": 1800,
+            "rpmStart": 1800,
+            "throttle": 0.5653485560890942
+        },
+        {
+            "durationSeconds": 2.5992063492063493,
+            "engine": "T-72B3",
+            "file": "06_01_rpm_2000_load_45.wav",
+            "frames": 114625,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 114625,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "06_01_rpm_2000_load_45",
+            "rpm": 2000,
+            "rpmEnd": 2000,
+            "rpmPeak": 2000,
+            "rpmStart": 2000,
+            "throttle": 0.6722380483737022
+        },
+        {
+            "durationSeconds": 2.602675736961451,
+            "engine": "T-72B3",
+            "file": "07_01_rpm_2200_load_45.wav",
+            "frames": 114778,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 114778,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "07_01_rpm_2200_load_45",
+            "rpm": 2200,
+            "rpmEnd": 2200,
+            "rpmPeak": 2200,
+            "rpmStart": 2200,
+            "throttle": 0.7804064564765649
+        },
+        {
+            "durationSeconds": 2.6054875283446712,
+            "engine": "T-72B3",
+            "file": "08_01_rpm_2400_load_45.wav",
+            "frames": 114902,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 114902,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "08_01_rpm_2400_load_45",
+            "rpm": 2400,
+            "rpmEnd": 2400,
+            "rpmPeak": 2400,
+            "rpmStart": 2400,
+            "throttle": 0.8897002494007069
+        },
+        {
+            "durationSeconds": 2.5911791383219955,
+            "engine": "T-72B3",
+            "file": "09_01_rpm_2600_load_45.wav",
+            "frames": 114271,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 114271,
+                "startFrame": 0
+            },
+            "requestedSeconds": 2.6,
+            "role": "09_01_rpm_2600_load_45",
+            "rpm": 2600,
+            "rpmEnd": 2600,
+            "rpmPeak": 2600,
+            "rpmStart": 2600,
+            "throttle": 1
+        }
+    ],
+    "engine": "T-72B3",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.72,
+        "position": "thirdPerson"
+    },
+    "mode": "grid",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 44100,
+    "seed": 1973,
+    "version": 1
+}

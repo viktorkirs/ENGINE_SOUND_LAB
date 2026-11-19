@@ -1,0 +1,152 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 1,
+        "hold": false,
+        "holdRpm": 1300,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "drive",
+        "throttle": 0
+    },
+    "description": "Поездка на тяжёлом тягаче. Нажмите «Запустить» в строке сценария. Канал «Трансмиссия» можно послушать отдельно кнопкой S.",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.64,
+            "cutoff": 1110,
+            "damping": 0.61,
+            "drive": 0.061,
+            "gain": 0.11,
+            "mute": false,
+            "resonance": 81,
+            "shape": 0.63,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.57,
+            "cutoff": 4170,
+            "damping": 0.54,
+            "drive": 0.074,
+            "gain": 0.11,
+            "mute": false,
+            "resonance": 465,
+            "shape": 0.4,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.68,
+            "cutoff": 2950,
+            "damping": 0.51,
+            "drive": 0.115,
+            "gain": 0.15,
+            "mute": false,
+            "resonance": 114,
+            "shape": 0.49,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.53,
+            "cutoff": 3620,
+            "damping": 0.58,
+            "drive": 0.032,
+            "gain": 0.073,
+            "mute": false,
+            "resonance": 275,
+            "shape": 0.44,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.63,
+            "cutoff": 4350,
+            "damping": 0.55,
+            "drive": 0.025,
+            "gain": 0.071,
+            "mute": false,
+            "resonance": 745,
+            "shape": 0,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.035,
+            "cutoff": 12100,
+            "damping": 0.7,
+            "drive": 0.015,
+            "gain": 1.1,
+            "mute": false,
+            "resonance": 113,
+            "shape": 0.83,
+            "solo": false
+        },
+        "transmission": {
+            "amount": 0.48,
+            "cutoff": 3700,
+            "damping": 0.58,
+            "drive": 0.05,
+            "gain": 0.66,
+            "mute": true,
+            "resonance": 530,
+            "shape": 0.65,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.42,
+            "cutoff": 5650,
+            "damping": 0.65,
+            "drive": 0.018,
+            "gain": 0.029,
+            "mute": false,
+            "resonance": 1480,
+            "shape": 0.61,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.54,
+        "position": "thirdPerson"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "turbocharger",
+        "compressionRatio": 16.3,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 6,
+        "exhaustTracts": 1,
+        "firingOrder": [
+        ],
+        "idleRpm": 650,
+        "inertia": 7.21,
+        "irregularity": 0.1,
+        "kind": "diesel",
+        "layout": "inline",
+        "liters": 18.1,
+        "loss": 0.32,
+        "maxRpm": 2100,
+        "overrunDrag": 0.43,
+        "powerKw": 522,
+        "recording": "fleet_bigdiesel",
+        "seed": 1952802911,
+        "strokeMm": 183,
+        "strokes": 4,
+        "torqueNm": 2570,
+        "turbineBlades": 29
+    },
+    "name": "Oshkosh M1070A1 Drive",
+    "revLimiter": {
+        "cutRpm": 2028,
+        "enabled": false,
+        "resumeRpm": 1970
+    },
+    "version": 1
+}

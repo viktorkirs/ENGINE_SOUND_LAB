@@ -7,7 +7,7 @@
 
 namespace esl {
 
-enum class ExportMode { Single, Pack, Grid };
+enum class ExportMode { Single, Pack, Grid, Drive };
 
 struct ExportOptions {
     ExportMode mode = ExportMode::Single;

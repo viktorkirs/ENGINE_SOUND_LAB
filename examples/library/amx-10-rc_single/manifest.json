@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.595125,
+            "engine": "AMX-10 RC",
+            "file": "steady.wav",
+            "frames": 172566,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172566,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1908,
+            "rpmEnd": 1908,
+            "rpmPeak": 1908,
+            "rpmStart": 1908,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "AMX-10 RC",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 808548461,
+    "version": 1
+}

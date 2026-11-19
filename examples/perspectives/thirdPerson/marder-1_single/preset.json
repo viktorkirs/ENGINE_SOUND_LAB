@@ -1,0 +1,140 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 1450,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "MB 833 Ea-500 · V6 · 22,4 л · запись снаружи",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.67,
+            "cutoff": 1300,
+            "damping": 0.65,
+            "drive": 0.07,
+            "gain": 0.13,
+            "mute": false,
+            "resonance": 86,
+            "shape": 0.74,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.73,
+            "cutoff": 3900,
+            "damping": 0.46,
+            "drive": 0.12,
+            "gain": 0.17,
+            "mute": false,
+            "resonance": 465,
+            "shape": 0.5,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.82,
+            "cutoff": 2650,
+            "damping": 0.56,
+            "drive": 0.18,
+            "gain": 0.18,
+            "mute": false,
+            "resonance": 113,
+            "shape": 0.45,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.61,
+            "cutoff": 3600,
+            "damping": 0.56,
+            "drive": 0.04,
+            "gain": 0.085,
+            "mute": false,
+            "resonance": 280,
+            "shape": 0.47,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.63,
+            "cutoff": 4900,
+            "damping": 0.52,
+            "drive": 0.04,
+            "gain": 0.13,
+            "mute": false,
+            "resonance": 930,
+            "shape": 0.57,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.09,
+            "cutoff": 12500,
+            "damping": 0.7,
+            "drive": 0.025,
+            "gain": 1.11,
+            "mute": false,
+            "resonance": 105,
+            "shape": 0.71,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.51,
+            "cutoff": 7600,
+            "damping": 0.64,
+            "drive": 0.03,
+            "gain": 0.07,
+            "mute": false,
+            "resonance": 1820,
+            "shape": 0.59,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.72,
+        "position": "thirdPerson"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "turbocharger",
+        "compressionRatio": 18,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 6,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 850,
+        "inertia": 14.5,
+        "irregularity": 0.13,
+        "kind": "diesel",
+        "layout": "v",
+        "liters": 22.4,
+        "loss": 0.33,
+        "maxRpm": 2200,
+        "powerKw": 441,
+        "recording": "marder",
+        "seed": 833500,
+        "strokeMm": 175,
+        "strokes": 4,
+        "torqueNm": 2050,
+        "turbineBlades": 29
+    },
+    "name": "Marder 1",
+    "revLimiter": {
+        "cutRpm": 2133,
+        "enabled": false,
+        "resumeRpm": 2079
+    },
+    "version": 1
+}

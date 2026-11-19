@@ -12,7 +12,7 @@ QString dashboardStyle();
 class Tachometer final : public QWidget {
 public:
     explicit Tachometer(QWidget* parent = nullptr);
-    void setData(const Model& model, const EngineState& engine, bool hold, double holdRpm);
+    void setData(const Model& model, const EngineState& engine, bool hold, double holdRpm, const RevLimiter& limiter = {});
 
 protected:
     void paintEvent(QPaintEvent*) override;
@@ -22,6 +22,7 @@ private:
     EngineState engine_;
     bool hold_ = false;
     double holdRpm_ = 0;
+    RevLimiter limiter_;
 };
 
 class SignalView final : public QWidget {

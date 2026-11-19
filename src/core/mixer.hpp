@@ -14,10 +14,17 @@ struct StereoFrame {
 
 class AudioMixer {
 public:
-    void configure(const Layers& layers, double master, double rate, bool immediate) {
-        const bool solo = std::any_of(layers.begin(), layers.end(), [](const Layer& layer) { return layer.solo; });
+    void configure(const Layers& layers, double master, double rate, bool immediate,
+                   bool recorded = false, ListeningPosition position = ListeningPosition::Direct) {
+        constexpr auto mic = static_cast<std::size_t>(LayerId::Recording);
+        bool solo = false;
+        for (std::size_t i = 0; i < layers.size(); ++i)
+            solo |= (recorded || i != mic) && layers[i].solo;
+        // Structure-borne vibration and mechanical noise carry into the cabin.
+        constexpr std::array cabin{0.68, 0.43, 0.34, 1.25, 0.38, 1.48, 0.86, 1.32};
         for (std::size_t i = 0; i < layers.size(); ++i) {
-            target_[i] = layers[i].mute || (solo && !layers[i].solo) ? 0.0 : layers[i].gain;
+            const double transfer = position == ListeningPosition::Interior ? cabin[i] : 1.0;
+            target_[i] = (!recorded && i == mic) || layers[i].mute || (solo && !layers[i].solo) ? 0.0 : layers[i].gain * transfer;
         }
         masterTarget_ = master;
         if (rate != rate_) {
@@ -29,6 +36,8 @@ public:
             master_ = masterTarget_;
         }
     }
+
+    bool audible(std::size_t layer) const { return target_[layer] > 0.0 || gain_[layer] > 1e-7; }
 
     StereoFrame mix(const std::array<StereoFrame, layerCount>& source) {
         double left = 0.0;

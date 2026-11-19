@@ -1,0 +1,38 @@
+{
+    "bitsPerSample": 16,
+    "channels": 2,
+    "clips": [
+        {
+            "durationSeconds": 3.595875,
+            "engine": "Leclerc Serie 2",
+            "file": "steady.wav",
+            "frames": 172602,
+            "load": 0.45,
+            "loadEnd": 0.45,
+            "loadStart": 0.45,
+            "loop": {
+                "endFrameExclusive": 172602,
+                "startFrame": 0
+            },
+            "requestedSeconds": 3.6,
+            "role": "steady",
+            "rpm": 1668,
+            "rpmEnd": 1668,
+            "rpmPeak": 1668,
+            "rpmStart": 1668,
+            "throttle": 0.4
+        }
+    ],
+    "engine": "Leclerc Serie 2",
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "mode": "single",
+    "normalizationGain": 1,
+    "normalized": false,
+    "sampleRate": 48000,
+    "seed": 1668441452,
+    "version": 1
+}

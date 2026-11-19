@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "name": "UAZ-452",
+  "description": "УМЗ-451 · Запись родственной четвёрки УАЗ-469, закрытый кузов",
+  "model": {
+    "kind": "gasoline",
+    "layout": "inline",
+    "cylinders": 4,
+    "strokes": 4,
+    "liters": 2.445,
+    "strokeMm": 92.0,
+    "compressionRatio": 6.7,
+    "idleRpm": 650,
+    "maxRpm": 4000,
+    "bankAngle": 90,
+    "firingOrder": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "irregularity": 0.18,
+    "inertia": 1.25,
+    "powerKw": 55.0,
+    "torqueNm": 167.0,
+    "loss": 0.3,
+    "exhaustTracts": 1,
+    "boost": "none",
+    "coreMaxRpm": 28000,
+    "coreIdle": 0.54,
+    "coreLag": 1.25,
+    "compressorBlades": 18,
+    "turbineBlades": 29,
+    "seed": 842347642,
+    "recording": "uaz",
+    "overrunDrag": 0.51
+  },
+  "layers": {
+    "combustion": {
+      "gain": 0.105,
+      "resonance": 490,
+      "cutoff": 3900,
+      "shape": 0.47,
+      "amount": 0.58,
+      "damping": 0.5,
+      "drive": 0.088,
+      "mute": false,
+      "solo": false
+    },
+    "exhaust": {
+      "gain": 0.185,
+      "resonance": 178,
+      "cutoff": 3420,
+      "shape": 0.4,
+      "amount": 0.74,
+      "damping": 0.5,
+      "drive": 0.16,
+      "mute": false,
+      "solo": false
+    },
+    "intake": {
+      "gain": 0.125,
+      "resonance": 290,
+      "cutoff": 4250,
+      "shape": 0.56,
+      "amount": 0.64,
+      "damping": 0.55,
+      "drive": 0.055,
+      "mute": false,
+      "solo": false
+    },
+    "mechanical": {
+      "gain": 0.082,
+      "resonance": 685,
+      "cutoff": 4350,
+      "shape": 0,
+      "amount": 0.59,
+      "damping": 0.57,
+      "drive": 0.031,
+      "mute": false,
+      "solo": false
+    },
+    "turbo": {
+      "gain": 0,
+      "resonance": 1800,
+      "cutoff": 5400,
+      "shape": 0.4,
+      "amount": 0.4,
+      "damping": 0.6,
+      "drive": 0.02,
+      "mute": false,
+      "solo": false
+    },
+    "body": {
+      "gain": 0.096,
+      "resonance": 118,
+      "cutoff": 1300,
+      "shape": 0.56,
+      "amount": 0.55,
+      "damping": 0.58,
+      "drive": 0.064,
+      "mute": false,
+      "solo": false
+    },
+    "recording": {
+      "gain": 1.1,
+      "resonance": 148,
+      "cutoff": 13100,
+      "shape": 0.82,
+      "amount": 0.032,
+      "damping": 0.68,
+      "drive": 0.029,
+      "mute": false,
+      "solo": false
+    }
+  },
+  "behavior": {
+    "throttle": 0,
+    "load": 0.18,
+    "hold": false,
+    "holdRpm": 2160,
+    "gear": 0,
+    "brake": false,
+    "master": 0.72,
+    "program": "autoTest"
+  },
+  "faults": {
+    "cylinder": 1,
+    "sparkMiss": 0.0,
+    "fuelBias": 0.0,
+    "injectorWear": 0.0,
+    "overload": 0.0,
+    "mechanicalWear": 0.0
+  },
+  "listener": {
+    "position": "thirdPerson",
+    "distanceMeters": 8,
+    "insulation": 0.7
+  }
+}

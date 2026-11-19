@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.24)
-project(EngineSoundLab VERSION 1.0.0 LANGUAGES CXX)
+project(EngineSoundLab VERSION 1.2.2 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -9,6 +9,8 @@ add_library(esl_dsp STATIC
     src/core/engine_model.cpp
     src/core/simulation.cpp
     src/core/dsp.cpp
+    src/core/recording.cpp
+    src/core/listener.cpp
     src/core/render.cpp
 )
 target_include_directories(esl_dsp PUBLIC src)

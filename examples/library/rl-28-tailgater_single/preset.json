@@ -1,0 +1,152 @@
+{
+    "behavior": {
+        "brake": false,
+        "gear": 0,
+        "hold": false,
+        "holdRpm": 2180,
+        "load": 0.18,
+        "master": 0.72,
+        "program": "autoTest",
+        "throttle": 0
+    },
+    "description": "ЗМЗ-2424 V8 · Игровая версия пикапа с бензиновым V8",
+    "faults": {
+        "cylinder": 1,
+        "fuelBias": 0,
+        "injectorWear": 0,
+        "mechanicalWear": 0,
+        "overload": 0,
+        "sparkMiss": 0
+    },
+    "layers": {
+        "body": {
+            "amount": 0.55,
+            "cutoff": 1300,
+            "damping": 0.58,
+            "drive": 0.064,
+            "gain": 0.096,
+            "mute": false,
+            "resonance": 115,
+            "shape": 0.56,
+            "solo": false
+        },
+        "combustion": {
+            "amount": 0.58,
+            "cutoff": 3900,
+            "damping": 0.5,
+            "drive": 0.088,
+            "gain": 0.105,
+            "mute": false,
+            "resonance": 490,
+            "shape": 0.47,
+            "solo": false
+        },
+        "exhaust": {
+            "amount": 0.74,
+            "cutoff": 3420,
+            "damping": 0.5,
+            "drive": 0.16,
+            "gain": 0.185,
+            "mute": false,
+            "resonance": 172,
+            "shape": 0.4,
+            "solo": false
+        },
+        "intake": {
+            "amount": 0.64,
+            "cutoff": 4250,
+            "damping": 0.55,
+            "drive": 0.055,
+            "gain": 0.125,
+            "mute": false,
+            "resonance": 290,
+            "shape": 0.56,
+            "solo": false
+        },
+        "mechanical": {
+            "amount": 0.59,
+            "cutoff": 4350,
+            "damping": 0.57,
+            "drive": 0.031,
+            "gain": 0.082,
+            "mute": false,
+            "resonance": 685,
+            "shape": 0,
+            "solo": false
+        },
+        "recording": {
+            "amount": 0.032,
+            "cutoff": 13100,
+            "damping": 0.68,
+            "drive": 0.029,
+            "gain": 1.1,
+            "mute": false,
+            "resonance": 148,
+            "shape": 0.82,
+            "solo": false
+        },
+        "transmission": {
+            "amount": 0.38,
+            "cutoff": 3900,
+            "damping": 0.48,
+            "drive": 0.04,
+            "gain": 0,
+            "mute": false,
+            "resonance": 610,
+            "shape": 0.62,
+            "solo": false
+        },
+        "turbo": {
+            "amount": 0.4,
+            "cutoff": 5400,
+            "damping": 0.6,
+            "drive": 0.02,
+            "gain": 0,
+            "mute": false,
+            "resonance": 1800,
+            "shape": 0.4,
+            "solo": false
+        }
+    },
+    "listener": {
+        "distanceMeters": 8,
+        "insulation": 0.7,
+        "position": "thirdPerson"
+    },
+    "model": {
+        "bankAngle": 90,
+        "boost": "none",
+        "compressionRatio": 8.5,
+        "compressorBlades": 18,
+        "coreIdle": 0.54,
+        "coreLag": 1.25,
+        "coreMaxRpm": 28000,
+        "cylinders": 8,
+        "exhaustTracts": 2,
+        "firingOrder": [
+        ],
+        "idleRpm": 700,
+        "inertia": 2.29,
+        "irregularity": 0.18,
+        "kind": "gasoline",
+        "layout": "v",
+        "liters": 5.53,
+        "loss": 0.3,
+        "maxRpm": 4000,
+        "overrunDrag": 0.51,
+        "powerKw": 145,
+        "recording": "fleet_zmz2424",
+        "seed": 2020961385,
+        "strokeMm": 88,
+        "strokes": 4,
+        "torqueNm": 420,
+        "turbineBlades": 29
+    },
+    "name": "RL-28 Tailgater",
+    "revLimiter": {
+        "cutRpm": 3835,
+        "enabled": false,
+        "resumeRpm": 3703
+    },
+    "version": 1
+}

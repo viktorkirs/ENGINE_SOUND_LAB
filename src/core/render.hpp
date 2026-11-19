@@ -7,7 +7,7 @@
 
 namespace esl {
 
-enum class Motion { Steady, Start, Acceleration, Deceleration, Shutdown };
+enum class Motion { Steady, Start, Acceleration, Deceleration, Shutdown, Drive };
 
 struct ClipRequest {
     Motion motion = Motion::Steady;

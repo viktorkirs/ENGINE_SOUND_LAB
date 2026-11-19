@@ -31,8 +31,12 @@ try {
     Copy-Item -LiteralPath (Join-Path $build 'EngineSoundLab.exe') -Destination $binary -Force
     & (Join-Path $qtBin 'windeployqt.exe') --release --no-opengl-sw --no-system-d3d-compiler --no-system-dxc-compiler --no-translations --skip-plugin-types 'iconengines,imageformats,styles,networkinformation,tls,generic,platformthemes' $binary
     if ($LASTEXITCODE -ne 0) { throw 'Qt deployment failed.' }
-    foreach ($name in 'README.md','README.ru.md','THIRD-PARTY.md','licenses','presets') {
+    foreach ($name in 'README.md','README.ru.md','THIRD-PARTY.md','licenses','presets','docs') {
         Copy-Item -LiteralPath (Join-Path $PSScriptRoot $name) -Destination $portable -Recurse -Force
+    }
+    $prepTools = New-Item -ItemType Directory -Force -Path (Join-Path $portable 'tools')
+    foreach ($name in 'prepare_recordings.py','prepare_fleet.py') {
+        Copy-Item -LiteralPath (Join-Path $PSScriptRoot "tools\$name") -Destination $prepTools.FullName -Force
     }
     $examples = Join-Path $PSScriptRoot 'examples'
     if (Test-Path -LiteralPath $examples -PathType Container) {

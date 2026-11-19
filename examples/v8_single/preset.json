@@ -74,6 +74,17 @@
             "shape": 0.55,
             "solo": false
         },
+        "recording": {
+            "amount": 0,
+            "cutoff": 13000,
+            "damping": 0.65,
+            "drive": 0,
+            "gain": 1,
+            "mute": false,
+            "resonance": 125,
+            "shape": 0.65,
+            "solo": false
+        },
         "turbo": {
             "amount": 0.52,
             "cutoff": 8000,
@@ -86,9 +97,15 @@
             "solo": false
         }
     },
+    "listener": {
+        "distanceMeters": 1,
+        "insulation": 0.72,
+        "position": "direct"
+    },
     "model": {
         "bankAngle": 90,
         "boost": "none",
+        "compressionRatio": 10.2,
         "compressorBlades": 18,
         "coreIdle": 0.54,
         "coreLag": 1.25,
@@ -106,11 +123,18 @@
         "loss": 0.33,
         "maxRpm": 6300,
         "powerKw": 310,
+        "recording": "none",
         "seed": 5708,
+        "strokeMm": 89,
         "strokes": 4,
         "torqueNm": 540,
         "turbineBlades": 29
     },
     "name": "Бензиновый V8",
+    "revLimiter": {
+        "cutRpm": 6000,
+        "enabled": true,
+        "resumeRpm": 5800
+    },
     "version": 1
 }
